@@ -31,20 +31,16 @@
   },
   "homepage": "https://github.com/SalahAdDin/frontend/#readme",
   "dependencies": {
-    "@apollo/react-hooks": "^3.1.5",
-    "@apollo/react-ssr": "^3.1.5",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-client": "^2.6.10",
-    "apollo-link-http": "^1.5.17",
-    "graphql": "^15.2.0",
-    "graphql-tag": "^2.10.3",
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "husky": "^4.2.5",
-    "isomorphic-unfetch": "^3.0.0",
     "lint-staged": "^10.2.11",
+    "moment-timezone": "^0.5.31",
     "next": "9.4.4",
-    "next-with-apollo": "^5.0.1",
     "prettier": "^2.0.5",
     "react": "16.13.1",
-    "react-dom": "16.13.1"
+    "react-dom": "16.13.1",
+    "react-moment": "^0.9.7"
   }
 }
