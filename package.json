@@ -38,6 +38,8 @@
     "lint-staged": "^10.2.11",
     "moment-timezone": "^0.5.31",
     "next": "9.4.4",
+    "next-optimized-images": "^2.6.1",
+    "next-seo": "^4.7.0",
     "prettier": "^2.0.5",
     "react": "16.13.1",
     "react-dom": "16.13.1",
