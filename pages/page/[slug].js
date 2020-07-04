@@ -6,7 +6,7 @@ import { NextSeo } from "next-seo"
 import Skeleton from "@material-ui/lab/Skeleton"
 import Layout from "@/components/layout"
 import { CMS_NAME } from "@/lib/constants"
-import { getAllPagesBySlug } from "@/lib/api"
+import { getAllPagesBySlug, getAllPagesWithSlug } from "@/lib/api"
 import { getPageBySlug } from "@/lib/api"
 
 /*
@@ -22,9 +22,9 @@ Query for getting personal information:
 }
  */
 
-const Page = (page) => {
+const Page = ({ page, preview }) => {
   const router = useRouter()
-  const pageTitle = `${CMS_NAME} | ${page.title}`
+  // const pageTitle = `${CMS_NAME} | ${page.title}
 
   if (!router.isFallback && !page?.slug) {
     return <ErrorPage statusCode={404} />
@@ -32,8 +32,13 @@ const Page = (page) => {
 
   return (
     <>
-      <Layout>
-        <Head>
+      <Layout preview={preview}>
+        {/* TODO: It goes in every place with the structure */}
+        {router.isFallback ? (
+          <Skeleton />
+        ) : (
+          <>
+            {/* <Head>
           <NextSeo
             title={pageTitle}
             description={page.description.description_en}
@@ -75,10 +80,11 @@ const Page = (page) => {
               ],
             }}
           />
-        </Head>
-        {/* TODO: It goes in every place with the structure */}
-        {/* router.isFallback ? <Skeleton /> : <></>*/}
-        {page}
+        </Head> */}
+
+            {page}
+          </>
+        )}
       </Layout>
     </>
   )
@@ -86,6 +92,21 @@ const Page = (page) => {
 
 Page.propTypes = {
   page: PropTypes.object,
+  preview: PropTypes.bool,
 }
 
 export default Page
+
+export async function getStaticProps({ params, preview = null }) {
+  const data = await getPageBySlug(params.slug, preview)
+
+  return { props: { preview, page: { ...data?.pages[0] } } }
+}
+
+export async function getStaticPaths() {
+  const allPages = await getAllPagesWithSlug()
+  return {
+    paths: allPages?.map((page) => `/page/${page.slug}`) || [],
+    fallback: true,
+  }
+}

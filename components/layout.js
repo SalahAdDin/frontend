@@ -1,12 +1,28 @@
 import PropTypes from "prop-types"
-import { Container } from "@material-ui/core"
+import { Button, Container } from "@material-ui/core"
+import { Alert, AlertTitle } from "@material-ui/lab"
 import Footer from "./footer"
 import Nav from "./nav"
 
-const Layout = ({ children }) => {
+const Layout = ({ preview, children }) => {
   return (
     <>
       <Nav />
+      {preview ? (
+        <Alert
+          severity="warning"
+          action={
+            <Button color="inherit" size="small" href="/api/exit-preview">
+              Exit
+            </Button>
+          }
+        >
+          <AlertTitle>Warning</AlertTitle>
+          You are looking the website in — <strong>preview mode</strong>.
+        </Alert>
+      ) : (
+        ""
+      )}
       <Container>{children}</Container>
       <Footer />
     </>
@@ -15,6 +31,7 @@ const Layout = ({ children }) => {
 
 Layout.propTypes = {
   children: PropTypes.array,
+  preview: PropTypes.bool,
 }
 
 export default Layout
