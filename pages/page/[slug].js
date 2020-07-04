@@ -6,6 +6,8 @@ import { NextSeo } from "next-seo"
 import Skeleton from "@material-ui/lab/Skeleton"
 import Layout from "@/components/layout"
 import { CMS_NAME } from "@/lib/constants"
+import { getAllPagesBySlug } from "@/lib/api"
+import { getPageBySlug } from "@/lib/api"
 
 /*
 Query for getting personal information:
