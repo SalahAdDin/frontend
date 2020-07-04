@@ -31,7 +31,7 @@ const App = ({ Component, pageProps }) => {
 }
 
 App.propTypes = {
-  Component: PropTypes.object,
+  Component: PropTypes.func,
   pageProps: PropTypes.object,
 }
 
