@@ -23,14 +23,14 @@ const Layout = ({ preview, children }) => {
       ) : (
         ""
       )}
-      <Container>{children}</Container>
+      <Container maxWidth="lg">{children}</Container>
       <Footer />
     </>
   )
 }
 
 Layout.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.object.isRequired,
   preview: PropTypes.bool,
 }
 
