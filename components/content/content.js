@@ -7,7 +7,7 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
-import oceanic from "./material-oceanic.js"
+import oceanic from "@/styles/material-oceanic"
 
 const CodeBlock = ({ language, value }) => (
   <SyntaxHighlighter

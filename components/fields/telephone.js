@@ -1,10 +1,7 @@
 import PropTypes from "prop-types"
-import { makeStyles, ListItemText, ListItemIcon, ListItem } from "@material-ui/core"
+import { ListItemText, ListItemIcon, ListItem } from "@material-ui/core"
 import { PhoneAndroid, Phonelink, Phone } from "@material-ui/icons"
-
-const useStyles = makeStyles((theme) => ({
-  inlineBlock: { width: "inherit", display: "inline-block" },
-}))
+import useStyles from "@/styles/common"
 
 const Telephone = ({ phone }) => {
   const classes = useStyles()

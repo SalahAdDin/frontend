@@ -9,7 +9,7 @@ import {
   List,
 } from "@material-ui/core"
 import Telephone from "../fields/telephone"
-import URL from "../fields/url.js"
+import URL from "../fields/url"
 import Content from "./content"
 
 const useStyles = makeStyles((theme) => ({
