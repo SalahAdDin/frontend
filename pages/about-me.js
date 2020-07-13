@@ -1,14 +1,19 @@
 import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
-import Layout from "@/components/layout"
+import { SocialProfileJsonLd, NextSeo } from "next-seo"
+import { makeStyles, Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api"
-import { SocialProfileJsonLd, NextSeo } from "next-seo"
 import { CMS_URL, CMS_NAME } from "@/lib/constants"
-import { Typography } from "@material-ui/core"
+import Layout from "@/components/layout"
+import PersonalInformation from "@/components/content/personalinformation"
+import SkillSection from "@/components/skillsection"
 
-const AboutMe = ({ title_en, slug, title, description, body, tags }) => {
+const useStyles = makeStyles((theme) => ({}))
+
+const AboutMe = ({ title_en, slug, title, description, body }) => {
+  const classes = useStyles()
   const router = useRouter()
   // TODO: Localize title
   const postTitle = `${CMS_NAME} | ${title || title_en}`
@@ -32,6 +37,7 @@ const AboutMe = ({ title_en, slug, title, description, body, tags }) => {
   return (
     <Layout>
       {router.isFallback ? (
+        // TODO: implements this in a better way / more beautiful
         <Skeleton />
       ) : (
         <>
@@ -68,9 +74,17 @@ const AboutMe = ({ title_en, slug, title, description, body, tags }) => {
             url={CMS_URL}
             sameAs={personalInformation.links.map((url) => url.url)}
           />
-          <Typography variant="h1" component="h1">
+          <Typography variant="h1" component="h1" align="center">
             {title_en}
           </Typography>
+          <PersonalInformation personalInformation={personalInformation} />
+          {Object.keys(skills).map((group) => (
+            <SkillSection
+              skills={skills[group]}
+              group={group}
+              key={"skill_group_" + group}
+            />
+          ))}
         </>
       )}
     </Layout>
@@ -79,10 +93,10 @@ const AboutMe = ({ title_en, slug, title, description, body, tags }) => {
 
 export async function getStaticProps() {
   const data = await getPageBySlug("about-me", false)
-  const { title_en, slug, title, description, body, tags } = data?.pages[0]
+  const { title_en, slug, title, description, body } = data?.pages[0]
 
   return {
-    props: { title_en, slug, title, description, body, tags },
+    props: { title_en, slug, title, description, body },
     unstable_revalidate: 1,
   }
 }
