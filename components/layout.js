@@ -23,7 +23,9 @@ const Layout = ({ preview, children }) => {
       ) : (
         ""
       )}
-      <Container maxWidth="lg">{children}</Container>
+      <Container component="main" maxWidth="md">
+        {children}
+      </Container>
       <Footer />
     </>
   )
