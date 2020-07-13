@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url.js"
+import Content from "./content"
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -34,7 +35,7 @@ const PersonalInformation = ({ personalInformation }) => {
   } = personalInformation
 
   return (
-    <Card elevation={0} align="center" component="section">
+    <Card elevation={0} component="section">
       <CardHeader
         align="center"
         title={
@@ -81,9 +82,9 @@ const PersonalInformation = ({ personalInformation }) => {
         }
       />
       <CardContent>
-        {/* TODO: Use Richtext renderer */}
-        <Typography variant="body1" component="p">
-          {aboutme.content_en}
+        {/* TODO: Localize */}
+        <Typography variant="body1" component="div">
+          <Content>{aboutme.content_en}</Content>
         </Typography>
       </CardContent>
     </Card>
