@@ -2,6 +2,7 @@ import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { SocialProfileJsonLd, NextSeo } from "next-seo"
+import { useTranslation } from "react-i18next"
 import { makeStyles, Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api"
@@ -15,8 +16,12 @@ const useStyles = makeStyles((theme) => ({}))
 const AboutMe = ({ title_en, slug, title, description, body }) => {
   const classes = useStyles()
   const router = useRouter()
-  // TODO: Localize title
-  const postTitle = `${CMS_NAME} | ${title || title_en}`
+  const { i18n } = useTranslation()
+  const postTitle = `${CMS_NAME} | ${
+    title[
+      Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
+    ] || title_en
+  }`
 
   const personalInformation = body.find(
     (item) => item.__typename == "ComponentContentPersonalInformation"
@@ -50,8 +55,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
             openGraph={{
               // TODO: get the url => the the current path with next router
               url: process.env.BASE_URL,
-              // TODO: localize
-              title: title || title_en,
+              title: postTitle,
               description: description.description_en,
               images: [
                 {

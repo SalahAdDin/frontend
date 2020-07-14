@@ -85,7 +85,6 @@ const PersonalInformation = ({ personalInformation }) => {
         }
       />
       <CardContent>
-        {/* TODO: Localize */}
         <Typography variant="body1" component="div">
           <Content>
             {
