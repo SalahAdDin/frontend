@@ -8,6 +8,7 @@ import {
   Typography,
   List,
 } from "@material-ui/core"
+import { useTranslation } from "react-i18next"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
 import Content from "./content"
@@ -20,6 +21,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const PersonalInformation = ({ personalInformation }) => {
+  const { i18n } = useTranslation()
+
   const classes = useStyles()
 
   const {
@@ -84,7 +87,15 @@ const PersonalInformation = ({ personalInformation }) => {
       <CardContent>
         {/* TODO: Localize */}
         <Typography variant="body1" component="div">
-          <Content>{aboutme.content_en}</Content>
+          <Content>
+            {
+              aboutme[
+                Object.keys(aboutme).find(
+                  (content) => content.split("_")[1] == i18n.language
+                )
+              ]
+            }
+          </Content>
         </Typography>
       </CardContent>
     </Card>

@@ -1,10 +1,12 @@
 import PropTypes from "prop-types"
+import App from "next/app"
 import { DefaultSeo } from "next-seo"
 import Meta from "../components/meta"
 import SEO from "../next-seo.config"
 import { CMS_TILE_COLOR, CMS_THEME_COLOR } from "../lib/constants"
+import { appWithTranslation } from "i18n"
 
-const App = ({ Component, pageProps }) => {
+const FolioApp = ({ Component, pageProps }) => {
   return (
     <>
       <Meta />
@@ -30,9 +32,23 @@ const App = ({ Component, pageProps }) => {
   )
 }
 
-App.propTypes = {
+FolioApp.propTypes = {
   Component: PropTypes.func,
   pageProps: PropTypes.object,
 }
 
-export default App
+FolioApp.getInitialProps = async (appContext) => {
+  const appProps = await App.getInitialProps(appContext)
+  const defaultProps = appContext.Component.defaultProps
+  return {
+    ...appProps,
+    pageProps: {
+      namespacesRequired: [
+        ...(appProps.pageProps.namespacesRequired || []),
+        ...(defaultProps?.i18nNamespaces || []),
+      ],
+    },
+  }
+}
+
+export default appWithTranslation(FolioApp)

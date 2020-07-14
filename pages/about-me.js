@@ -91,6 +91,10 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
   )
 }
 
+AboutMe.defaultProps = {
+  namespacesRequired: ["common"],
+}
+
 export async function getStaticProps() {
   const data = await getPageBySlug("about-me", false)
   const { title_en, slug, title, description, body } = data?.pages[0]
