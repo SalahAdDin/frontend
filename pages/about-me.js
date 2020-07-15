@@ -71,7 +71,11 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
             sameAs={personalInformation.links.map((url) => url.url)}
           />
           <Typography variant="h1" component="h1" align="center">
-            {title_en}
+            {title[
+              Object.keys(title).find(
+                (content) => content.split("_")[1] == i18n.language
+              )
+            ] || title_en}
           </Typography>
           <PersonalInformation personalInformation={personalInformation} />
           {Object.keys(skills).map((group) => (
