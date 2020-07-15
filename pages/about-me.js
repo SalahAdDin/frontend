@@ -17,6 +17,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
   const classes = useStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation()
+
   const postTitle = `${CMS_NAME} | ${
     title[
       Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
@@ -36,7 +37,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
 
   const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
   const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
-  const getGroupName = (group) => t(group.toLowerCase())
+  const getGroupName = (group) => t("skill-type:" + group.toLowerCase())
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -96,10 +97,6 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
   )
 }
 
-AboutMe.defaultProps = {
-  namespacesRequired: ["common"],
-}
-
 export async function getStaticProps() {
   const data = await getPageBySlug("about-me", false)
   const { title_en, slug, title, description, body } = data?.pages[0]
@@ -108,6 +105,10 @@ export async function getStaticProps() {
     props: { title_en, slug, title, description, body },
     unstable_revalidate: 1,
   }
+}
+
+AboutMe.defaultProps = {
+  i18nNamespaces: ["skill-type"],
 }
 
 AboutMe.propTypes = {
