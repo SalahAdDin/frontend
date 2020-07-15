@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import App from "next/app"
 import { DefaultSeo } from "next-seo"
 import Meta from "../components/meta"
-import SEO from "../next-seo.config"
+import DefaultSEO from "../next-seo.config"
 import { CMS_TILE_COLOR, CMS_THEME_COLOR } from "../lib/constants"
 import { appWithTranslation } from "i18n"
 
@@ -11,7 +11,7 @@ const FolioApp = ({ Component, pageProps }) => {
     <>
       <Meta />
       <DefaultSeo
-        {...SEO}
+        {...DefaultSEO}
         additionalMetaTags={[
           {
             name: "msapplication-TileColor",

@@ -7,9 +7,10 @@ import { makeStyles, Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api"
 import { CMS_URL, CMS_NAME } from "@/lib/constants"
+import SEO from "@/components/seo"
+import SkillSection from "@/components/skillsection"
 import Layout from "@/components/layout"
 import PersonalInformation from "@/components/content/personalinformation"
-import SkillSection from "@/components/skillsection"
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -17,12 +18,6 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
   const classes = useStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation()
-
-  const postTitle = `${CMS_NAME} | ${
-    title[
-      Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
-    ] || title_en
-  }`
 
   const personalInformation = body.find(
     (item) => item.__typename == "ComponentContentPersonalInformation"
@@ -48,17 +43,12 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
         <Skeleton />
       ) : (
         <>
-          <NextSeo
-            title={postTitle}
-            description={description.description_en}
-            // TODO: get url
-            // canonical={process.env.BASE_URL}
-
+          <SEO
+            description={description}
+            title={title}
+            title_en={title_en}
             openGraph={{
-              // TODO: get the url => the the current path with next router
-              url: process.env.BASE_URL,
-              title: postTitle,
-              description: description.description_en,
+              type: "profile",
               images: [
                 {
                   url: personalInformation.photo.url,
