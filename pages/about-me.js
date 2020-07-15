@@ -77,7 +77,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
               )
             ] || title_en}
           </Typography>
-          <PersonalInformation personalInformation={personalInformation} />
+          <PersonalInformation {...personalInformation} />
           {Object.keys(skills).map((group) => (
             <SkillsSection
               skills={skills[group]}

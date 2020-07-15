@@ -5,9 +5,9 @@ import { GitHub, InsertLink, LinkedIn } from "@material-ui/icons"
 import useStyles from "@/styles/common"
 // TODO: Get Icons for StackOverflow, BitBucket and GitLab
 
-const URL = ({ link }) => {
+const URL = ({ type, url }) => {
   const classes = useStyles()
-  const { type, url } = link
+
   return (
     <ListItem className={classes.inlineBlock}>
       <Link href={"//" + url}>
@@ -30,10 +30,8 @@ const URL = ({ link }) => {
 }
 
 URL.propTypes = {
-  link: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-  }),
+  type: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
 }
 
 export default URL

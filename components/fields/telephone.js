@@ -3,9 +3,9 @@ import { ListItemText, ListItemIcon, ListItem } from "@material-ui/core"
 import { PhoneAndroid, Phonelink, Phone } from "@material-ui/icons"
 import useStyles from "@/styles/common"
 
-const Telephone = ({ phone }) => {
+const Telephone = ({ type, number }) => {
   const classes = useStyles()
-  const { type, number } = phone
+
   return (
     <ListItem className={classes.inlineBlock}>
       <ListItemIcon className={classes.inlineBlock} style={{ minWidth: "1.125rem" }}>
@@ -26,10 +26,8 @@ const Telephone = ({ phone }) => {
 }
 
 Telephone.propTypes = {
-  phone: PropTypes.shape({
-    type: PropTypes.string.isRequired,
-    number: PropTypes.number.isRequired,
-  }),
+  type: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
 }
 
 export default Telephone
