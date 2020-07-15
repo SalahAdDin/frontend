@@ -1,4 +1,12 @@
 {
   "error-with-status": "A {{statusCode}} error occurred on server",
-  "error-without-status": "An error occurred on the server"
+  "error-without-status": "An error occurred on the server",
+  "database": "Database",
+  "framework": "Framework",
+  "language": "Language",
+  "operative_system": "Operative System",
+  "programming_language": "Programming_Language",
+  "technical": "Technical",
+  "technology": "Technology",
+  "tools": "Tools"
 }

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({}))
 const AboutMe = ({ title_en, slug, title, description, body }) => {
   const classes = useStyles()
   const router = useRouter()
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const postTitle = `${CMS_NAME} | ${
     title[
       Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
@@ -36,6 +36,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
 
   const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
   const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
+  const getGroupName = (group) => t(group.toLowerCase())
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -85,7 +86,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
           {Object.keys(skills).map((group) => (
             <SkillSection
               skills={skills[group]}
-              group={group}
+              group={getGroupName(group)}
               key={"skill_group_" + group}
             />
           ))}

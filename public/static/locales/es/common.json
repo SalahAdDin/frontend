@@ -1,4 +1,12 @@
 {
   "error-with-status": "Un error {{statusCode}} ocurrió en el servidor",
-  "error-without-status": "Un error ocurrió en el servidor"
+  "error-without-status": "Un error ocurrió en el servidor",
+  "database": "Base de Datos",
+  "framework": "Marco de Trabajo",
+  "language": "Lenguaje",
+  "operative_system": "Sistema Operativo",
+  "programming_language": "Lenguaje de Programación",
+  "technical": "Técnica",
+  "technology": "Tecnología",
+  "tools": "Herramientas"
 }
