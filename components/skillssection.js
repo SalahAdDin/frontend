@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import { Card, Grid, Typography, CardHeader, CardContent } from "@material-ui/core"
 import Skill from "./fields/skill"
 
-const SkillSection = ({ skills, group }) => {
+const SkillsSection = ({ skills, group }) => {
   return (
     <Card component="section" style={{ margin: "15px auto", padding: 32 }}>
       <CardHeader
@@ -23,7 +23,7 @@ const SkillSection = ({ skills, group }) => {
   )
 }
 
-SkillSection.propTypes = {
+SkillsSection.propTypes = {
   skills: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
@@ -34,4 +34,4 @@ SkillSection.propTypes = {
   group: PropTypes.string.isRequired,
 }
 
-export default SkillSection
+export default SkillsSection

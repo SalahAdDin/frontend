@@ -8,7 +8,7 @@ import { Skeleton } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api"
 import { CMS_URL, CMS_NAME } from "@/lib/constants"
 import SEO from "@/components/seo"
-import SkillSection from "@/components/skillsection"
+import SkillsSection from "@/components/skillssection"
 import Layout from "@/components/layout"
 import PersonalInformation from "@/components/content/personalinformation"
 
@@ -75,7 +75,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
           </Typography>
           <PersonalInformation personalInformation={personalInformation} />
           {Object.keys(skills).map((group) => (
-            <SkillSection
+            <SkillsSection
               skills={skills[group]}
               group={getGroupName(group)}
               key={"skill_group_" + group}
