@@ -11,7 +11,7 @@ const URL = ({ link }) => {
   return (
     <ListItem className={classes.inlineBlock}>
       <Link href={"//" + url}>
-        <a>
+        <a target="_blank">
           <ListItemIcon>
             {
               {
