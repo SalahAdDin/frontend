@@ -68,10 +68,9 @@ const Education = ({ title_en, slug, title, description, body }) => {
 
 export async function getStaticProps() {
   const data = await getPageBySlug("education", false)
-  const { title_en, slug, title, description, body } = data?.pages[0]
 
   return {
-    props: { title_en, slug, title, description, body },
+    props: { ...data?.pages[0] },
     unstable_revalidate: 1,
   }
 }
