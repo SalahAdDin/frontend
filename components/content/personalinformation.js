@@ -13,6 +13,8 @@ import Telephone from "../fields/telephone"
 import URL from "../fields/url"
 import Content from "./content"
 import { Skeleton } from "@material-ui/lab"
+import { MailOutline, Room } from "@material-ui/icons"
+import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({
   large: {
@@ -32,9 +34,9 @@ const PersonalInformation = ({
   telephone,
   aboutme,
 }) => {
-  const { i18n } = useTranslation()
-
   const classes = useStyles()
+  const globalClasses = useGlobalStyles()
+  const { i18n } = useTranslation()
 
   return (
     <Card elevation={0} component="section">
@@ -65,6 +67,7 @@ const PersonalInformation = ({
                 {position}
               </Typography>
               <Typography color="textSecondary" variant="subtitle1" component="h6">
+                <MailOutline className={globalClasses.inlineSmallIcon} />
                 {mail}
               </Typography>
             </>
@@ -81,8 +84,10 @@ const PersonalInformation = ({
           address ? (
             <>
               <Typography variant="body2" component="p">
-                {address.address}/{address.city} [{address.postalcode}] -
-                {address.country}
+                <Room className={globalClasses.inlineSmallIcon} />
+                {address.address && address.address + " / "}
+                {address.city} {address.postalcode && "[" + address.postalcode + "]"}
+                {address.country && " - " + address.country}
               </Typography>
               <List aria-label="telephones">
                 {telephone.map((phone) => (
@@ -96,31 +101,28 @@ const PersonalInformation = ({
               </List>
             </>
           ) : (
-            <Skeleton
-              animation="wave"
-              height={10}
-              width="80%"
-              style={{ marginBottom: 6 }}
-            />
+            <Skeleton animation="wave" height={10} width="40%" />
           )
         }
       />
       <CardContent>
         <Typography variant="body1" component="div">
-          <Content>
-            {aboutme ? (
-              aboutme[
-                Object.keys(aboutme).find(
-                  (content) => content.split("_")[1] == i18n.language
-                )
-              ]
-            ) : (
-              <>
-                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-                <Skeleton animation="wave" height={10} width="80%" />
-              </>
-            )}
-          </Content>
+          {aboutme ? (
+            <Content>
+              {
+                aboutme[
+                  Object.keys(aboutme).find(
+                    (content) => content.split("_")[1] == i18n.language
+                  )
+                ]
+              }
+            </Content>
+          ) : (
+            <>
+              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" height={10} width="80%" />
+            </>
+          )}
         </Typography>
       </CardContent>
     </Card>
