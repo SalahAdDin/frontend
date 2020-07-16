@@ -11,6 +11,7 @@ import SEO from "@/components/seo"
 import SkillsSection from "@/components/skillssection"
 import Layout from "@/components/layout"
 import PersonalInformation from "@/components/content/personalinformation"
+import Title from "@/components/fields/title"
 
 const useStyles = makeStyles((theme) => ({}))
 
@@ -70,13 +71,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
             url={CMS_URL}
             sameAs={personalInformation.links.map((url) => url.url)}
           />
-          <Typography variant="h1" component="h1" align="center">
-            {title[
-              Object.keys(title).find(
-                (content) => content.split("_")[1] == i18n.language
-              )
-            ] || title_en}
-          </Typography>
+          <Title title={title} title_en={title_en} />
           <PersonalInformation {...personalInformation} />
           {Object.keys(skills).map((group) => (
             <SkillsSection

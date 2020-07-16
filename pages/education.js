@@ -9,6 +9,7 @@ import Layout from "@/components/layout"
 import SEO from "@/components/seo"
 import Experience from "@/components/content/experience"
 import Content from "@/components/content/content"
+import Title from "@/components/fields/title"
 
 const Education = ({ title_en, slug, title, description, body }) => {
   const router = useRouter()
@@ -30,13 +31,7 @@ const Education = ({ title_en, slug, title, description, body }) => {
       ) : (
         <>
           <SEO description={description} title={title} title_en={title_en} />
-          <Typography variant="h1" component="h1" align="center">
-            {title[
-              Object.keys(title).find(
-                (content) => content.split("_")[1] == i18n.language
-              )
-            ] || title_en}
-          </Typography>
+          <Title title={title} title_en={title_en} />
 
           <Typography variant="body1" component="section">
             {contents ? (
