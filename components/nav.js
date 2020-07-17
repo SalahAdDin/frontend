@@ -70,7 +70,7 @@ const Nav = ({ navLinks }) => {
               <Link href="/">
                 <MenuItem>Home</MenuItem>
               </Link>
-              {!Object.keys(navLinks).length === 0 &&
+              {Object.keys(navLinks).length !== 0 &&
                 menu_links.map(({ key, href, label }) => (
                   <Link href={href} key={key} passHref>
                     <MenuItem>{localizedTitle(label)}</MenuItem>
