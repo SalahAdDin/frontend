@@ -1,12 +1,14 @@
 import PropTypes from "prop-types"
 import App from "next/app"
 import { DefaultSeo } from "next-seo"
+import { appWithTranslation } from "i18n"
 import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
-import { CMS_TILE_COLOR, CMS_THEME_COLOR } from "../lib/constants"
-import { appWithTranslation } from "i18n"
+import { getPageTitleBySlug } from "@/lib/api"
+import { CMS_TILE_COLOR, CMS_THEME_COLOR, menu_links } from "@/lib/constants"
+import Nav from "@/components/nav"
 
-const FolioApp = ({ Component, pageProps }) => {
+const FolioApp = ({ Component, pageProps, navProps }) => {
   return (
     <>
       <Meta />
@@ -27,6 +29,7 @@ const FolioApp = ({ Component, pageProps }) => {
           },
         ]}
       />
+      <Nav navLinks={navProps} />
       <Component {...pageProps} />
     </>
   )
@@ -35,13 +38,22 @@ const FolioApp = ({ Component, pageProps }) => {
 FolioApp.propTypes = {
   Component: PropTypes.func,
   pageProps: PropTypes.object,
+  navProps: PropTypes.object,
 }
 
 FolioApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
+
+  let navProps = {}
+  menu_links.map(async ({ label }) => {
+    const { title, title_en } = await getLocalizedTitle(label)
+    navProps[label] = { title, title_en }
+  })
+
   const defaultProps = appContext.Component.defaultProps
   return {
     ...appProps,
+    navProps,
     pageProps: {
       namespacesRequired: [
         ...(appProps.pageProps.namespacesRequired || []),
@@ -49,6 +61,11 @@ FolioApp.getInitialProps = async (appContext) => {
       ],
     },
   }
+}
+
+export async function getLocalizedTitle(slug) {
+  const data = await getPageTitleBySlug(slug)
+  return { ...data?.pages[0] }
 }
 
 export default appWithTranslation(FolioApp)

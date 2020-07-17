@@ -1,4 +1,5 @@
 {
   "error-with-status": "Un error {{statusCode}} ocurrió en el servidor",
-  "error-without-status": "Un error ocurrió en el servidor"
+  "error-without-status": "Un error ocurrió en el servidor",
+  "home": "Inicio"
 }
