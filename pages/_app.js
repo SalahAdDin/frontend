@@ -62,6 +62,7 @@ FolioApp.getInitialProps = async (appContext) => {
   })
 
   const defaultProps = appContext.Component.defaultProps
+
   return {
     ...appProps,
     navProps,

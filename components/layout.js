@@ -21,7 +21,7 @@ const Layout = ({ preview, children }) => {
       ) : (
         ""
       )}
-      <Container component="main" maxWidth="md">
+      <Container component="main" maxWidth="md" style={{ marginTop: 100 }}>
         {children}
       </Container>
       <Footer />
