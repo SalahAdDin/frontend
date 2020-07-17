@@ -1,6 +1,8 @@
+import { useEffect } from "react"
 import PropTypes from "prop-types"
 import App from "next/app"
 import { DefaultSeo } from "next-seo"
+import { ThemeProvider, CssBaseline } from "@material-ui/core"
 import { appWithTranslation } from "i18n"
 import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
@@ -9,6 +11,15 @@ import { CMS_TILE_COLOR, CMS_THEME_COLOR, menu_links } from "@/lib/constants"
 import Nav from "@/components/nav"
 
 const FolioApp = ({ Component, pageProps, navProps }) => {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyle = document.querySelector("#jss-server-side")
+
+    if (jssStyle) {
+      jssStyle.parentElement.removeChild(jssStyle)
+    }
+  }, [])
+
   return (
     <>
       <Meta />
@@ -23,14 +34,14 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
             name: "msapplication-config",
             content: "/favicon/browserconfig.xml",
           },
-          {
-            name: "theme-color",
-            content: CMS_THEME_COLOR,
-          },
         ]}
       />
-      <Nav navLinks={navProps} />
-      <Component {...pageProps} />
+      {/* TODO: Add a proper theme */}
+      <ThemeProvider>
+        <CssBaseline />
+        <Nav navLinks={navProps} />
+        <Component {...pageProps} />
+      </ThemeProvider>
     </>
   )
 }
