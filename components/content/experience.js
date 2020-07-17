@@ -12,6 +12,7 @@ import {
   TimelineContent,
 } from "@material-ui/lab"
 import { useTranslation } from "react-i18next"
+import moment from "moment"
 import Content from "./content"
 import useStyles from "@/styles/common"
 
@@ -40,7 +41,8 @@ const Experience = ({
           <Skeleton animation="wave" height={10} width="40%" />
         )}
         <Typography color="textSecondary">
-          {from} {ongoing ? "" : <>- {to}</>}
+          {moment(from).format("MMMM YYYY")}{" "}
+          {ongoing ? "" : <>&mdash; {moment(to).format("MMMM YYYY")}</>}
         </Typography>
       </TimelineOppositeContent>
       <TimelineSeparator>
