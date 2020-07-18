@@ -38,10 +38,10 @@ HideOnScroll.propTypes = {
 }
 
 const Nav = ({ navLinks }) => {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   const localizedTitle = (label) => {
-    const { title, title_en } = navLinks[label]
+    const { title = {}, title_en } = navLinks[label]
 
     return (
       title[
@@ -57,7 +57,7 @@ const Nav = ({ navLinks }) => {
   return (
     <HideOnScroll>
       <AppBar position="fixed" color="default" elevation={0}>
-        <Container component="nav" maxWidth="md">
+        <Container component="nav" maxWidth="md" disableGutters>
           <Toolbar>
             {/* TODO: Add custom logo here */}
             <Box
@@ -65,10 +65,11 @@ const Nav = ({ navLinks }) => {
               display="flex"
               component="ul"
               alignItems="center"
-              justifyContent="flex-end"
+              justifyContent="space-between"
+              width="100%"
             >
               <Link href="/">
-                <MenuItem>Home</MenuItem>
+                <MenuItem>{t("home")}</MenuItem>
               </Link>
               {Object.keys(navLinks).length !== 0 &&
                 menu_links.map(({ key, href, label }) => (
@@ -77,8 +78,13 @@ const Nav = ({ navLinks }) => {
                   </Link>
                 ))}
               {/* TODO: Stick the language chooser to the right */}
-              <FormControl variant="outlined" style={{ margin: "0 1rem" }}>
-                <Select value={i18n.language} onChange={handleLanguageChange}>
+              {/* TODO: .MuiInputBase-input{ padding: 6px 1rem} */}
+              <FormControl variant="standard" style={{ margin: "auto 1rem" }}>
+                <Select
+                  value={i18n.language}
+                  onChange={handleLanguageChange}
+                  disableUnderline
+                >
                   <MenuItem value="en">EN</MenuItem>
                   <MenuItem value="tr">TR</MenuItem>
                   <MenuItem value="es">ES</MenuItem>
@@ -94,10 +100,12 @@ const Nav = ({ navLinks }) => {
 }
 
 Nav.propTypes = {
-  navLinks: PropTypes.objectOf({
-    title_en: PropTypes.string.isRequired,
-    title: PropTypes.objectOf(PropTypes.string),
-  }),
+  navLinks: PropTypes.shape(
+    PropTypes.objectOf({
+      title_en: PropTypes.string.isRequired,
+      title: PropTypes.object,
+    })
+  ),
 }
 
 export default Nav
