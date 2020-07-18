@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import { Button, Container } from "@material-ui/core"
 import { Alert, AlertTitle } from "@material-ui/lab"
-import Footer from "./footer"
 
 const Layout = ({ preview, children }) => {
   return (
@@ -24,7 +23,6 @@ const Layout = ({ preview, children }) => {
       <Container component="main" maxWidth="md" style={{ marginTop: 100 }}>
         {children}
       </Container>
-      <Footer />
     </>
   )
 }

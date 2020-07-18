@@ -7,8 +7,9 @@ import { appWithTranslation } from "i18n"
 import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
 import { getPageTitleBySlug } from "@/lib/api"
-import { CMS_TILE_COLOR, CMS_THEME_COLOR, menu_links } from "@/lib/constants"
+import { CMS_TILE_COLOR, menu_links } from "@/lib/constants"
 import Nav from "@/components/nav"
+import Footer from "@/components/footer"
 
 const FolioApp = ({ Component, pageProps, navProps }) => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
         <CssBaseline />
         <Nav navLinks={navProps} />
         <Component {...pageProps} />
+        <Footer navLinks={navProps} />
       </ThemeProvider>
     </>
   )
@@ -55,6 +57,7 @@ FolioApp.propTypes = {
 FolioApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
 
+  // TODO: Here at beginning is undefined, so, i'm getting errors in console, it should be a defaultProp, but how?
   let navProps = {}
   menu_links.map(async ({ label }) => {
     const { title, title_en } = await getLocalizedTitle(label)
