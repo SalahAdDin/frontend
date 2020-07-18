@@ -89,6 +89,7 @@ const PersonalInformation = ({
                 {address.city} {address.postalcode && "[" + address.postalcode + "]"}
                 {address.country && " - " + address.country}
               </Typography>
+              {/* TODO: Review here, list and items have 8px of top and botton padding, maybe, remove them? */}
               <List aria-label="telephones">
                 {telephone.map((phone) => (
                   <Telephone key={phone.id} {...phone} />
