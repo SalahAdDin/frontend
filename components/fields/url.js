@@ -3,7 +3,9 @@ import Link from "next/link"
 import { ListItemIcon, ListItem } from "@material-ui/core"
 import { GitHub, InsertLink, LinkedIn } from "@material-ui/icons"
 import useStyles from "@/styles/common"
-// TODO: Get Icons for StackOverflow, BitBucket and GitLab
+import BitBucket from "@/assets/svg/bitbucket.svg"
+import GitLab from "@/assets/svg/gitlab.svg"
+import StackOverflow from "@/assets/svg/stack-overflow.svg"
 
 const URL = ({ type, url }) => {
   const classes = useStyles()
@@ -16,9 +18,9 @@ const URL = ({ type, url }) => {
             {
               {
                 Github: <GitHub />,
-                BitBucket: <InsertLink />,
-                GitLab: <InsertLink />,
-                StackOverflow: <InsertLink />,
+                BitBucket: <BitBucket />,
+                GitLab: <GitLab />,
+                StackOverflow: <StackOverflow />,
                 LinkedIn: <LinkedIn />,
               }[type]
             }
