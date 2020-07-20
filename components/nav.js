@@ -2,18 +2,25 @@ import React, { useEffect, useReducer, useState } from "react"
 import PropTypes from "prop-types"
 import Link from "next/link"
 import {
+  AppBar,
+  Box,
   Container,
   FormControl,
   MenuItem,
   Select,
-  Box,
-  AppBar,
-  Toolbar,
   Slide,
+  Toolbar,
   useScrollTrigger,
+  makeStyles,
 } from "@material-ui/core"
 import { useTranslation } from "react-i18next"
 import { menu_links } from "@/lib/constants"
+
+const useStyles = makeStyles((theme) => ({
+  input: {
+    padding: "6px 1rem",
+  },
+}))
 
 const HideOnScroll = ({ children, window }) => {
   // Note that you normally won't need to set the window ref as useScrollTrigger
@@ -38,6 +45,7 @@ HideOnScroll.propTypes = {
 }
 
 const Nav = ({ navLinks }) => {
+  const classes = useStyles()
   const { t, i18n } = useTranslation()
 
   const localizedTitle = (label) => {
@@ -77,13 +85,12 @@ const Nav = ({ navLinks }) => {
                     <MenuItem>{localizedTitle(label)}</MenuItem>
                   </Link>
                 ))}
-              {/* TODO: Stick the language chooser to the right */}
-              {/* TODO: .MuiInputBase-input{ padding: 6px 1rem} */}
               <FormControl variant="standard" style={{ margin: "auto 1rem" }}>
                 <Select
                   value={i18n.language}
                   onChange={handleLanguageChange}
                   disableUnderline
+                  inputProps={{ classes: { root: classes.input } }}
                 >
                   <MenuItem value="en">EN</MenuItem>
                   <MenuItem value="tr">TR</MenuItem>

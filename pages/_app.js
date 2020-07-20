@@ -8,6 +8,7 @@ import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
 import { getPageTitleBySlug } from "@/lib/api"
 import { CMS_TILE_COLOR, menu_links } from "@/lib/constants"
+import theme from "@/styles/theme"
 import Nav from "@/components/nav"
 import Footer from "@/components/footer"
 
@@ -38,7 +39,7 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
         ]}
       />
       {/* TODO: Add a proper theme */}
-      <ThemeProvider>
+      <ThemeProvider theme={theme}>
         <CssBaseline />
         <Nav navLinks={navProps} />
         <Component {...pageProps} />

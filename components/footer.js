@@ -20,8 +20,7 @@ const Copyright = () => {
 const DevTech = () => {
   return (
     <Typography component="span" color="textSecondary">
-      {/* TODO: Add here & in the same way i got the - */}
-      Developed with NextJS &nbsp;•&nbsp; Strapi
+      Developed with NextJS &nbsp;&amp;&nbsp; Strapi
     </Typography>
   )
 }
