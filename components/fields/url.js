@@ -7,14 +7,14 @@ import BitBucket from "@/assets/svg/bitbucket.svg"
 import GitLab from "@/assets/svg/gitlab.svg"
 import StackOverflow from "@/assets/svg/stack-overflow.svg"
 
-const URL = ({ type, url }) => {
+const URL = ({ type, url, minimize }) => {
   const classes = useStyles()
 
   return (
     <ListItem className={classes.inlineBlock}>
       <Link href={"//" + url}>
         <a target="_blank">
-          <ListItemIcon>
+          <ListItemIcon style={{ minWidth: minimize ? "inherit" : "" }}>
             {
               {
                 Github: <GitHub />,
@@ -34,6 +34,7 @@ const URL = ({ type, url }) => {
 URL.propTypes = {
   type: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
+  minimize: PropTypes.bool,
 }
 
 export default URL

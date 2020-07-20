@@ -72,11 +72,10 @@ const Footer = ({ navLinks }) => {
   return (
     <Container component="footer" maxWidth="md">
       <Grid container justify="space-between">
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} sm={4} component="ul">
           {/* TODO: Add icon here */}
           {social_links.map((link) => (
-            // TODO: div wrapped settle min-width to 56px, we can set is inherit
-            <URL key={"footer_" + link.type} {...link} />
+            <URL key={"footer_" + link.type} {...link} minimize />
           ))}
         </Grid>
         {footer_links.map((section) => (
