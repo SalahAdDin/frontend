@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import { getPageAndTagBySlug } from "@/lib/api"
+import { getPageAndTagBySlug } from "@/lib/api/tags"
 
 const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
   return <div></div>

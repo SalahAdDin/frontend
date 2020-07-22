@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import { getPageBySlugAndCategory } from "@/lib/api"
+import { getPageBySlugAndCategory } from "@/lib/api/categories"
 
 function Projects({ title_en, slug, title, description, body, categories }) {
   return <div></div>
