@@ -29,7 +29,7 @@ const FooterSection = ({ title, links, navLinks }) => {
   const { t, i18n } = useTranslation()
 
   const localizedTitle = (label) => {
-    const { title = {}, title_en } = navLinks[label]
+    const { title = {}, title_en } = navLinks.find((item) => item.slug == label)
 
     return (
       title[
@@ -48,7 +48,11 @@ const FooterSection = ({ title, links, navLinks }) => {
         {links.map(({ href, label }) => (
           <li key={"item_" + label}>
             <Link href={href}>
-              <a>{navLinks[label] ? localizedTitle(label) : t(label)}</a>
+              <a>
+                {navLinks.find((item) => item.slug == label) !== void 0
+                  ? localizedTitle(label)
+                  : t(label)}
+              </a>
             </Link>
           </li>
         ))}
@@ -60,12 +64,7 @@ const FooterSection = ({ title, links, navLinks }) => {
 FooterSection.propTypes = {
   title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
-  navLinks: PropTypes.shape(
-    PropTypes.objectOf({
-      title_en: PropTypes.string.isRequired,
-      title: PropTypes.object,
-    })
-  ),
+  navLinks: PropTypes.arrayOf(PropTypes.object),
 }
 
 const Footer = ({ navLinks }) => {
@@ -95,12 +94,7 @@ const Footer = ({ navLinks }) => {
 }
 
 Footer.propTypes = {
-  navLinks: PropTypes.shape(
-    PropTypes.objectOf({
-      title_en: PropTypes.string.isRequired,
-      title: PropTypes.object,
-    })
-  ),
+  navLinks: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Footer

@@ -6,7 +6,7 @@ import { ThemeProvider, CssBaseline } from "@material-ui/core"
 import { appWithTranslation } from "i18n"
 import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
-import { getPageTitleBySlug } from "@/lib/api"
+import { getPageTitleBySlug, getPageTitlesBySlugSet } from "@/lib/api"
 import { CMS_TILE_COLOR, menu_links } from "@/lib/constants"
 import theme from "@/styles/theme"
 import Nav from "@/components/nav"
@@ -52,18 +52,13 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
 FolioApp.propTypes = {
   Component: PropTypes.func,
   pageProps: PropTypes.object,
-  navProps: PropTypes.object,
+  navProps: PropTypes.arrayOf(PropTypes.object),
 }
 
 FolioApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
 
-  // TODO: Here at beginning is undefined, so, i'm getting errors in console, it should be a defaultProp, but how?
-  let navProps = {}
-  menu_links.map(async ({ label }) => {
-    const { title, title_en } = await getLocalizedTitle(label)
-    navProps[label] = { title, title_en }
-  })
+  const navProps = await getPageTitlesBySlugSet(menu_links.map(({ label }) => label))
 
   const defaultProps = appContext.Component.defaultProps
 
@@ -77,11 +72,6 @@ FolioApp.getInitialProps = async (appContext) => {
       ],
     },
   }
-}
-
-export async function getLocalizedTitle(slug) {
-  const data = await getPageTitleBySlug(slug)
-  return { ...data?.pages[0] }
 }
 
 export default appWithTranslation(FolioApp)
