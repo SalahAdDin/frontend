@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import Link from "next/link"
 import { ListItemIcon, ListItem } from "@material-ui/core"
-import { GitHub, InsertLink, LinkedIn } from "@material-ui/icons"
+import { GitHub, Home, LinkedIn } from "@material-ui/icons"
 import useStyles from "@/styles/common"
 import BitBucket from "@/assets/svg/bitbucket.svg"
 import GitLab from "@/assets/svg/gitlab.svg"
@@ -17,6 +17,7 @@ const URL = ({ type, url, minimize }) => {
           <ListItemIcon style={{ minWidth: minimize ? "inherit" : "" }}>
             {
               {
+                Home: <Home />,
                 Github: <GitHub />,
                 BitBucket: <BitBucket />,
                 GitLab: <GitLab />,

@@ -75,7 +75,7 @@ const Nav = ({ navLinks }) => {
               justifyContent="space-between"
               width="100%"
             >
-              <Link href="/">
+              <Link href="/" passHref>
                 <MenuItem>{t("home")}</MenuItem>
               </Link>
               {navLinks &&
