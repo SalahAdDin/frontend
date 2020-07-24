@@ -11,8 +11,9 @@ import {
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
 import { useRouter } from "next/router"
+import Tag from "./fields/tag"
 
-const Project = ({ id, title, thumbnail, description }) => {
+const Project = ({ id, title, thumbnail, description, tags }) => {
   const router = useRouter()
   const { i18n } = useTranslation()
 
@@ -40,11 +41,15 @@ const Project = ({ id, title, thumbnail, description }) => {
             }
           </Typography>
         </CardContent>
-        <CardActions disableSpacing>
+        <CardActions disableSpacing style={{ paddingLeft: 16 }}>
+          {tags.length > 0 &&
+            tags.map((tag, i) => (
+              <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
+            ))}
           <IconButton
             aria-label="Go to Project"
             style={{ marginLeft: "auto" }}
-            onClick={() => router.push("/projects[id]", `/projects/${id}`)}
+            onClick={() => router.push(`/projects/${id}`)}
           >
             <NavigateNext />
           </IconButton>
@@ -64,6 +69,7 @@ Project.propTypes = {
     height: PropTypes.number,
     url: PropTypes.string.isRequired,
   }),
+  tags: PropTypes.array,
 }
 
 export default Project
