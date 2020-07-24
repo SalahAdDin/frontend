@@ -28,7 +28,7 @@ const Layout = ({ preview, children }) => {
 }
 
 Layout.propTypes = {
-  children: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   preview: PropTypes.bool,
 }
 
