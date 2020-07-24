@@ -79,6 +79,7 @@ const Experience = ({
                       <Link href={"//" + url}>
                         <a
                           target="_blank"
+                          rel="noreferrer"
                           style={{
                             margin: "0 1rem",
                             color: "inherit",
