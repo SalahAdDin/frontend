@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
-import Link from "next/link"
-import { Card, CardContent, CardHeader, Typography } from "@material-ui/core"
+import { Card, CardContent, CardHeader, Link, Typography } from "@material-ui/core"
 import { Language, Room } from "@material-ui/icons"
 import {
   Skeleton,
@@ -76,19 +75,18 @@ const Experience = ({
                     {address.postalcode && "[" + address.postalcode + "]"}
                     {address.country && " - " + address.country}
                     {url && (
-                      <Link href={"//" + url}>
-                        <a
-                          target="_blank"
-                          rel="noreferrer"
-                          style={{
-                            margin: "0 1rem",
-                            color: "inherit",
-                            textDecoration: "none",
-                          }}
-                        >
-                          <Language className={classes.inlineSmallIcon} />
-                          {url}
-                        </a>
+                      <Link
+                        href={"//" + url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{
+                          margin: "0 1rem",
+                          color: "inherit",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <Language className={classes.inlineSmallIcon} />
+                        {url}
                       </Link>
                     )}
                   </Typography>

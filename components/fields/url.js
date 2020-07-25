@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
-import Link from "next/link"
-import { ListItemIcon, ListItem } from "@material-ui/core"
+import { Link, ListItemIcon, ListItem } from "@material-ui/core"
 import { GitHub, Home, LinkedIn } from "@material-ui/icons"
 import useStyles from "@/styles/common"
 import BitBucket from "@/assets/svg/bitbucket.svg"
@@ -12,21 +11,19 @@ const URL = ({ type, url, minimize }) => {
 
   return (
     <ListItem className={classes.inlineBlock}>
-      <Link href={"//" + url}>
-        <a target="_blank" rel="noreferrer">
-          <ListItemIcon style={{ minWidth: minimize ? "inherit" : "" }}>
+      <Link href={"//" + url} target="_blank" rel="noreferrer">
+        <ListItemIcon style={{ minWidth: minimize ? "inherit" : "" }}>
+          {
             {
-              {
-                Home: <Home />,
-                Github: <GitHub />,
-                BitBucket: <BitBucket />,
-                GitLab: <GitLab />,
-                StackOverflow: <StackOverflow />,
-                LinkedIn: <LinkedIn />,
-              }[type]
-            }
-          </ListItemIcon>
-        </a>
+              Home: <Home />,
+              Github: <GitHub />,
+              BitBucket: <BitBucket />,
+              GitLab: <GitLab />,
+              StackOverflow: <StackOverflow />,
+              LinkedIn: <LinkedIn />,
+            }[type]
+          }
+        </ListItemIcon>
       </Link>
     </ListItem>
   )
