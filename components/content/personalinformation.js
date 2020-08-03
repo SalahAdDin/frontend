@@ -97,7 +97,7 @@ const PersonalInformation = ({
               </List>
               <List aria-label="links">
                 {links.map((link) => (
-                  <URL key={link.id} {...link} />
+                  <URL key={"links_" + link.id} {...link} />
                 ))}
               </List>
             </>
