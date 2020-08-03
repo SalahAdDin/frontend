@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
-import { Container, Grid, Typography } from "@material-ui/core"
 import Link from "next/link"
 import { useTranslation } from "react-i18next"
+import { Container, Grid, Typography } from "@material-ui/core"
 import { footer_links, social_links } from "@/lib/constants"
 import URL from "./fields/url"
 
