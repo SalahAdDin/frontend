@@ -2,13 +2,13 @@ import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
+import { Typography, Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getTagBySlug, getAllTagsWithSlug } from "@/lib/api/tags"
-import { getAllCategoriesWithSlug } from "@/lib/api/categories"
 import Layout from "@/components/layout"
-import { Typography, Grid } from "@material-ui/core"
 import Project from "@/components/project"
 import Post from "@/components/post"
+import SEO from "@/components/seo"
 
 const Tag = ({ slug, label, projects, pages }) => {
   const router = useRouter()
@@ -22,7 +22,7 @@ const Tag = ({ slug, label, projects, pages }) => {
         <Skeleton />
       ) : (
         <>
-          {/* TODO: Title has a left/right padding */}
+          <SEO title_en={label} />
           <Typography variant="h3" component="h3" gutterBottom>
             {label}
           </Typography>

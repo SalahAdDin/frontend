@@ -37,9 +37,9 @@ const SEO = ({ title_en, title = {}, openGraph, description = {} }) => {
 }
 
 SEO.propTypes = {
-  description: PropTypes.objectOf(PropTypes.string).isRequired,
   title_en: PropTypes.string.isRequired,
   title: PropTypes.objectOf(PropTypes.string),
+  description: PropTypes.objectOf(PropTypes.string),
   openGraph: PropTypes.object,
 }
 
