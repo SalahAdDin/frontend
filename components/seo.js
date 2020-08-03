@@ -3,8 +3,9 @@ import { NextSeo } from "next-seo"
 import { useTranslation } from "react-i18next"
 import { CMS_NAME } from "@/lib/constants"
 
-const SEO = ({ title_en, title, openGraph, description }) => {
+const SEO = ({ title_en, title = {}, openGraph, description = {} }) => {
   const { i18n } = useTranslation()
+
   const pageTitle = `${CMS_NAME} | ${
     title[
       Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
