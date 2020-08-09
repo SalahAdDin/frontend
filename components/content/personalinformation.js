@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import { useTranslation } from "react-i18next"
 import {
   makeStyles,
   Avatar,
@@ -8,12 +9,12 @@ import {
   Typography,
   List,
 } from "@material-ui/core"
-import { useTranslation } from "react-i18next"
+import { MailOutline, Room } from "@material-ui/icons"
+import { Skeleton } from "@material-ui/lab"
+import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
 import Content from "./content"
-import { Skeleton } from "@material-ui/lab"
-import { MailOutline, Room } from "@material-ui/icons"
 import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +38,8 @@ const PersonalInformation = ({
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
   const { i18n } = useTranslation()
+
+  aboutme.__typename = "ComponentContentContent"
 
   return (
     <Card elevation={0} component="section">
@@ -107,24 +110,14 @@ const PersonalInformation = ({
         }
       />
       <CardContent>
-        <Typography variant="body1" component="div">
-          {aboutme ? (
-            <Content>
-              {
-                aboutme[
-                  Object.keys(aboutme).find(
-                    (content) => content.split("_")[1] == i18n.language
-                  )
-                ]
-              }
-            </Content>
-          ) : (
-            <>
-              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-              <Skeleton animation="wave" height={10} width="80%" />
-            </>
-          )}
-        </Typography>
+        {aboutme ? (
+          <DynamicZone component={aboutme} />
+        ) : (
+          <>
+            <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+            <Skeleton animation="wave" height={10} width="80%" />
+          </>
+        )}
       </CardContent>
     </Card>
   )

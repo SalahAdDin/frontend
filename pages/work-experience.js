@@ -1,20 +1,16 @@
 import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
-import { useTranslation } from "react-i18next"
+import { Skeleton, Timeline } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api/pages"
 import Layout from "@/components/layout"
-import { Skeleton } from "@material-ui/lab"
 import SEO from "@/components/seo"
 import Title from "@/components/fields/title"
-import { Typography } from "@material-ui/core"
-import Content from "@/components/content/content"
-import { Timeline } from "@material-ui/lab"
 import Experience from "@/components/content/experience"
+import { DynamicZone } from "@/components/body"
 
 const WorkExperience = ({ title_en, slug, title, description, body }) => {
   const router = useRouter()
-  const { i18n } = useTranslation()
 
   const contents = body.find((item) => item.__typename == "ComponentContentContent")
 
@@ -32,25 +28,14 @@ const WorkExperience = ({ title_en, slug, title, description, body }) => {
         <>
           <SEO description={description} title={title} title_en={title_en} />
           <Title title={title} title_en={title_en} />
-
-          <Typography variant="body1" component="section">
-            {contents ? (
-              <Content>
-                {
-                  contents[
-                    Object.keys(contents).find(
-                      (content) => content.split("_")[1] == i18n.language
-                    )
-                  ]
-                }
-              </Content>
-            ) : (
-              <>
-                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-                <Skeleton animation="wave" height={10} width="80%" />
-              </>
-            )}
-          </Typography>
+          {contents ? (
+            <DynamicZone component={contents} />
+          ) : (
+            <>
+              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" height={10} width="80%" />
+            </>
+          )}
           <Timeline style={{ marginTop: "4rem" }}>
             {Object.values(experiences).map((experience, i) => (
               <Experience

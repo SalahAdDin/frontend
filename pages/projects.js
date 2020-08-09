@@ -2,14 +2,13 @@ import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import ErrorPage from "next/error"
 import { useTranslation } from "react-i18next"
-import { Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlugAndCategory } from "@/lib/api/categories"
-import Content from "@/components/content/content"
 import Title from "@/components/fields/title"
+import SEO from "@/components/seo"
 import Category from "@/components/category"
 import Layout from "@/components/layout"
-import SEO from "@/components/seo"
+import { DynamicZone } from "@/components/body"
 
 function Projects({ title_en, slug, title, description, body, categories }) {
   const router = useRouter()
@@ -27,24 +26,14 @@ function Projects({ title_en, slug, title, description, body, categories }) {
         <>
           <SEO description={description} title={title} title_en={title_en} />
           <Title title={title} title_en={title_en} />
-          <Typography variant="body1" component="section">
-            {contents ? (
-              <Content>
-                {
-                  contents[
-                    Object.keys(contents).find(
-                      (content) => content.split("_")[1] == i18n.language
-                    )
-                  ]
-                }
-              </Content>
-            ) : (
-              <>
-                <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
-                <Skeleton animation="wave" height={10} width="80%" />
-              </>
-            )}
-          </Typography>
+          {contents ? (
+            <DynamicZone component={contents} />
+          ) : (
+            <>
+              <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
+              <Skeleton animation="wave" height={10} width="80%" />
+            </>
+          )}
           {categories.map((category) =>
             category.projects.length > 0 ? (
               <Category key={"category_" + category.id} {...category} />

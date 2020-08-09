@@ -4,15 +4,15 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { ProductJsonLd } from "next-seo"
 import ReactPlayer from "react-player"
-import { Chip, Divider, Link as LinkUI, Paper, makeStyles } from "@material-ui/core"
+import { Box, Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import { getAllProjectsWithID, getProjectByID } from "@/lib/api/projects"
-import Layout from "@/components/layout"
-import SEO from "@/components/seo"
-import { CMS_NAME } from "@/lib/constants"
-import Title from "@/components/fields/title"
-import Content from "@/components/content/content"
 import useStyles from "@/styles/common"
+import { getAllProjectsWithID, getProjectByID } from "@/lib/api/projects"
+import { CMS_NAME } from "@/lib/constants"
+import SEO from "@/components/seo"
+import Layout from "@/components/layout"
+import Title from "@/components/fields/title"
+import { DynamicZone } from "@/components/body"
 
 const Project = ({
   id,
@@ -28,6 +28,7 @@ const Project = ({
 }) => {
   const classes = useStyles()
   const router = useRouter()
+  const { i18n } = useTranslation()
 
   if (!router.isFallback && !id) return <ErrorPage statusCode={404} />
 
@@ -78,12 +79,14 @@ const Project = ({
               style={{ margin: "auto" }}
             />
           ) : (
-            <img
-              src={thumbnail?.url}
-              alt={thumbnail?.alternativeText}
-              title={thumbnail?.caption}
-              style={{ margin: "auto" }}
-            />
+            <Box style={{ display: "flex" }}>
+              <img
+                src={thumbnail?.url}
+                alt={thumbnail?.alternativeText}
+                title={thumbnail?.caption}
+                style={{ margin: "auto" }}
+              />
+            </Box>
           )}
           <Title
             title={title}
@@ -112,15 +115,7 @@ const Project = ({
           </Paper>
           <Divider light />
           {content ? (
-            <Content>
-              {
-                content[
-                  Object.keys(content).find(
-                    (content) => content.split("_")[1] == i18n.language
-                  )
-                ]
-              }
-            </Content>
+            <DynamicZone component={content} />
           ) : (
             <>
               <Skeleton
