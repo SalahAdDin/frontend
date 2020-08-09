@@ -12,17 +12,7 @@ import SEO from "@/components/seo"
 import { CMS_NAME } from "@/lib/constants"
 import Title from "@/components/fields/title"
 import Content from "@/components/content/content"
-
-const useStyles = makeStyles((theme) => ({
-  tagsContainer: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    "& > *": {
-      margin: theme.spacing(1),
-    },
-  },
-}))
+import useStyles from "@/styles/common"
 
 const Project = ({
   id,

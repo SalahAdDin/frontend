@@ -7,6 +7,14 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "middle",
     margin: "auto 0.5rem",
   },
+  tagsContainer: {
+    display: "flex",
+    justifyContent: "center",
+    flexWrap: "wrap",
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
 }))
 
 export default useStyles
