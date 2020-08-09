@@ -2,6 +2,8 @@ import PropTypes from "prop-types"
 import { useTranslation } from "react-i18next"
 import { Typography } from "@material-ui/core"
 import Content from "./content/content"
+import PersonalInformation from "./content/personalinformation"
+import Skill from "./fields/skill"
 
 export const DynamicZone = ({ component }) => {
   const { i18n } = useTranslation()
@@ -21,6 +23,12 @@ export const DynamicZone = ({ component }) => {
               }
             </Content>
           ),
+          // TODO: next ones create problem with props.
+          ComponentContentExperience: <></>, // Right-now this one is a TimelineItem
+          ComponentContentPersonalInformation: (
+            <PersonalInformation {...component} />
+          ),
+          ComponentFieldsSkill: <Skill {...component} />,
         }[component.__typename]
       }
     </Typography>
