@@ -10,8 +10,9 @@ import Layout from "@/components/layout"
 import SEO from "@/components/seo"
 import { CMS_AUTHOR, CMS_URL } from "@/lib/constants"
 import useStyles from "@/styles/common"
-import Title from "@/components/fields/title"
 import { Body } from "@/components/body"
+import Title from "@/components/fields/title"
+import Image from "@/components/fields/image"
 
 const Post = ({
   slug,
@@ -75,14 +76,12 @@ const Post = ({
             description={description?.description_en}
           />
           {thumbnail && (
-            <Box style={{ display: "flex" }}>
-              <img
-                src={thumbnail?.url}
-                alt={thumbnail?.alternativeText}
-                title={thumbnail?.caption}
-                style={{ margin: "auto" }}
-              />
-            </Box>
+            <Image
+              alt={thumbnail?.alternativeText}
+              src={thumbnail?.url}
+              previewSrc={`${thumbnail?.url}?lqip`}
+              title={thumbnail?.caption}
+            />
           )}
           <Title
             title={title}

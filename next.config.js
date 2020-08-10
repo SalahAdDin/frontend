@@ -1,4 +1,6 @@
 const { nextI18NextRewrites } = require("next-i18next/rewrites")
+const withPlugins = require("next-compose-plugins")
+const optimizedImages = require("next-optimized-images")
 
 const localeSubpaths = {
   en: "en",
@@ -6,24 +8,27 @@ const localeSubpaths = {
   tr: "tr",
 }
 
-module.exports = {
-  publicRuntimeConfig: {
-    localeSubpaths,
-  },
-  experimental: {
-    async rewrites() {
-      return [...nextI18NextRewrites(localeSubpaths)]
+module.exports = withPlugins([
+  [optimizedImages],
+  {
+    publicRuntimeConfig: {
+      localeSubpaths,
+    },
+    experimental: {
+      async rewrites() {
+        return [...nextI18NextRewrites(localeSubpaths)]
+      },
+    },
+    webpack(config) {
+      config.module.rules.push({
+        test: /\.svg$/,
+        issuer: {
+          test: /\.(js|ts)x?$/,
+        },
+        use: ["@svgr/webpack"],
+      })
+
+      return config
     },
   },
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        test: /\.(js|ts)x?$/,
-      },
-      use: ["@svgr/webpack"],
-    })
-
-    return config
-  },
-}
+])

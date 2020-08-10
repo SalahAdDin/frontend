@@ -10,9 +10,10 @@ import useStyles from "@/styles/common"
 import { getAllProjectsWithID, getProjectByID } from "@/lib/api/projects"
 import { CMS_NAME } from "@/lib/constants"
 import SEO from "@/components/seo"
+import { DynamicZone } from "@/components/body"
 import Layout from "@/components/layout"
 import Title from "@/components/fields/title"
-import { DynamicZone } from "@/components/body"
+import Image from "@/components/fields/image"
 
 const Project = ({
   id,
@@ -28,7 +29,6 @@ const Project = ({
 }) => {
   const classes = useStyles()
   const router = useRouter()
-  const { i18n } = useTranslation()
 
   if (!router.isFallback && !id) return <ErrorPage statusCode={404} />
 
@@ -79,14 +79,12 @@ const Project = ({
               style={{ margin: "auto" }}
             />
           ) : (
-            <Box style={{ display: "flex" }}>
-              <img
-                src={thumbnail?.url}
-                alt={thumbnail?.alternativeText}
-                title={thumbnail?.caption}
-                style={{ margin: "auto" }}
-              />
-            </Box>
+            <Image
+              alt={thumbnail?.alternativeText}
+              src={thumbnail?.url}
+              previewSrc={`${thumbnail?.url}?lqip`}
+              title={thumbnail?.caption}
+            />
           )}
           <Title
             title={title}
