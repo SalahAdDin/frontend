@@ -43,8 +43,17 @@ export default {
 
     padding: "1em",
     margin: ".5em 0",
-    // TODO: how to handle this? If it is not auto, a few of code will be out of pre and will seen ugly
     overflow: "auto",
+
+    msOverflowStyle: "none" /* IE and Edge */,
+    scrollbarWidth: "none" /* Firefox */,
+  },
+  // Next two classes don't work
+  'pre[class*="language-"]::-webkit-scrollbar': {
+    display: "none",
+  },
+  'pre[class*="language-"] ::-webkit-scrollbar': {
+    display: "none",
   },
   'pre[class*="language-"]::-moz-selection': {
     color: "inherit",

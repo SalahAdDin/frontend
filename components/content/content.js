@@ -1,8 +1,8 @@
-import { useState } from "react"
 import PropTypes from "prop-types"
 import ReactPlayer from "react-player"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { makeStyles } from "@material-ui/core"
 
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
@@ -10,20 +10,33 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import oceanic from "@/styles/material-oceanic"
 import Image from "../fields/image"
 
-const CodeBlock = ({ language, value }) => (
-  <SyntaxHighlighter
-    showLineNumbers={true}
-    startingLineNumber={1}
-    language={language}
-    style={oceanic}
-    lineNumberContainerProps={{
-      style: { color: "#ddd", paddingRight: "1.625em", float: "left" },
-    }}
-    wrapLines={true}
-  >
-    {value}
-  </SyntaxHighlighter>
-)
+const useStyles = makeStyles((theme) => ({
+  codeBlock: {
+    "&::-webkit-scrollbar": {
+      display: "none",
+    },
+  },
+}))
+
+const CodeBlock = ({ language, value }) => {
+  const classes = useStyles()
+
+  return (
+    <SyntaxHighlighter
+      showLineNumbers={true}
+      startingLineNumber={1}
+      language={language}
+      style={oceanic}
+      lineNumberContainerProps={{
+        style: { color: "#ddd", paddingRight: "1.625em", float: "left" },
+      }}
+      wrapLines={true}
+      className={classes.codeBlock}
+    >
+      {value}
+    </SyntaxHighlighter>
+  )
+}
 
 CodeBlock.propTypes = {
   language: PropTypes.string,
@@ -46,8 +59,8 @@ Note:
   Unfortunately, It seems Markdown itself does not detect differences between images or videos, so, it must be done by file extension.
 
   Or in this way: https://about.gitlab.com/handbook/markdown-guide/#videos
-
-TODO: Test both ways.
+  
+  Issue related to https://github.com/rexxars/react-markdown/issues/343
 
 */
 
