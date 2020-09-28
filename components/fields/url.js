@@ -11,7 +11,7 @@ const URL = ({ type, url, minimize }) => {
 
   return (
     <ListItem className={classes.inlineBlock}>
-      <Link href={url} target="_blank" rel="noreferrer">
+      <Link href={`//${url}`} target="_blank" rel="noreferrer">
         <ListItemIcon style={{ minWidth: minimize ? "inherit" : "" }}>
           {
             {
