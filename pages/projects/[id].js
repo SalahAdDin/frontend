@@ -182,7 +182,7 @@ Project.propTypes = {
 export async function getStaticProps({ params }) {
   const data = await getProjectByID(params.id)
 
-  return { props: { ...data?.project }, unstable_revalidate: 1 }
+  return { props: { ...data?.project }, revalidate: 1 }
 }
 
 export async function getStaticPaths() {

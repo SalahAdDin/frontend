@@ -56,7 +56,7 @@ export async function getStaticProps() {
 
   return {
     props: { ...data?.pages[0] },
-    unstable_revalidate: 1,
+    revalidate: 1,
   }
 }
 

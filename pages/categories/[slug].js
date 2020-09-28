@@ -43,7 +43,7 @@ Category.propTypes = {
 
 export const getStaticProps = async ({ params }) => {
   const data = await getCategoryBySlug(params.slug)
-  return { props: { ...data?.categories[0] }, unstable_revalidate: 1 }
+  return { props: { ...data?.categories[0] }, revalidate: 1 }
 }
 
 export const getStaticPaths = async () => {

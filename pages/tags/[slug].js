@@ -65,7 +65,7 @@ Tag.propTypes = {
 
 export const getStaticProps = async ({ params }) => {
   const data = await getTagBySlug(params.slug)
-  return { props: { ...data?.tags[0] }, unstable_revalidate: 1 }
+  return { props: { ...data?.tags[0] }, revalidate: 1 }
 }
 
 export const getStaticPaths = async () => {

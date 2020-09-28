@@ -1,17 +1,20 @@
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheets } from "@material-ui/core"
+import { i18nPropsFromCtx } from "@/lib/i18n"
+import theme from "@/styles/theme"
 
 export default class FolioDocument extends Document {
   render() {
-    const { languageDirection, language } = this.props
+    const { i18nDocumentProps } = this.props
+
     return (
-      <Html lang={language} dir={languageDirection}>
+      <Html {...i18nDocumentProps}>
         <Head>
           {/* PWA primary color */}
-          {/* <meta name="theme-color" content={theme.palette.primary.main} /> */}
+          <meta name="theme-color" content={theme.palette.primary.main} />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+            href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Nunito:400,600,700&display=swap"
           />
         </Head>
         <body>
@@ -49,6 +52,7 @@ FolioDocument.getInitialProps = async (ctx) => {
   // 4. page.render
 
   // Render app and page and get the context of the page with collected side effects.
+  const i18nDocumentProps = i18nPropsFromCtx(ctx)
   const sheets = new ServerStyleSheets()
   const originalRenderPage = ctx.renderPage
 
@@ -59,18 +63,9 @@ FolioDocument.getInitialProps = async (ctx) => {
 
   const initialProps = await Document.getInitialProps(ctx)
 
-  const {
-    res: { locals },
-  } = ctx
-
-  const additionalProps = {
-    languageDirection: locals.languageDirection,
-    language: locals.language,
-  }
-
   return {
     ...initialProps,
-    ...additionalProps,
+    i18nDocumentProps,
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),

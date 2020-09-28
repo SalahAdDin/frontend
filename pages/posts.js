@@ -57,7 +57,7 @@ export const getStaticProps = async () => {
   const data = await getPageAndTagBySlug("posts", "blog")
   return {
     props: { ...data?.pages[0], pagesByTag: data?.tags[0]?.pages },
-    unstable_revalidate: 1,
+    revalidate: 1,
   }
 }
 

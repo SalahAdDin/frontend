@@ -61,7 +61,7 @@ export const getStaticProps = async () => {
 
   return {
     props: { ...data?.pages[0], categories: data?.categories },
-    unstable_revalidate: 1,
+    revalidate: 1,
   }
 }
 
