@@ -14,7 +14,6 @@ import { Skeleton } from "@material-ui/lab"
 import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
-import Content from "./content"
 import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({

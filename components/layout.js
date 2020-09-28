@@ -17,10 +17,12 @@ const Layout = ({ preview, children }) => {
           <AlertTitle>Warning</AlertTitle>
           You are looking the website in — <strong>preview mode</strong>.
         </Alert>
-      ) : (
-        ""
-      )}
-      <Container component="main" maxWidth="md" style={{ marginTop: 100 }}>
+      ) : null}
+      <Container
+        component="main"
+        maxWidth="md"
+        style={{ marginTop: 100, marginBottom: 100 }}
+      >
         {children}
       </Container>
     </>

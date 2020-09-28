@@ -1,10 +1,10 @@
 {
   "database": "Database",
-  "framework": "Framework",
-  "language": "Language",
-  "operating_system": "Operating System",
-  "programming_language": "Programming_Language",
-  "technical": "Technical",
-  "technology": "Technology",
-  "tools": "Tools"
+  "framework": "Çerçeve",
+  "language": "Dil",
+  "operating_system": "İşletim Sistemi",
+  "programming_language": "Programlama Dili",
+  "technical": "Teknik",
+  "technology": "Teknoloji",
+  "tools": "Araçlar"
 }

@@ -80,7 +80,7 @@ const Experience = ({
                         target="_blank"
                         rel="noreferrer"
                         style={{
-                          margin: "0 1rem",
+                          // margin: "0 1rem",
                           color: "inherit",
                           textDecoration: "none",
                         }}

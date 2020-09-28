@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
 import { Rating } from "@material-ui/lab"
-import { Box, Typography, Grid } from "@material-ui/core"
+import { Typography, Grid } from "@material-ui/core"
 
 const Skill = ({ name, level }) => {
   return (

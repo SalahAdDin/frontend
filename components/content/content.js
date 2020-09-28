@@ -12,6 +12,7 @@ import Image from "../fields/image"
 
 const useStyles = makeStyles((theme) => ({
   codeBlock: {
+    // TODO: Add some margin and beautify it
     "&::-webkit-scrollbar": {
       display: "none",
     },
