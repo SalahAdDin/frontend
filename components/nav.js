@@ -1,4 +1,6 @@
+import React from "react"
 import PropTypes from "prop-types"
+import clsx from "clsx"
 import Link from "next/link"
 import {
   AppBar,
@@ -11,21 +13,80 @@ import {
   Toolbar,
   useScrollTrigger,
   makeStyles,
+  darken,
+  fade,
+  IconButton,
+  Fade,
 } from "@material-ui/core"
+import MenuIcon from "@material-ui/icons/Menu"
+import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
 import { menu_links } from "@/lib/constants"
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    background: theme.palette.background.default,
+    // transition: "all 0.5s ease-in-out",
+    boxShadow: `0 0 10px 0 ${fade("#000000", 0.06)}`,
+    "& .MuiListItem-root": {
+      color: darken("#9b9bae", 0.06),
+      fontWeight: 600,
+      transition: "all 0.3s",
+    },
+    "& .MuiListItem-root:hover": {
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.primary.main,
+    },
+    "& .MuiMenuItem-root": {
+      fontSize: 16,
+    },
+    "& .MuiSelect-icon": {
+      fontSize: "1.5rem",
+    },
+    [theme.breakpoints.down(770)]: {
+      position: "static",
+    },
+  },
+  boxShadow: { boxShadow: `0 0 10px 0 ${fade("#000000", 0.06)}` },
   input: {
+    fontSize: 16,
     padding: "6px 1rem",
+    color: darken("#9b9bae", 0.06),
+  },
+  hide: {
+    display: "none !important",
+  },
+  menuButton: {
+    color: darken("#9b9bae", 0.06),
+    "&:hover": {
+      backgroundColor: theme.palette.background.default,
+      color: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up(770)]: { display: "none" },
+    [theme.breakpoints.down(770)]: { alignSelf: "baseline", marginTop: 8 },
+  },
+  option: {
+    fontSize: 16,
+    color: darken("#9b9bae", 0.06),
+  },
+  navbar: {
+    [theme.breakpoints.down(770)]: {
+      display: "grid",
+      // transition: "all 0.5s ease-in-out",
+    },
+    [theme.breakpoints.up(770)]: {
+      display: "flex !important",
+    },
+  },
+  toolbar: {
+    [theme.breakpoints.down(770)]: {
+      justifyContent: "flex-end",
+    },
   },
 }))
 
-const HideOnScroll = ({ children, window }) => {
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({ target: window ? window() : undefined })
+const HideOnScroll = ({ children }) => {
+  const trigger = useScrollTrigger()
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
@@ -36,16 +97,13 @@ const HideOnScroll = ({ children, window }) => {
 
 HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
 }
 
 const Nav = ({ navLinks }) => {
   const classes = useStyles()
   const { t, i18n } = useTranslation()
+  const router = useRouter()
+  const [open, setOpen] = React.useState(false)
 
   const localizedTitle = (label) => {
     const { title = {}, title_en } = navLinks.find((item) => item.slug == label)
@@ -63,42 +121,89 @@ const Nav = ({ navLinks }) => {
 
   return (
     <HideOnScroll>
-      <AppBar position="fixed" color="default" elevation={0}>
+      <AppBar
+        position="fixed"
+        color="default"
+        className={classes.root}
+        elevation={0}
+      >
         <Container component="nav" maxWidth="md" disableGutters>
-          <Toolbar>
+          <Toolbar className={classes.toolbar}>
             {/* TODO: Add custom logo here */}
-            <Box
-              id="main-menu"
-              display="flex"
-              component="ul"
-              alignItems="center"
-              justifyContent="space-between"
-              width="100%"
+            <Fade in={open} timeout={500}>
+              <Box
+                id="main-menu"
+                display="flex"
+                component="ul"
+                alignItems="center"
+                justifyContent="space-between"
+                width="100%"
+                className={clsx(classes.navbar, open ? null : classes.hide)}
+              >
+                <Link href="/" passHref>
+                  <MenuItem
+                    disableRipple
+                    style={{ color: router.pathname === "/" && "#5e62ff" }}
+                  >
+                    {t("home")}
+                  </MenuItem>
+                </Link>
+                {navLinks &&
+                  Object.keys(navLinks).length !== 0 &&
+                  menu_links.map(({ key, href, label }) => (
+                    <Link href={href} key={key} passHref>
+                      <MenuItem
+                        disableRipple
+                        style={{ color: router.pathname === href && "#5e62ff" }}
+                      >
+                        {localizedTitle(label)}
+                      </MenuItem>
+                    </Link>
+                  ))}
+                <FormControl component="li">
+                  <Select
+                    // native
+                    value={i18n.language}
+                    onChange={handleLanguageChange}
+                    inputProps={{ classes: { root: classes.input } }}
+                    variant="outlined"
+                    MenuProps={{
+                      anchorOrigin: {
+                        vertical: "bottom",
+                        horizontal: "center",
+                      },
+                      transformOrigin: {
+                        vertical: "top",
+                        horizontal: "center",
+                      },
+                      getContentAnchorEl: null,
+                      elevation: 0,
+                      classes: { paper: classes.boxShadow },
+                    }}
+                  >
+                    <MenuItem disableRipple value="en" className={classes.option}>
+                      EN
+                    </MenuItem>
+                    <MenuItem disableRipple value="tr" className={classes.option}>
+                      TR
+                    </MenuItem>
+                    <MenuItem disableRipple value="es" className={classes.option}>
+                      ES
+                    </MenuItem>
+                  </Select>
+                </FormControl>
+              </Box>
+            </Fade>
+            <IconButton
+              aria-label="open menu"
+              onClick={() => setOpen(!open)}
+              edge="end"
+              classes={{ root: classes.menuButton }}
+              disableRipple
+              disableFocusRipple
             >
-              <Link href="/" passHref>
-                <MenuItem>{t("home")}</MenuItem>
-              </Link>
-              {navLinks &&
-                Object.keys(navLinks).length !== 0 &&
-                menu_links.map(({ key, href, label }) => (
-                  <Link href={href} key={key} passHref>
-                    <MenuItem>{localizedTitle(label)}</MenuItem>
-                  </Link>
-                ))}
-              <FormControl variant="standard" style={{ margin: "auto 1rem" }}>
-                <Select
-                  value={i18n.language}
-                  onChange={handleLanguageChange}
-                  disableUnderline
-                  inputProps={{ classes: { root: classes.input } }}
-                >
-                  <MenuItem value="en">EN</MenuItem>
-                  <MenuItem value="tr">TR</MenuItem>
-                  <MenuItem value="es">ES</MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-            {/* TODO: Icono hamburguesa aquí */}
+              <MenuIcon />
+            </IconButton>
           </Toolbar>
         </Container>
       </AppBar>
