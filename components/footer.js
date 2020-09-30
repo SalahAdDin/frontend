@@ -67,7 +67,19 @@ const DevTech = () => {
   const classes = useStyles()
   return (
     <Typography component="span" className={classes.techIcons}>
-      Developed with <NextIcon /> &nbsp;&amp;&nbsp; <StrapiIcon />.
+      Developed with{" "}
+      <Link href={`//nextjs.org/`} passHref>
+        <a>
+          <NextIcon />
+        </a>
+      </Link>{" "}
+      &nbsp;&amp;&nbsp;{" "}
+      <Link href={`//strapi.io/`} passHref>
+        <a>
+          <StrapiIcon />
+        </a>
+      </Link>
+      .
     </Typography>
   )
 }

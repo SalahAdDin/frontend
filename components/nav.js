@@ -76,6 +76,9 @@ const useStyles = makeStyles((theme) => ({
     },
     [theme.breakpoints.up(770)]: {
       display: "flex !important",
+      //  Using Face component force us to put next
+      opacity: "inherit !important",
+      visibility: "inherit !important",
     },
   },
   toolbar: {
