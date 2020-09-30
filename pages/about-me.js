@@ -3,7 +3,6 @@ import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { SocialProfileJsonLd, NextSeo } from "next-seo"
 import { useTranslation } from "react-i18next"
-import { makeStyles, Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlug } from "@/lib/api/pages"
 import { CMS_URL, CMS_NAME } from "@/lib/constants"
@@ -13,10 +12,7 @@ import Layout from "@/components/layout"
 import PersonalInformation from "@/components/content/personalinformation"
 import Title from "@/components/fields/title"
 
-const useStyles = makeStyles((theme) => ({}))
-
 const AboutMe = ({ title_en, slug, title, description, body }) => {
-  const classes = useStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
