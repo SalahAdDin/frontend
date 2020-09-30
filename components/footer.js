@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
       fill: fade(theme.palette.light.main, 0.5),
     },
     "& svg:hover path": { fill: theme.palette.light.main },
+    [theme.breakpoints.down("sm")]: {
+      marginBottom: 16,
+      textAlign: "center",
+      padding: "inherit",
+    },
   },
   subMenu: {
     listStyle: "none",
