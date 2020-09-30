@@ -23,7 +23,7 @@ const Title = ({
       component={component}
       align={align}
       gutterBottom={gutterBottom}
-      style={{ marginBottom: 24 }}
+      style={{ marginBottom: 24, wordBreak: "break-word" }}
     >
       {localizedTitle}
     </Typography>
