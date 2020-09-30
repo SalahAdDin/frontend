@@ -1,5 +1,12 @@
 import PropTypes from "prop-types"
-import { Card, CardContent, CardHeader, Link, Typography } from "@material-ui/core"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  Link,
+  Typography,
+  makeStyles,
+} from "@material-ui/core"
 import { Language, Room } from "@material-ui/icons"
 import {
   Skeleton,
@@ -13,7 +20,33 @@ import {
 import { useTranslation } from "react-i18next"
 import moment from "moment"
 import Content from "./content"
-import useStyles from "@/styles/common"
+import { default as useGlobalStyles } from "@/styles/common"
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& .timeline-flag": {
+      marginTop: "-2rem",
+      [theme.breakpoints.down(720)]: {
+        textAlign: "left",
+        marginTop: "inherit",
+      },
+    },
+    "& .timeline-content": {
+      marginTop: "-3.5rem",
+      marginBottom: "1rem",
+      [theme.breakpoints.down(720)]: {
+        padding: "inherit",
+        marginTop: "inherit",
+      },
+    },
+    [theme.breakpoints.down(720)]: {
+      display: "list-item",
+      "& .MuiTimelineSeparator-root": {
+        display: "none",
+      },
+    },
+  },
+}))
 
 const Experience = ({
   from,
@@ -27,11 +60,12 @@ const Experience = ({
   last,
 }) => {
   const classes = useStyles()
+  const globalClasses = useGlobalStyles()
   const { i18n } = useTranslation()
 
   return (
-    <TimelineItem>
-      <TimelineOppositeContent style={{ marginTop: "-2rem" }}>
+    <TimelineItem className={classes.root}>
+      <TimelineOppositeContent className="timeline-flag">
         {title ? (
           <Typography variant="h6" component="span">
             {title}
@@ -48,7 +82,7 @@ const Experience = ({
         <TimelineDot />
         {last ? "" : <TimelineConnector />}
       </TimelineSeparator>
-      <TimelineContent style={{ marginTop: "-3.5rem", marginBottom: "1rem" }}>
+      <TimelineContent className="timeline-content">
         <Card elevation={0} component="article">
           <CardHeader
             title={
@@ -69,7 +103,7 @@ const Experience = ({
               address ? (
                 <>
                   <Typography variant="body2" component="p">
-                    <Room className={classes.inlineSmallIcon} />
+                    <Room className={globalClasses.inlineSmallIcon} />
                     {address.address && address.address + " / "}
                     {address.city}{" "}
                     {address.postalcode && "[" + address.postalcode + "]"}
@@ -85,7 +119,7 @@ const Experience = ({
                           textDecoration: "none",
                         }}
                       >
-                        <Language className={classes.inlineSmallIcon} />
+                        <Language className={globalClasses.inlineSmallIcon} />
                         {url}
                       </Link>
                     )}
