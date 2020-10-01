@@ -17,9 +17,23 @@ import URL from "../fields/url"
 import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({
+  header: {
+    [theme.breakpoints.down(660)]: {
+      display: "block",
+      "& .MuiCardHeader-avatar": { marginRight: 0, marginBottom: 16 },
+    },
+  },
   large: {
     width: theme.spacing(30),
     height: theme.spacing(30),
+  },
+  noPadding: {
+    paddingTop: 0,
+    paddingBottom: 0,
+    "& li": {
+      paddingTop: 0,
+      paddingBottom: 0,
+    },
   },
 }))
 
@@ -36,7 +50,6 @@ const PersonalInformation = ({
 }) => {
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
-  const { i18n } = useTranslation()
 
   aboutme.__typename = "ComponentContentContent"
 
@@ -44,6 +57,7 @@ const PersonalInformation = ({
     <Card elevation={0} component="section">
       <CardHeader
         align="center"
+        className={classes.header}
         avatar={
           photo ? (
             <Avatar
@@ -91,13 +105,12 @@ const PersonalInformation = ({
                 {address.city} {address.postalcode && "[" + address.postalcode + "]"}
                 {address.country && " - " + address.country}
               </Typography>
-              {/* TODO: Review here, list and items have 8px of top and botton padding, maybe, remove them? */}
-              <List aria-label="telephones">
+              <List aria-label="telephones" className={classes.noPadding}>
                 {telephone.map((phone) => (
                   <Telephone key={phone.id} {...phone} />
                 ))}
               </List>
-              <List aria-label="links">
+              <List aria-label="links" className={classes.noPadding}>
                 {links.map((link) => (
                   <URL key={"links_" + link.id} {...link} />
                 ))}

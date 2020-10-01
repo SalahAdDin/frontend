@@ -1,7 +1,13 @@
 import PropTypes from "prop-types"
-import Link from "next/link"
 import { useTranslation } from "react-i18next"
-import { Container, Grid, Typography, makeStyles, fade } from "@material-ui/core"
+import {
+  Container,
+  Grid,
+  Link,
+  Typography,
+  makeStyles,
+  fade,
+} from "@material-ui/core"
 import { footer_links, social_links } from "@/lib/constants"
 import URL from "./fields/url"
 import NextIcon from "@/assets/svg/nextjs.svg"
@@ -59,10 +65,7 @@ const useStyles = makeStyles((theme) => ({
 const Copyright = () => {
   return (
     <Typography component="span">
-      Copyright ©{" "}
-      <Link href="/">
-        <a>José Luis Sandoval Alaguna</a>
-      </Link>{" "}
+      Copyright © <Link href="/">José Luis Sandoval Alaguna</Link>{" "}
       {new Date().getFullYear()}.
     </Typography>
   )
@@ -73,16 +76,12 @@ const DevTech = () => {
   return (
     <Typography component="span" className={classes.techIcons}>
       Developed with{" "}
-      <Link href={`//nextjs.org/`} passHref>
-        <a>
-          <NextIcon />
-        </a>
+      <Link href={`//nextjs.org/`} target="_blank" rel="noreferrer">
+        <NextIcon />
       </Link>{" "}
       &nbsp;&amp;&nbsp;{" "}
-      <Link href={`//strapi.io/`} passHref>
-        <a>
-          <StrapiIcon />
-        </a>
+      <Link href={`//strapi.io/`} target="_blank" rel="noreferrer">
+        <StrapiIcon />
       </Link>
       .
     </Typography>
@@ -113,11 +112,9 @@ const FooterSection = ({ title, links, navLinks }) => {
         {links.map(({ href, label }) => (
           <li key={"item_" + label}>
             <Link href={href}>
-              <a>
-                {navLinks.find((item) => item.slug == label) !== void 0
-                  ? localizedTitle(label)
-                  : t(label)}
-              </a>
+              {navLinks.find((item) => item.slug == label) !== void 0
+                ? localizedTitle(label)
+                : t(label)}
             </Link>
           </li>
         ))}
