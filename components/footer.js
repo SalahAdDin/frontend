@@ -103,7 +103,6 @@ const FooterSection = ({ title, links, navLinks }) => {
   }
 
   return (
-    // TODO: Improve styles as a correct menu as in templates
     <Grid item xs={12} sm={2}>
       <Typography variant="h6" component="h6" className={classes.title}>
         {t(title)}
@@ -142,7 +141,7 @@ const Footer = ({ navLinks }) => {
             component="ul"
             className={classes.socialMediaIcons}
           >
-            {/* TODO: Add icon here */}
+            {/* TODO: Add logo here */}
             {social_links.map((link) => (
               <URL key={"footer_" + link.type} {...link} minimize />
             ))}

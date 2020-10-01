@@ -38,7 +38,6 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
           },
         ]}
       />
-      {/* TODO: Add a proper theme */}
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <Nav navLinks={navProps} />
