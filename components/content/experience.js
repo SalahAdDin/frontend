@@ -18,7 +18,9 @@ import {
   TimelineContent,
 } from "@material-ui/lab"
 import { useTranslation } from "react-i18next"
-import moment from "moment"
+import * as dayjs from "dayjs"
+import "dayjs/locale/es"
+import "dayjs/locale/tr"
 import Content from "./content"
 import { default as useGlobalStyles } from "@/styles/common"
 
@@ -74,8 +76,12 @@ const Experience = ({
           <Skeleton animation="wave" height={10} width="40%" />
         )}
         <Typography color="textSecondary">
-          {moment(from).format("MMMM YYYY")}{" "}
-          {ongoing ? "" : <>&mdash; {moment(to).format("MMMM YYYY")}</>}
+          {dayjs(from).locale(i18n.language).format("MMMM YYYY")}{" "}
+          {ongoing ? (
+            ""
+          ) : (
+            <>&mdash; {dayjs(to).locale(i18n.language).format("MMMM YYYY")}</>
+          )}
         </Typography>
       </TimelineOppositeContent>
       <TimelineSeparator>
