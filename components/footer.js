@@ -8,7 +8,7 @@ import {
   makeStyles,
   fade,
 } from "@material-ui/core"
-import { footer_links, social_links } from "@/lib/constants"
+import { footerLinks, socialMediaLinks } from "@/lib/constants"
 import URL from "./fields/url"
 import NextIcon from "@/assets/svg/nextjs.svg"
 import StrapiIcon from "@/assets/svg/strapi-logo-light.svg"
@@ -142,11 +142,11 @@ const Footer = ({ navLinks }) => {
             className={classes.socialMediaIcons}
           >
             {/* TODO: Add logo here */}
-            {social_links.map((link) => (
+            {socialMediaLinks.map((link) => (
               <URL key={"footer_" + link.type} {...link} minimize />
             ))}
           </Grid>
-          {footer_links.map((section) => (
+          {footerLinks.map((section) => (
             <FooterSection
               key={"section_" + section.title}
               {...section}

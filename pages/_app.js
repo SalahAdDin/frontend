@@ -7,7 +7,7 @@ import { appWithTranslation } from "i18n"
 import Meta from "../components/meta"
 import DefaultSEO from "../next-seo.config"
 import { getPageTitlesBySlugSet } from "@/lib/api/pages"
-import { CMS_TILE_COLOR, menu_links } from "@/lib/constants"
+import { CMS_TILE_COLOR, menuLinks } from "@/lib/constants"
 import theme from "@/styles/theme"
 import Nav from "@/components/nav"
 import Footer from "@/components/footer"
@@ -57,7 +57,7 @@ FolioApp.propTypes = {
 FolioApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
 
-  const navProps = await getPageTitlesBySlugSet(menu_links.map(({ label }) => label))
+  const navProps = await getPageTitlesBySlugSet(menuLinks.map(({ label }) => label))
 
   const defaultProps = appContext.Component.defaultProps
 

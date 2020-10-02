@@ -21,7 +21,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu"
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
-import { menu_links } from "@/lib/constants"
+import { menuLinks } from "@/lib/constants"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -153,7 +153,7 @@ const Nav = ({ navLinks }) => {
                 </Link>
                 {navLinks &&
                   Object.keys(navLinks).length !== 0 &&
-                  menu_links.map(({ key, href, label }) => (
+                  menuLinks.map(({ key, href, label }) => (
                     <Link href={href} key={key} passHref>
                       <MenuItem
                         disableRipple
