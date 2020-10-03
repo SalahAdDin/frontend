@@ -49,10 +49,11 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
             }
           </Typography>
         </CardContent>
-        <CardActions disableSpacing style={{ paddingLeft: 16 }}>
-          <div
-            style={{ width: "calc(100% - 64px)", display: "flex", flexWrap: "wrap" }}
-          >
+        <CardActions
+          disableSpacing
+          style={{ paddingLeft: 16, justifyContent: "space-between" }}
+        >
+          <div style={{ display: "flex", flexWrap: "wrap" }}>
             {tags.length > 0 &&
               tags.map((tag, i) => (
                 <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
