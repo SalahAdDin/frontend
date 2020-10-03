@@ -50,13 +50,16 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
           </Typography>
         </CardContent>
         <CardActions disableSpacing style={{ paddingLeft: 16 }}>
-          {tags.length > 0 &&
-            tags.map((tag, i) => (
-              <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
-            ))}
+          <div
+            style={{ width: "calc(100% - 64px)", display: "flex", flexWrap: "wrap" }}
+          >
+            {tags.length > 0 &&
+              tags.map((tag, i) => (
+                <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
+              ))}
+          </div>
           <IconButton
             aria-label="Go to Project"
-            style={{ marginLeft: "auto" }}
             onClick={() => router.push(`/posts/${slug}`)}
           >
             <NavigateNext />

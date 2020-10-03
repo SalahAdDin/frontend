@@ -103,7 +103,7 @@ const FooterSection = ({ title, links, navLinks }) => {
   }
 
   return (
-    <Grid item xs={12} sm={2}>
+    <Grid item xs={6} sm={2}>
       <Typography variant="h6" component="h6" className={classes.title}>
         {t(title)}
       </Typography>

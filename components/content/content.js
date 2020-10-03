@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import ReactPlayer from "react-player"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { makeStyles } from "@material-ui/core"
+import { fade, makeStyles } from "@material-ui/core"
 
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
@@ -14,7 +14,14 @@ const useStyles = makeStyles((theme) => ({
   codeBlock: {
     // TODO: Add some margin and beautify it
     "&::-webkit-scrollbar": {
+      // display: "none",
+      background: fade(theme.palette.light.main, 0.1),
+    },
+    "&::-webkit-scrollbar-track-piece": {
       display: "none",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      backgroundColor: fade(theme.palette.dark.main, 0.5),
     },
   },
 }))

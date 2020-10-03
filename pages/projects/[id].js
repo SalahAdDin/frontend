@@ -84,6 +84,7 @@ const Project = ({
               src={thumbnail?.url}
               previewSrc={`${thumbnail?.url}?lqip`}
               title={thumbnail?.caption}
+              className={classes.heroImage}
             />
           )}
           <Title

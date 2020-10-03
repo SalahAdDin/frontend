@@ -81,6 +81,7 @@ const Post = ({
               src={thumbnail?.url}
               previewSrc={`${thumbnail?.url}?lqip`}
               title={thumbnail?.caption}
+              className={globalClasses.heroImage}
             />
           )}
           <Title

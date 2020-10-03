@@ -15,6 +15,9 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(1),
     },
   },
+  heroImage: {
+    marginBottom: 48,
+  },
 }))
 
 export default useStyles

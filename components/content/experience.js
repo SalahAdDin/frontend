@@ -26,6 +26,7 @@ import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    "& a": { textDecoration: "none" },
     "& .timeline-flag": {
       marginTop: "-2rem",
       [theme.breakpoints.down(720)]: {

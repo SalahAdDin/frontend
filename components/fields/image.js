@@ -17,13 +17,13 @@ const useStyles = makeStyles((theme) => ({
 const Image = ({ alt, src, previewSrc, className = "", ...rest }) => {
   const classes = useStyles()
   return (
-    <Box style={{ display: "flex" }}>
+    <Box style={{ display: "flex" }} className={className}>
       <img
-        className={`lazyload ${classes.blurUp} ${className}`}
+        className={`lazyload ${classes.blurUp}`}
         alt={alt}
         src={previewSrc}
         data-srcset={src}
-        style={{ margin: "auto" }}
+        style={{ margin: "auto", width: "100%" }}
         {...rest}
       />
     </Box>

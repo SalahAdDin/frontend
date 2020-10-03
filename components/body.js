@@ -1,15 +1,20 @@
 import PropTypes from "prop-types"
 import { useTranslation } from "react-i18next"
-import { Typography } from "@material-ui/core"
+import { Typography, makeStyles } from "@material-ui/core"
 import Content from "./content/content"
 import PersonalInformation from "./content/personalinformation"
 import Skill from "./fields/skill"
 
+const useStyles = makeStyles((theme) => ({
+  root: { "& a": { textDecoration: "none" } },
+}))
+
 export const DynamicZone = ({ component }) => {
+  const classes = useStyles()
   const { i18n } = useTranslation()
 
   return (
-    <Typography variant="body1" component="section">
+    <Typography variant="body1" component="section" className={classes.root}>
       {
         {
           ComponentContentContent: (
