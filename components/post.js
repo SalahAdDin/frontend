@@ -18,7 +18,7 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
   const router = useRouter()
   const { i18n } = useTranslation()
   return (
-    <Grid item xs={12} sm={4} component="article">
+    <Grid item xs={12} sm={6} md={4} component="article">
       <Card>
         {/* TODO: Pass correct components inside of article ever i used as article component */}
         {thumbnail && (
