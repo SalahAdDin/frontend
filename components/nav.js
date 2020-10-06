@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     // transition: "all 0.5s ease-in-out",
     boxShadow: `0 0 10px 0 ${fade("#000000", 0.06)}`,
     "& .MuiListItem-root": {
-      color: darken("#9b9bae", 0.06),
+      color: darken(theme.palette.muted.main, 0.1),
       fontWeight: 600,
       transition: "all 0.3s",
     },
@@ -141,10 +141,12 @@ const Nav = ({ navLinks }) => {
                 alignItems="center"
                 justifyContent="space-between"
                 width="100%"
+                role="tablist"
                 className={clsx(classes.navbar, open ? null : classes.hide)}
               >
                 <Link href="/" passHref>
                   <MenuItem
+                    role="tab"
                     disableRipple
                     style={{ color: router.pathname === "/" && "#5e62ff" }}
                   >
@@ -156,6 +158,7 @@ const Nav = ({ navLinks }) => {
                   menuLinks.map(({ key, href, label }) => (
                     <Link href={href} key={key} passHref>
                       <MenuItem
+                        role="tab"
                         disableRipple
                         style={{ color: router.pathname === href && "#5e62ff" }}
                       >
@@ -163,7 +166,7 @@ const Nav = ({ navLinks }) => {
                       </MenuItem>
                     </Link>
                   ))}
-                <FormControl component="li">
+                <FormControl component="li" role="tab">
                   <Select
                     // native
                     value={i18n.language}

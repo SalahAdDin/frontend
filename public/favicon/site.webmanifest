@@ -1,6 +1,6 @@
 {
   "name": "José Luis Sandoval Alaguna",
-  "short_name": "Luis Alaguna",
+  "short_name": "Usmani Tech",
   "icons": [
     {
       "src": "/favicon/android-chrome-192x192.png",
@@ -13,6 +13,7 @@
       "type": "image/png"
     }
   ],
+  "start_url": "/",
   "theme_color": "#000000",
   "background_color": "#000000",
   "display": "standalone"

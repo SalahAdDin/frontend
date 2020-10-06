@@ -104,7 +104,7 @@ const Project = ({
                 key={"links_" + link.id}
                 href={link.url}
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener"
                 underline="none"
                 style={{ marginTop: "auto", marginBottom: "auto" }}
               >

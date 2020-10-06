@@ -76,11 +76,16 @@ const DevTech = () => {
   return (
     <Typography component="span" className={classes.techIcons}>
       Developed with{" "}
-      <Link href={`//nextjs.org/`} target="_blank" rel="noreferrer">
+      <Link
+        href={`//nextjs.org/`}
+        target="_blank"
+        rel="noopener"
+        aria-label="NextJS"
+      >
         <NextIcon />
       </Link>{" "}
       &nbsp;&amp;&nbsp;{" "}
-      <Link href={`//strapi.io/`} target="_blank" rel="noreferrer">
+      <Link href={`//strapi.io/`} target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
       </Link>
       .

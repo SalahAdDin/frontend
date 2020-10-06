@@ -2,8 +2,10 @@ import PropTypes from "prop-types"
 import { NextSeo } from "next-seo"
 import { useTranslation } from "react-i18next"
 import { CMS_NAME } from "@/lib/constants"
+import { useRouter } from "next/router"
 
 const SEO = ({ title_en, title = {}, openGraph, description = {}, canonical }) => {
+  const router = useRouter()
   const { i18n } = useTranslation()
 
   const pageTitle = `${CMS_NAME} | ${
@@ -22,7 +24,7 @@ const SEO = ({ title_en, title = {}, openGraph, description = {}, canonical }) =
     <NextSeo
       title={pageTitle}
       description={localDescription}
-      canonical={canonical || process.env.NEXT_PUBLIC_BASE_URL}
+      canonical={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
       openGraph={{
         type: "website",
         url: canonical || process.env.NEXT_PUBLIC_BASE_URL,
