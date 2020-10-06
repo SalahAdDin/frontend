@@ -14,7 +14,7 @@ import { useRouter } from "next/router"
 import Tag from "./fields/tag"
 import Title from "./fields/title"
 
-const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
+const Project = ({ id, title, title_en: titleEn, thumbnail, description, tags }) => {
   const router = useRouter()
   const { i18n } = useTranslation()
 
@@ -31,7 +31,7 @@ const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
         <CardContent>
           <Title
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             component="h5"
             variant="h5"
             align="left"
@@ -41,7 +41,7 @@ const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
             {
               description[
                 Object.keys(description).find(
-                  (description) => description.split("_")[1] == i18n.language
+                  (item) => item.split("_")[1] === i18n.language
                 )
               ]
             }
@@ -54,7 +54,7 @@ const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {tags.length > 0 &&
               tags.map((tag, i) => (
-                <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
+                <Tag key={`tag_${tag.id}`} {...tag} comma={tags.length - 1 > i} />
               ))}
           </div>
           <IconButton
@@ -72,15 +72,15 @@ const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
 Project.propTypes = {
   id: PropTypes.string.isRequired,
   title_en: PropTypes.string.isRequired,
-  title: PropTypes.object,
-  description: PropTypes.object,
+  title: PropTypes.shape(PropTypes.string),
+  description: PropTypes.shape(PropTypes.string),
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
     height: PropTypes.number,
     url: PropTypes.string.isRequired,
   }),
-  tags: PropTypes.array,
+  tags: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Project

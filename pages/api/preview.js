@@ -1,4 +1,4 @@
-import { getPreviewPageBySlug } from "@/lib/api/pages"
+import { getPreviewPageBySlug } from "lib/api/pages"
 
 export default async function preview(req, res) {
   // Check the secret and next parameters

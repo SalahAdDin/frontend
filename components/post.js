@@ -14,7 +14,14 @@ import { NavigateNext } from "@material-ui/icons"
 import Title from "./fields/title"
 import Tag from "./fields/tag"
 
-const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
+const Post = ({
+  slug,
+  title,
+  title_en: titleEn,
+  thumbnail = {},
+  description,
+  tags,
+}) => {
   const router = useRouter()
   const { i18n } = useTranslation()
   return (
@@ -33,7 +40,7 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
         <CardContent component="main">
           <Title
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             variant="h5"
             component="h5"
             gutterBottom
@@ -43,7 +50,7 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
             {
               description[
                 Object.keys(description).find(
-                  (description) => description.split("_")[1] == i18n.language
+                  (item) => item.split("_")[1] === i18n.language
                 )
               ]
             }
@@ -56,7 +63,7 @@ const Post = ({ slug, title, title_en, thumbnail = {}, description, tags }) => {
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {tags.length > 0 &&
               tags.map((tag, i) => (
-                <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
+                <Tag key={`tag_${tag.id}`} {...tag} comma={tags.length - 1 > i} />
               ))}
           </div>
           <IconButton
@@ -82,7 +89,7 @@ Post.propTypes = {
     url: PropTypes.string.isRequired,
   }),
   description: PropTypes.objectOf(PropTypes.string).isRequired,
-  tags: PropTypes.array,
+  tags: PropTypes.arrayOf(PropTypes.object),
 }
 
 export default Post

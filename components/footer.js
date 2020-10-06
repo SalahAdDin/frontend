@@ -8,10 +8,10 @@ import {
   makeStyles,
   fade,
 } from "@material-ui/core"
-import { footerLinks, socialMediaLinks } from "@/lib/constants"
+import { footerLinks, socialMediaLinks } from "lib/constants"
+import NextIcon from "assets/svg/nextjs.svg"
+import StrapiIcon from "assets/svg/strapi-logo-light.svg"
 import URL from "./fields/url"
-import NextIcon from "@/assets/svg/nextjs.svg"
-import StrapiIcon from "@/assets/svg/strapi-logo-light.svg"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,8 +65,9 @@ const useStyles = makeStyles((theme) => ({
 const Copyright = () => {
   return (
     <Typography component="span">
-      Copyright © <Link href="/">José Luis Sandoval Alaguna</Link>{" "}
-      {new Date().getFullYear()}.
+      {`Copyright © `}
+      <Link href="/">José Luis Sandoval Alaguna</Link>
+      {` ${new Date().getFullYear()}. `}
     </Typography>
   )
 }
@@ -75,17 +76,12 @@ const DevTech = () => {
   const classes = useStyles()
   return (
     <Typography component="span" className={classes.techIcons}>
-      Developed with{" "}
-      <Link
-        href={`//nextjs.org/`}
-        target="_blank"
-        rel="noopener"
-        aria-label="NextJS"
-      >
+      {`Developed with `}
+      <Link href="//nextjs.org/" target="_blank" rel="noopener" aria-label="NextJS">
         <NextIcon />
-      </Link>{" "}
-      &nbsp;&amp;&nbsp;{" "}
-      <Link href={`//strapi.io/`} target="_blank" rel="noopener" aria-label="Strapi">
+      </Link>
+      &nbsp;&amp;&nbsp;
+      <Link href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
       </Link>
       .
@@ -98,12 +94,16 @@ const FooterSection = ({ title, links, navLinks }) => {
   const { t, i18n } = useTranslation()
 
   const localizedTitle = (label) => {
-    const { title = {}, title_en } = navLinks.find((item) => item.slug == label)
+    const { title: localTitle, title_en: titleEn } = navLinks.find(
+      (item) => item.slug === label
+    )
 
     return (
-      title[
-        Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
-      ] || title_en
+      localTitle[
+        Object.keys(localTitle).find(
+          (content) => content.split("_")[1] === i18n.language
+        )
+      ] || titleEn
     )
   }
 
@@ -114,9 +114,9 @@ const FooterSection = ({ title, links, navLinks }) => {
       </Typography>
       <ul className={classes.subMenu}>
         {links.map(({ href, label }) => (
-          <li key={"item_" + label}>
+          <li key={`item_${label}`}>
             <Link href={href}>
-              {navLinks.find((item) => item.slug == label) !== void 0
+              {navLinks.find((item) => item.slug === label) !== undefined
                 ? localizedTitle(label)
                 : t(label)}
             </Link>
@@ -148,12 +148,12 @@ const Footer = ({ navLinks }) => {
           >
             {/* TODO: Add logo here */}
             {socialMediaLinks.map((link) => (
-              <URL key={"footer_" + link.type} {...link} minimize />
+              <URL key={`footer_${link.type}`} {...link} minimize />
             ))}
           </Grid>
           {footerLinks.map((section) => (
             <FooterSection
-              key={"section_" + section.title}
+              key={`section_${section.title}`}
               {...section}
               navLinks={navLinks}
             />
@@ -174,7 +174,13 @@ const Footer = ({ navLinks }) => {
 }
 
 Footer.propTypes = {
-  navLinks: PropTypes.arrayOf(PropTypes.object),
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      title_en: PropTypes.string.isRequired,
+      title: PropTypes.objectOf(PropTypes.string),
+    })
+  ),
 }
 
 export default Footer

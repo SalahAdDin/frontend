@@ -7,7 +7,7 @@ import { fade, makeStyles } from "@material-ui/core"
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
-import oceanic from "@/styles/material-oceanic"
+import oceanic from "styles/material-oceanic"
 import Image from "../fields/image"
 
 const useStyles = makeStyles((theme) => ({
@@ -31,14 +31,14 @@ const CodeBlock = ({ language, value }) => {
 
   return (
     <SyntaxHighlighter
-      showLineNumbers={true}
+      showLineNumbers
       startingLineNumber={1}
       language={language}
       style={oceanic}
       lineNumberContainerProps={{
         style: { color: "#ddd", paddingRight: "1.625em", float: "left" },
       }}
-      wrapLines={true}
+      wrapLines
       className={classes.codeBlock}
     >
       {value}
@@ -72,12 +72,11 @@ Note:
 
 */
 
-const VideoBlock = ({ alt, src }) => {
+const VideoBlock = ({ src }) => {
   return <ReactPlayer url={src} controls playing />
 }
 
 VideoBlock.propTypes = {
-  alt: PropTypes.string,
   src: PropTypes.string,
 }
 

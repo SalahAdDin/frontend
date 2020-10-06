@@ -10,7 +10,7 @@ const Category = ({ name, projects }) => {
       </Typography>
       <Grid container component="section" spacing={2}>
         {projects.map((project) => (
-          <Project key={"project_" + project.id} {...project} />
+          <Project key={`project_${project.id}`} {...project} />
         ))}
       </Grid>
     </>
@@ -19,7 +19,7 @@ const Category = ({ name, projects }) => {
 
 Category.propTypes = {
   name: PropTypes.string.isRequired,
-  projects: PropTypes.array,
+  projects: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string.isRequired })),
 }
 
 export default Category

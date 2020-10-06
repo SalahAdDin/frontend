@@ -4,21 +4,21 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { ProductJsonLd } from "next-seo"
 import ReactPlayer from "react-player"
-import { Box, Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
+import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import useStyles from "@/styles/common"
-import { getAllProjectsWithID, getProjectByID } from "@/lib/api/projects"
-import { CMS_NAME } from "@/lib/constants"
-import SEO from "@/components/seo"
-import { DynamicZone } from "@/components/body"
-import Layout from "@/components/layout"
-import Title from "@/components/fields/title"
-import Image from "@/components/fields/image"
+import useStyles from "styles/common"
+import { getAllProjectsWithID, getProjectByID } from "lib/api/projects"
+import { CMS_NAME } from "lib/constants"
+import SEO from "components/seo"
+import { DynamicZone } from "components/body"
+import Layout from "components/layout"
+import Title from "components/fields/title"
+import Image from "components/fields/image"
 
 const Project = ({
   id,
   title,
-  title_en,
+  title_en: titleEn,
   thumbnail,
   video,
   category,
@@ -41,7 +41,7 @@ const Project = ({
           <SEO
             description={description}
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             openGraph={{
               type: "product",
               images: [
@@ -65,7 +65,7 @@ const Project = ({
             }}
           />
           <ProductJsonLd
-            productName={title_en}
+            productName={titleEn}
             images={[thumbnail?.url]}
             description={description?.description_en}
             brand={CMS_NAME}
@@ -89,7 +89,7 @@ const Project = ({
           )}
           <Title
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             component="h3"
             variant="h3"
             gutterBottom
@@ -101,7 +101,7 @@ const Project = ({
             <Divider orientation="vertical" flexItem />
             {links.map((link) => (
               <LinkUI
-                key={"links_" + link.id}
+                key={`links_${link.id}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener"
@@ -135,7 +135,7 @@ const Project = ({
           <Paper elevation={0} className={classes.tagsContainer}>
             {tags.length > 0 &&
               tags?.map((tag) => (
-                <Link href={`/tags/${tag.slug}`} passHref key={"tag_" + tag.id}>
+                <Link href={`/tags/${tag.slug}`} passHref key={`tag_${tag.id}`}>
                   <Chip variant="outlined" label={tag.label} />
                 </Link>
               ))}
@@ -149,8 +149,8 @@ const Project = ({
 Project.propTypes = {
   id: PropTypes.string.isRequired,
   title_en: PropTypes.string.isRequired,
-  title: PropTypes.object,
-  description: PropTypes.object,
+  title: PropTypes.shape(PropTypes.string),
+  description: PropTypes.shape(PropTypes.string),
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
@@ -168,8 +168,8 @@ Project.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ),
-  content: PropTypes.object,
-  tags: PropTypes.array,
+  content: PropTypes.objectOf(PropTypes.string),
+  tags: PropTypes.arrayOf(PropTypes.object),
   video: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,

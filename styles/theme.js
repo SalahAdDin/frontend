@@ -1,6 +1,6 @@
 import { createMuiTheme, responsiveFontSizes } from "@material-ui/core"
 
-let theme = createMuiTheme({
+const baseTheme = createMuiTheme({
   palette: {
     primary: { main: "#5e62ff" },
     secondary: { main: "#5e62ff" },
@@ -21,6 +21,6 @@ let theme = createMuiTheme({
   },
 })
 
-theme = responsiveFontSizes(theme)
+const theme = responsiveFontSizes(baseTheme)
 
 export default theme

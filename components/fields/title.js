@@ -4,7 +4,7 @@ import { Typography } from "@material-ui/core"
 
 const Title = ({
   title,
-  title_en,
+  title_en: titleEn,
   component = "h1",
   variant = "h1",
   gutterBottom = false,
@@ -14,8 +14,8 @@ const Title = ({
 
   const localizedTitle =
     title[
-      Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
-    ] || title_en
+      Object.keys(title).find((content) => content.split("_")[1] === i18n.language)
+    ] || titleEn
 
   return (
     <Typography

@@ -1,24 +1,21 @@
 import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
-import { useTranslation } from "react-i18next"
 import { Skeleton, Timeline } from "@material-ui/lab"
-import { getPageBySlug } from "@/lib/api/pages"
-import Layout from "@/components/layout"
-import SEO from "@/components/seo"
-import Experience from "@/components/content/experience"
-import Content from "@/components/content/content"
-import Title from "@/components/fields/title"
-import { DynamicZone } from "@/components/body"
+import { getPageBySlug } from "lib/api/pages"
+import Layout from "components/layout"
+import SEO from "components/seo"
+import Experience from "components/content/experience"
+import Title from "components/fields/title"
+import { DynamicZone } from "components/body"
 
-const Education = ({ title_en, slug, title, description, body }) => {
+const Education = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
-  const { i18n } = useTranslation()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   const experiences = body.filter(
-    (item) => item.__typename == "ComponentContentExperience"
+    (item) => item.__typename === "ComponentContentExperience"
   )
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
@@ -30,8 +27,8 @@ const Education = ({ title_en, slug, title, description, body }) => {
         <Skeleton />
       ) : (
         <>
-          <SEO description={description} title={title} title_en={title_en} />
-          <Title title={title} title_en={title_en} />
+          <SEO description={description} title={title} title_en={titleEn} />
+          <Title title={title} title_en={titleEn} />
 
           {contents ? (
             <DynamicZone component={contents} />
@@ -44,8 +41,8 @@ const Education = ({ title_en, slug, title, description, body }) => {
           <Timeline style={{ marginTop: "4rem" }}>
             {Object.values(experiences).map((experience, i) => (
               <Experience
-                key={"experience_" + experience.id}
-                last={i == experiences.length - 1}
+                key={`experience_${experience.id}`}
+                last={i === experiences.length - 1}
                 {...experience}
               />
             ))}
@@ -63,10 +60,6 @@ export async function getStaticProps() {
     props: { ...data?.pages[0] },
     revalidate: 1,
   }
-}
-
-Education.defaultProps = {
-  i18nNamespaces: ["common"],
 }
 
 Education.propTypes = {

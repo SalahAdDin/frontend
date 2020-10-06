@@ -3,17 +3,24 @@ import { useRouter } from "next/router"
 import ErrorPage from "next/error"
 import { Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import { getPageAndTagBySlug } from "@/lib/api/tags"
-import SEO from "@/components/seo"
-import Layout from "@/components/layout"
-import { DynamicZone } from "@/components/body"
-import Title from "@/components/fields/title"
-import Post from "@/components/post"
+import { getPageAndTagBySlug } from "lib/api/tags"
+import SEO from "components/seo"
+import Layout from "components/layout"
+import { DynamicZone } from "components/body"
+import Title from "components/fields/title"
+import Post from "components/post"
 
-const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
+const Posts = ({
+  title_en: titleEn,
+  slug,
+  title,
+  description,
+  body,
+  pagesByTag,
+}) => {
   const router = useRouter()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -23,8 +30,8 @@ const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
         <Skeleton />
       ) : (
         <>
-          <SEO description={description} title={title} title_en={title_en} />
-          <Title title={title} title_en={title_en} />
+          <SEO description={description} title={title} title_en={titleEn} />
+          <Title title={title} title_en={titleEn} />
           {/* TODO: Does this have a content? */}
           {contents ? (
             <DynamicZone component={contents} />
@@ -36,7 +43,7 @@ const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
           )}
           <Grid container spacing={2} component="section">
             {pagesByTag.length > 0 &&
-              pagesByTag.map((page) => <Post key={"blog_" + page.id} {...page} />)}
+              pagesByTag.map((page) => <Post key={`blog_${page.id}`} {...page} />)}
           </Grid>
         </>
       )}

@@ -2,20 +2,20 @@ import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { Skeleton, Timeline } from "@material-ui/lab"
-import { getPageBySlug } from "@/lib/api/pages"
-import Layout from "@/components/layout"
-import SEO from "@/components/seo"
-import Title from "@/components/fields/title"
-import Experience from "@/components/content/experience"
-import { DynamicZone } from "@/components/body"
+import { getPageBySlug } from "lib/api/pages"
+import Layout from "components/layout"
+import SEO from "components/seo"
+import Title from "components/fields/title"
+import Experience from "components/content/experience"
+import { DynamicZone } from "components/body"
 
-const WorkExperience = ({ title_en, slug, title, description, body }) => {
+const WorkExperience = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   const experiences = body.filter(
-    (item) => item.__typename == "ComponentContentExperience"
+    (item) => item.__typename === "ComponentContentExperience"
   )
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
@@ -26,8 +26,8 @@ const WorkExperience = ({ title_en, slug, title, description, body }) => {
         <Skeleton />
       ) : (
         <>
-          <SEO description={description} title={title} title_en={title_en} />
-          <Title title={title} title_en={title_en} />
+          <SEO description={description} title={title} title_en={titleEn} />
+          <Title title={title} title_en={titleEn} />
           {contents ? (
             <DynamicZone component={contents} />
           ) : (
@@ -39,8 +39,8 @@ const WorkExperience = ({ title_en, slug, title, description, body }) => {
           <Timeline style={{ marginTop: "4rem" }}>
             {Object.values(experiences).map((experience, i) => (
               <Experience
-                key={"experience_" + experience.id}
-                last={i == experiences.length - 1}
+                key={`experience_${experience.id}`}
+                last={i === experiences.length - 1}
                 {...experience}
               />
             ))}
@@ -67,10 +67,6 @@ WorkExperience.propTypes = {
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
-}
-
-WorkExperience.defaultProps = {
-  i18nNamespaces: ["common"],
 }
 
 export default WorkExperience

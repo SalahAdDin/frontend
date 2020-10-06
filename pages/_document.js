@@ -1,7 +1,8 @@
+import React from "react"
 import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheets } from "@material-ui/core"
-import { i18nPropsFromCtx } from "@/lib/i18n"
-import theme from "@/styles/theme"
+import i18nPropsFromCtx from "lib/i18n"
+import theme from "styles/theme"
 
 export default class FolioDocument extends Document {
   render() {

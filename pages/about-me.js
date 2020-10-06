@@ -1,27 +1,27 @@
 import PropTypes from "prop-types"
 import ErrorPage from "next/error"
 import { useRouter } from "next/router"
-import { SocialProfileJsonLd, NextSeo } from "next-seo"
+import { SocialProfileJsonLd } from "next-seo"
 import { useTranslation } from "react-i18next"
 import { Skeleton } from "@material-ui/lab"
-import { getPageBySlug } from "@/lib/api/pages"
-import { CMS_URL, CMS_NAME } from "@/lib/constants"
-import SEO from "@/components/seo"
-import SkillsSection from "@/components/skillssection"
-import Layout from "@/components/layout"
-import PersonalInformation from "@/components/content/personalinformation"
-import Title from "@/components/fields/title"
+import { getPageBySlug } from "lib/api/pages"
+import { CMS_URL } from "lib/constants"
+import SEO from "components/seo"
+import SkillsSection from "components/skillssection"
+import Layout from "components/layout"
+import PersonalInformation from "components/content/personalinformation"
+import Title from "components/fields/title"
 
-const AboutMe = ({ title_en, slug, title, description, body }) => {
+const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   const personalInformation = body.find(
-    (item) => item.__typename == "ComponentContentPersonalInformation"
+    (item) => item.__typename === "ComponentContentPersonalInformation"
   )
 
   const skills = body
-    .filter((item) => item.__typename == "ComponentFieldsSkill")
+    .filter((item) => item.__typename === "ComponentFieldsSkill")
     .reduce((r, a) => {
       r[a.type] = [...(r[a.type] || []), a]
       return r
@@ -29,7 +29,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
 
   const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
   const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
-  const getGroupName = (group) => t("skill-type:" + group.toLowerCase())
+  const getGroupName = (group) => t(`skill-type:${group.toLowerCase()}`)
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -43,7 +43,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
           <SEO
             description={description}
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             openGraph={{
               type: "profile",
               images: [
@@ -55,8 +55,8 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
                 },
               ],
               profile: {
-                firstName: firstName,
-                lastName: lastName,
+                firstName,
+                lastName,
                 gender: "male",
               },
             }}
@@ -67,13 +67,13 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
             url={CMS_URL}
             sameAs={personalInformation.links.map((url) => url.url)}
           />
-          <Title title={title} title_en={title_en} />
+          <Title title={title} title_en={titleEn} />
           <PersonalInformation {...personalInformation} />
           {Object.keys(skills).map((group) => (
             <SkillsSection
               skills={skills[group]}
               group={getGroupName(group)}
-              key={"skill_group_" + group}
+              key={`skill_group_${group}`}
             />
           ))}
         </>
@@ -102,6 +102,7 @@ AboutMe.propTypes = {
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
+  i18nNamespaces: PropTypes.arrayOf(PropTypes.string),
 }
 
 export default AboutMe

@@ -1,10 +1,10 @@
 import PropTypes from "prop-types"
 import { Link, ListItemIcon, ListItem } from "@material-ui/core"
 import { GitHub, Home, LinkedIn } from "@material-ui/icons"
-import useStyles from "@/styles/common"
-import BitBucket from "@/assets/svg/bitbucket.svg"
-import GitLab from "@/assets/svg/gitlab.svg"
-import StackOverflow from "@/assets/svg/stack-overflow.svg"
+import useStyles from "styles/common"
+import BitBucket from "assets/svg/bitbucket.svg"
+import GitLab from "assets/svg/gitlab.svg"
+import StackOverflow from "assets/svg/stack-overflow.svg"
 
 const URL = ({ type, url, minimize }) => {
   const classes = useStyles()
