@@ -3,17 +3,17 @@ import { useRouter } from "next/router"
 import ErrorPage from "next/error"
 import { Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import { getPageAndTagBySlug } from "@/lib/api/tags"
-import SEO from "@/components/seo"
-import Layout from "@/components/layout"
-import { DynamicZone } from "@/components/body"
-import Title from "@/components/fields/title"
-import Post from "@/components/post"
+import { getPageAndTagBySlug } from "lib/api/tags"
+import SEO from "components/seo"
+import Layout from "components/layout"
+import { DynamicZone } from "components/body"
+import Title from "components/fields/title"
+import Post from "components/post"
 
 const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
   const router = useRouter()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 

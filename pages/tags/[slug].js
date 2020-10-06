@@ -4,11 +4,11 @@ import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
 import { Typography, Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import { getTagBySlug, getAllTagsWithSlug } from "@/lib/api/tags"
-import Layout from "@/components/layout"
-import Project from "@/components/project"
-import Post from "@/components/post"
-import SEO from "@/components/seo"
+import { getTagBySlug, getAllTagsWithSlug } from "lib/api/tags"
+import Layout from "components/layout"
+import Project from "components/project"
+import Post from "components/post"
+import SEO from "components/seo"
 
 const Tag = ({ slug, label, projects, pages }) => {
   const router = useRouter()

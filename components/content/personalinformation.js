@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core"
 import { MailOutline, Room } from "@material-ui/icons"
 import { Skeleton } from "@material-ui/lab"
-import { default as useGlobalStyles } from "@/styles/common"
+import { default as useGlobalStyles } from "styles/common"
 import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"

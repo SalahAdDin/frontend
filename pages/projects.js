@@ -3,18 +3,18 @@ import { useRouter } from "next/router"
 import ErrorPage from "next/error"
 import { useTranslation } from "react-i18next"
 import { Skeleton } from "@material-ui/lab"
-import { getPageBySlugAndCategory } from "@/lib/api/categories"
-import Title from "@/components/fields/title"
-import SEO from "@/components/seo"
-import Category from "@/components/category"
-import Layout from "@/components/layout"
-import { DynamicZone } from "@/components/body"
+import { getPageBySlugAndCategory } from "lib/api/categories"
+import Title from "components/fields/title"
+import SEO from "components/seo"
+import Category from "components/category"
+import Layout from "components/layout"
+import { DynamicZone } from "components/body"
 
 function Projects({ title_en, slug, title, description, body, categories }) {
   const router = useRouter()
   const { i18n } = useTranslation()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 

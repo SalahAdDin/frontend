@@ -21,7 +21,7 @@ import {
 import MenuIcon from "@material-ui/icons/Menu"
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
-import { menuLinks } from "@/lib/constants"
+import { menuLinks } from "lib/constants"
 
 const useStyles = makeStyles((theme) => ({
   root: {

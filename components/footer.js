@@ -8,9 +8,9 @@ import {
   makeStyles,
   fade,
 } from "@material-ui/core"
-import { footerLinks, socialMediaLinks } from "@/lib/constants"
-import NextIcon from "@/assets/svg/nextjs.svg"
-import StrapiIcon from "@/assets/svg/strapi-logo-light.svg"
+import { footerLinks, socialMediaLinks } from "lib/constants"
+import NextIcon from "assets/svg/nextjs.svg"
+import StrapiIcon from "assets/svg/strapi-logo-light.svg"
 import URL from "./fields/url"
 
 const useStyles = makeStyles((theme) => ({

@@ -3,22 +3,22 @@ import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { useTranslation } from "react-i18next"
 import { Skeleton, Timeline } from "@material-ui/lab"
-import { getPageBySlug } from "@/lib/api/pages"
-import Layout from "@/components/layout"
-import SEO from "@/components/seo"
-import Experience from "@/components/content/experience"
-import Content from "@/components/content/content"
-import Title from "@/components/fields/title"
-import { DynamicZone } from "@/components/body"
+import { getPageBySlug } from "lib/api/pages"
+import Layout from "components/layout"
+import SEO from "components/seo"
+import Experience from "components/content/experience"
+import Content from "components/content/content"
+import Title from "components/fields/title"
+import { DynamicZone } from "components/body"
 
 const Education = ({ title_en, slug, title, description, body }) => {
   const router = useRouter()
   const { i18n } = useTranslation()
 
-  const contents = body.find((item) => item.__typename == "ComponentContentContent")
+  const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
   const experiences = body.filter(
-    (item) => item.__typename == "ComponentContentExperience"
+    (item) => item.__typename === "ComponentContentExperience"
   )
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />

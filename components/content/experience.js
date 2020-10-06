@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next"
 import * as dayjs from "dayjs"
 import "dayjs/locale/es"
 import "dayjs/locale/tr"
-import { default as useGlobalStyles } from "@/styles/common"
+import { default as useGlobalStyles } from "styles/common"
 import Content from "./content"
 
 const useStyles = makeStyles((theme) => ({

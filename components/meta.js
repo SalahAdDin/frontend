@@ -1,5 +1,5 @@
 import Head from "next/head"
-import { CMS_THEME_COLOR } from "@/lib/constants"
+import { CMS_THEME_COLOR } from "lib/constants"
 
 const Meta = () => {
   return (

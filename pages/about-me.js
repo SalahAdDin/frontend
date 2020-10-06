@@ -4,24 +4,24 @@ import { useRouter } from "next/router"
 import { SocialProfileJsonLd, NextSeo } from "next-seo"
 import { useTranslation } from "react-i18next"
 import { Skeleton } from "@material-ui/lab"
-import { getPageBySlug } from "@/lib/api/pages"
-import { CMS_URL, CMS_NAME } from "@/lib/constants"
-import SEO from "@/components/seo"
-import SkillsSection from "@/components/skillssection"
-import Layout from "@/components/layout"
-import PersonalInformation from "@/components/content/personalinformation"
-import Title from "@/components/fields/title"
+import { getPageBySlug } from "lib/api/pages"
+import { CMS_URL, CMS_NAME } from "lib/constants"
+import SEO from "components/seo"
+import SkillsSection from "components/skillssection"
+import Layout from "components/layout"
+import PersonalInformation from "components/content/personalinformation"
+import Title from "components/fields/title"
 
 const AboutMe = ({ title_en, slug, title, description, body }) => {
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
   const personalInformation = body.find(
-    (item) => item.__typename == "ComponentContentPersonalInformation"
+    (item) => item.__typename === "ComponentContentPersonalInformation"
   )
 
   const skills = body
-    .filter((item) => item.__typename == "ComponentFieldsSkill")
+    .filter((item) => item.__typename === "ComponentFieldsSkill")
     .reduce((r, a) => {
       r[a.type] = [...(r[a.type] || []), a]
       return r

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import { ListItemText, ListItemIcon, ListItem } from "@material-ui/core"
 import { PhoneAndroid, Phonelink, Phone } from "@material-ui/icons"
-import useStyles from "@/styles/common"
+import useStyles from "styles/common"
 
 const Telephone = ({ type, number }) => {
   const classes = useStyles()

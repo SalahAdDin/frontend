@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
 import { NextSeo } from "next-seo"
 import { useTranslation } from "react-i18next"
-import { CMS_NAME } from "@/lib/constants"
+import { CMS_NAME } from "lib/constants"
 import { useRouter } from "next/router"
 
 const SEO = ({ title_en, title = {}, openGraph, description = {}, canonical }) => {

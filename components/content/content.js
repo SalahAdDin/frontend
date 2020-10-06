@@ -7,7 +7,7 @@ import { fade, makeStyles } from "@material-ui/core"
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
-import oceanic from "@/styles/material-oceanic"
+import oceanic from "styles/material-oceanic"
 import Image from "../fields/image"
 
 const useStyles = makeStyles((theme) => ({

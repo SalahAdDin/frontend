@@ -3,10 +3,10 @@ import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { Typography, Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import { getCategoryBySlug, getAllCategoriesWithSlug } from "@/lib/api/categories"
-import SEO from "@/components/seo"
-import Layout from "@/components/layout"
-import Project from "@/components/project"
+import { getCategoryBySlug, getAllCategoriesWithSlug } from "lib/api/categories"
+import SEO from "components/seo"
+import Layout from "components/layout"
+import Project from "components/project"
 
 const Category = ({ name, slug, description, projects }) => {
   const router = useRouter()
