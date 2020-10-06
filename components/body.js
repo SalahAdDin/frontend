@@ -44,7 +44,7 @@ DynamicZone.propTypes = { component: PropTypes.object.isRequired }
 
 export const Body = ({ body }) => {
   return body.map((component) => (
-    <DynamicZone key={"component" + component.id} component={component} />
+    <DynamicZone key={`component${component.id}`} component={component} />
   ))
 }
 

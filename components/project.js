@@ -54,7 +54,7 @@ const Project = ({ id, title, title_en, thumbnail, description, tags }) => {
           <div style={{ display: "flex", flexWrap: "wrap" }}>
             {tags.length > 0 &&
               tags.map((tag, i) => (
-                <Tag key={"tag_" + tag.id} {...tag} comma={tags.length - 1 > i} />
+                <Tag key={`tag_${tag.id}`} {...tag} comma={tags.length - 1 > i} />
               ))}
           </div>
           <IconButton

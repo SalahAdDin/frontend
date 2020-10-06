@@ -25,7 +25,7 @@ const Category = ({ name, slug, description, projects }) => {
           </Typography>
           <Grid container component="section" spacing={2}>
             {projects.map((project) => (
-              <Project key={"project_id" + project.id} {...project} />
+              <Project key={`project_id${project.id}`} {...project} />
             ))}
           </Grid>
         </>

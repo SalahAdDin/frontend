@@ -44,7 +44,7 @@ const Education = ({ title_en, slug, title, description, body }) => {
           <Timeline style={{ marginTop: "4rem" }}>
             {Object.values(experiences).map((experience, i) => (
               <Experience
-                key={"experience_" + experience.id}
+                key={`experience_${experience.id}`}
                 last={i == experiences.length - 1}
                 {...experience}
               />

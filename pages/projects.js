@@ -36,7 +36,7 @@ function Projects({ title_en, slug, title, description, body, categories }) {
           )}
           {categories.map((category) =>
             category.projects.length > 0 ? (
-              <Category key={"category_" + category.id} {...category} />
+              <Category key={`category_${category.id}`} {...category} />
             ) : (
               ""
             )

@@ -36,7 +36,7 @@ const Posts = ({ title_en, slug, title, description, body, pagesByTag }) => {
           )}
           <Grid container spacing={2} component="section">
             {pagesByTag.length > 0 &&
-              pagesByTag.map((page) => <Post key={"blog_" + page.id} {...page} />)}
+              pagesByTag.map((page) => <Post key={`blog_${page.id}`} {...page} />)}
           </Grid>
         </>
       )}

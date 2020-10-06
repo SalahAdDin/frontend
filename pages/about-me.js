@@ -29,7 +29,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
 
   const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
   const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
-  const getGroupName = (group) => t("skill-type:" + group.toLowerCase())
+  const getGroupName = (group) => t(`skill-type:${group.toLowerCase()}`)
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -55,8 +55,8 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
                 },
               ],
               profile: {
-                firstName: firstName,
-                lastName: lastName,
+                firstName,
+                lastName,
                 gender: "male",
               },
             }}
@@ -73,7 +73,7 @@ const AboutMe = ({ title_en, slug, title, description, body }) => {
             <SkillsSection
               skills={skills[group]}
               group={getGroupName(group)}
-              key={"skill_group_" + group}
+              key={`skill_group_${group}`}
             />
           ))}
         </>

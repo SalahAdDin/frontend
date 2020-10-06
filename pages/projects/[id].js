@@ -101,7 +101,7 @@ const Project = ({
             <Divider orientation="vertical" flexItem />
             {links.map((link) => (
               <LinkUI
-                key={"links_" + link.id}
+                key={`links_${link.id}`}
                 href={link.url}
                 target="_blank"
                 rel="noopener"
@@ -135,7 +135,7 @@ const Project = ({
           <Paper elevation={0} className={classes.tagsContainer}>
             {tags.length > 0 &&
               tags?.map((tag) => (
-                <Link href={`/tags/${tag.slug}`} passHref key={"tag_" + tag.id}>
+                <Link href={`/tags/${tag.slug}`} passHref key={`tag_${tag.id}`}>
                   <Chip variant="outlined" label={tag.label} />
                 </Link>
               ))}

@@ -31,14 +31,14 @@ const CodeBlock = ({ language, value }) => {
 
   return (
     <SyntaxHighlighter
-      showLineNumbers={true}
+      showLineNumbers
       startingLineNumber={1}
       language={language}
       style={oceanic}
       lineNumberContainerProps={{
         style: { color: "#ddd", paddingRight: "1.625em", float: "left" },
       }}
-      wrapLines={true}
+      wrapLines
       className={classes.codeBlock}
     >
       {value}

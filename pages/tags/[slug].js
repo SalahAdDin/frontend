@@ -33,7 +33,7 @@ const Tag = ({ slug, label, projects, pages }) => {
               </Typography>
               <Grid container component="section" spacing={2}>
                 {projects?.map((project) => (
-                  <Project key={"project_" + project.id} {...project} />
+                  <Project key={`project_${project.id}`} {...project} />
                 ))}
               </Grid>
             </>
@@ -45,7 +45,7 @@ const Tag = ({ slug, label, projects, pages }) => {
               </Typography>
               <Grid container component="section" spacing={2}>
                 {pages?.map((page) => (
-                  <Post key={"page_" + page.id} {...page} />
+                  <Post key={`page_${page.id}`} {...page} />
                 ))}
               </Grid>
             </>

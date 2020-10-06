@@ -95,7 +95,7 @@ const Post = ({
           <Paper elevation={0} className={globalClasses.tagsContainer}>
             {tags.length > 0 &&
               tags?.map((tag) => (
-                <Link href={`/tags/${tag.slug}`} passHref key={"tag_" + tag.id}>
+                <Link href={`/tags/${tag.slug}`} passHref key={`tag_${tag.id}`}>
                   <Chip variant="outlined" label={tag.label} />
                 </Link>
               ))}

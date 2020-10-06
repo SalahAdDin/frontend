@@ -11,10 +11,10 @@ import {
 } from "@material-ui/core"
 import { MailOutline, Room } from "@material-ui/icons"
 import { Skeleton } from "@material-ui/lab"
+import { default as useGlobalStyles } from "@/styles/common"
 import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
-import { default as useGlobalStyles } from "@/styles/common"
 
 const useStyles = makeStyles((theme) => ({
   header: {
@@ -101,9 +101,9 @@ const PersonalInformation = ({
             <>
               <Typography variant="body2" component="p">
                 <Room className={globalClasses.inlineSmallIcon} />
-                {address.address && address.address + " / "}
-                {address.city} {address.postalcode && "[" + address.postalcode + "]"}
-                {address.country && " - " + address.country}
+                {address.address && `${address.address} / `}
+                {address.city} {address.postalcode && `[${address.postalcode}]`}
+                {address.country && ` - ${address.country}`}
               </Typography>
               <List aria-label="telephones" className={classes.noPadding}>
                 {telephone.map((phone) => (
@@ -112,7 +112,7 @@ const PersonalInformation = ({
               </List>
               <List aria-label="links" className={classes.noPadding}>
                 {links.map((link) => (
-                  <URL key={"links_" + link.id} {...link} />
+                  <URL key={`links_${link.id}`} {...link} />
                 ))}
               </List>
             </>

@@ -9,7 +9,7 @@ const Skill = ({ name, level }) => {
         <Typography component="legend">{name}</Typography>
       </Grid>
       <Grid item xs={12} md={7}>
-        <Rating name={name} value={level} precision={0.5} readOnly></Rating>
+        <Rating name={name} value={level} precision={0.5} readOnly />
       </Grid>
     </Grid>
   )

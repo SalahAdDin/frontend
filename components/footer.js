@@ -9,9 +9,9 @@ import {
   fade,
 } from "@material-ui/core"
 import { footerLinks, socialMediaLinks } from "@/lib/constants"
-import URL from "./fields/url"
 import NextIcon from "@/assets/svg/nextjs.svg"
 import StrapiIcon from "@/assets/svg/strapi-logo-light.svg"
+import URL from "./fields/url"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,16 +76,11 @@ const DevTech = () => {
   return (
     <Typography component="span" className={classes.techIcons}>
       Developed with{" "}
-      <Link
-        href={`//nextjs.org/`}
-        target="_blank"
-        rel="noopener"
-        aria-label="NextJS"
-      >
+      <Link href="//nextjs.org/" target="_blank" rel="noopener" aria-label="NextJS">
         <NextIcon />
       </Link>{" "}
       &nbsp;&amp;&nbsp;{" "}
-      <Link href={`//strapi.io/`} target="_blank" rel="noopener" aria-label="Strapi">
+      <Link href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
       </Link>
       .
@@ -114,7 +109,7 @@ const FooterSection = ({ title, links, navLinks }) => {
       </Typography>
       <ul className={classes.subMenu}>
         {links.map(({ href, label }) => (
-          <li key={"item_" + label}>
+          <li key={`item_${label}`}>
             <Link href={href}>
               {navLinks.find((item) => item.slug == label) !== void 0
                 ? localizedTitle(label)
@@ -148,12 +143,12 @@ const Footer = ({ navLinks }) => {
           >
             {/* TODO: Add logo here */}
             {socialMediaLinks.map((link) => (
-              <URL key={"footer_" + link.type} {...link} minimize />
+              <URL key={`footer_${link.type}`} {...link} minimize />
             ))}
           </Grid>
           {footerLinks.map((section) => (
             <FooterSection
-              key={"section_" + section.title}
+              key={`section_${section.title}`}
               {...section}
               navLinks={navLinks}
             />

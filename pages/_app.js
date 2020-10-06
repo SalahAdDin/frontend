@@ -4,13 +4,17 @@ import App from "next/app"
 import { DefaultSeo } from "next-seo"
 import { ThemeProvider, CssBaseline } from "@material-ui/core"
 import { appWithTranslation } from "i18n"
-import Meta from "../components/meta"
-import DefaultSEO from "../next-seo.config"
 import { getPageTitlesBySlugSet } from "@/lib/api/pages"
 import { CMS_TILE_COLOR, menuLinks } from "@/lib/constants"
 import theme from "@/styles/theme"
 import Nav from "@/components/nav"
 import Footer from "@/components/footer"
+import DefaultSEO from "../next-seo.config"
+import Meta from "../components/meta"
+
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
 
 const FolioApp = ({ Component, pageProps, navProps }) => {
   useEffect(() => {
@@ -59,7 +63,7 @@ FolioApp.getInitialProps = async (appContext) => {
 
   const navProps = await getPageTitlesBySlugSet(menuLinks.map(({ label }) => label))
 
-  const defaultProps = appContext.Component.defaultProps
+  const { defaultProps } = appContext.Component
 
   return {
     ...appProps,
