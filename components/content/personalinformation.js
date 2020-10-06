@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import {
   makeStyles,
   Avatar,
@@ -11,7 +10,7 @@ import {
 } from "@material-ui/core"
 import { MailOutline, Room } from "@material-ui/icons"
 import { Skeleton } from "@material-ui/lab"
-import { default as useGlobalStyles } from "styles/common"
+import useGlobalStyles from "styles/common"
 import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
@@ -42,7 +41,7 @@ const PersonalInformation = ({
   photo,
   position,
   mail,
-  nationality,
+  // nationality,
   address,
   links,
   telephone,
@@ -50,8 +49,6 @@ const PersonalInformation = ({
 }) => {
   const classes = useStyles()
   const globalClasses = useGlobalStyles()
-
-  aboutme.__typename = "ComponentContentContent"
 
   return (
     <Card elevation={0} component="section">
@@ -102,7 +99,8 @@ const PersonalInformation = ({
               <Typography variant="body2" component="p">
                 <Room className={globalClasses.inlineSmallIcon} />
                 {address.address && `${address.address} / `}
-                {address.city} {address.postalcode && `[${address.postalcode}]`}
+                {`${address.city} `}
+                {address.postalcode && `[${address.postalcode}]`}
                 {address.country && ` - ${address.country}`}
               </Typography>
               <List aria-label="telephones" className={classes.noPadding}>
@@ -123,7 +121,9 @@ const PersonalInformation = ({
       />
       <CardContent>
         {aboutme ? (
-          <DynamicZone component={aboutme} />
+          <DynamicZone
+            component={{ ...aboutme, __typename: "ComponentContentContent" }}
+          />
         ) : (
           <>
             <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />

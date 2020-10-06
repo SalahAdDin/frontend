@@ -19,7 +19,7 @@ const Category = ({ name, projects }) => {
 
 Category.propTypes = {
   name: PropTypes.string.isRequired,
-  projects: PropTypes.array,
+  projects: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string.isRequired })),
 }
 
 export default Category

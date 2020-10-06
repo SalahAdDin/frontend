@@ -3,6 +3,7 @@ import { Button, Container } from "@material-ui/core"
 import { Alert, AlertTitle } from "@material-ui/lab"
 
 const Layout = ({ preview, children }) => {
+  // TODO: Preview is unrequired because of Strapi
   return (
     <>
       {preview ? (
@@ -15,7 +16,7 @@ const Layout = ({ preview, children }) => {
           }
         >
           <AlertTitle>Warning</AlertTitle>
-          You are looking the website in — <strong>preview mode</strong>.
+          {`You are looking the website in — ${(<strong>preview mode</strong>)}.`}
         </Alert>
       ) : null}
       <Container

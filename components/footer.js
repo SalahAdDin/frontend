@@ -65,8 +65,9 @@ const useStyles = makeStyles((theme) => ({
 const Copyright = () => {
   return (
     <Typography component="span">
-      Copyright © <Link href="/">José Luis Sandoval Alaguna</Link>{" "}
-      {new Date().getFullYear()}.
+      {`Copyright © `}
+      <Link href="/">José Luis Sandoval Alaguna</Link>
+      {` ${new Date().getFullYear()}. `}
     </Typography>
   )
 }
@@ -75,11 +76,11 @@ const DevTech = () => {
   const classes = useStyles()
   return (
     <Typography component="span" className={classes.techIcons}>
-      Developed with{" "}
+      {`Developed with `}
       <Link href="//nextjs.org/" target="_blank" rel="noopener" aria-label="NextJS">
         <NextIcon />
-      </Link>{" "}
-      &nbsp;&amp;&nbsp;{" "}
+      </Link>
+      &nbsp;&amp;&nbsp;
       <Link href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
       </Link>
@@ -93,12 +94,16 @@ const FooterSection = ({ title, links, navLinks }) => {
   const { t, i18n } = useTranslation()
 
   const localizedTitle = (label) => {
-    const { title = {}, title_en } = navLinks.find((item) => item.slug == label)
+    const { title: localTitle, title_en: titleEn } = navLinks.find(
+      (item) => item.slug === label
+    )
 
     return (
-      title[
-        Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
-      ] || title_en
+      localTitle[
+        Object.keys(localTitle).find(
+          (content) => content.split("_")[1] === i18n.language
+        )
+      ] || titleEn
     )
   }
 
@@ -111,7 +116,7 @@ const FooterSection = ({ title, links, navLinks }) => {
         {links.map(({ href, label }) => (
           <li key={`item_${label}`}>
             <Link href={href}>
-              {navLinks.find((item) => item.slug == label) !== void 0
+              {navLinks.find((item) => item.slug === label) !== undefined
                 ? localizedTitle(label)
                 : t(label)}
             </Link>
@@ -169,7 +174,13 @@ const Footer = ({ navLinks }) => {
 }
 
 Footer.propTypes = {
-  navLinks: PropTypes.arrayOf(PropTypes.object),
+  navLinks: PropTypes.arrayOf(
+    PropTypes.shape({
+      slug: PropTypes.string.isRequired,
+      title_en: PropTypes.string.isRequired,
+      title: PropTypes.objectOf(PropTypes.string),
+    })
+  ),
 }
 
 export default Footer

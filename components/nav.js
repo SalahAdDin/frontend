@@ -109,12 +109,14 @@ const Nav = ({ navLinks }) => {
   const [open, setOpen] = React.useState(false)
 
   const localizedTitle = (label) => {
-    const { title = {}, title_en } = navLinks.find((item) => item.slug == label)
+    const { title = {}, title_en: titleEn } = navLinks.find(
+      (item) => item.slug === label
+    )
 
     return (
       title[
-        Object.keys(title).find((content) => content.split("_")[1] == i18n.language)
-      ] || title_en
+        Object.keys(title).find((content) => content.split("_")[1] === i18n.language)
+      ] || titleEn
     )
   }
 

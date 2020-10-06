@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import ErrorPage from "next/error"
-import { useTranslation } from "react-i18next"
 import { Skeleton } from "@material-ui/lab"
 import { getPageBySlugAndCategory } from "lib/api/categories"
 import Title from "components/fields/title"
@@ -10,9 +9,15 @@ import Category from "components/category"
 import Layout from "components/layout"
 import { DynamicZone } from "components/body"
 
-function Projects({ title_en, slug, title, description, body, categories }) {
+function Projects({
+  title_en: titleEn,
+  slug,
+  title,
+  description,
+  body,
+  categories,
+}) {
   const router = useRouter()
-  const { i18n } = useTranslation()
 
   const contents = body.find((item) => item.__typename === "ComponentContentContent")
 
@@ -24,8 +29,8 @@ function Projects({ title_en, slug, title, description, body, categories }) {
         <Skeleton />
       ) : (
         <>
-          <SEO description={description} title={title} title_en={title_en} />
-          <Title title={title} title_en={title_en} />
+          <SEO description={description} title={title} title_en={titleEn} />
+          <Title title={title} title_en={titleEn} />
           {contents ? (
             <DynamicZone component={contents} />
           ) : (

@@ -2,10 +2,10 @@ import PropTypes from "prop-types"
 import { useTranslation } from "react-i18next"
 import { Typography, makeStyles } from "@material-ui/core"
 import Content from "./content/content"
-import PersonalInformation from "./content/personalinformation"
+// import PersonalInformation from "./content/personalinformation"
 import Skill from "./fields/skill"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: { "& a": { textDecoration: "none" } },
 }))
 
@@ -22,7 +22,7 @@ export const DynamicZone = ({ component }) => {
               {
                 component[
                   Object.keys(component).find(
-                    (content) => content.split("_")[1] == i18n.language
+                    (content) => content.split("_")[1] === i18n.language
                   )
                 ]
               }
@@ -30,9 +30,9 @@ export const DynamicZone = ({ component }) => {
           ),
           // TODO: next ones create problem with props.
           ComponentContentExperience: <></>, // Right-now this one is a TimelineItem
-          ComponentContentPersonalInformation: (
-            <PersonalInformation {...component} />
-          ),
+          // ComponentContentPersonalInformation: (
+          //   <PersonalInformation {...component} />
+          // ),
           ComponentFieldsSkill: <Skill {...component} />,
         }[component.__typename]
       }
@@ -40,7 +40,9 @@ export const DynamicZone = ({ component }) => {
   )
 }
 
-DynamicZone.propTypes = { component: PropTypes.object.isRequired }
+DynamicZone.propTypes = {
+  component: PropTypes.shape({ __typename: PropTypes.string.isRequired }).isRequired,
+}
 
 export const Body = ({ body }) => {
   return body.map((component) => (

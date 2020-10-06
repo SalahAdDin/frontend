@@ -54,7 +54,10 @@ const FolioApp = ({ Component, pageProps, navProps }) => {
 
 FolioApp.propTypes = {
   Component: PropTypes.func,
-  pageProps: PropTypes.object,
+  pageProps: PropTypes.shape({
+    title: PropTypes.objectOf(PropTypes.string),
+    title_en: PropTypes.string,
+  }),
   navProps: PropTypes.arrayOf(PropTypes.object),
 }
 

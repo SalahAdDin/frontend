@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 import { Link as LinkUI } from "@material-ui/core"
 
-const Tag = ({ label, slug, comma = false }) => {
+const Tag = ({ label, slug, comma }) => {
   return (
     <Link href={`/tags/${slug}`} passHref>
       <LinkUI underline="none" style={{ marginRight: "0.25rem" }}>
@@ -13,6 +13,8 @@ const Tag = ({ label, slug, comma = false }) => {
     </Link>
   )
 }
+
+Tag.defaultProps = { comma: false }
 
 Tag.propTypes = {
   label: PropTypes.string.isRequired,

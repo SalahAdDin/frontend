@@ -18,7 +18,7 @@ import Image from "components/fields/image"
 const Project = ({
   id,
   title,
-  title_en,
+  title_en: titleEn,
   thumbnail,
   video,
   category,
@@ -41,7 +41,7 @@ const Project = ({
           <SEO
             description={description}
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             openGraph={{
               type: "product",
               images: [
@@ -65,7 +65,7 @@ const Project = ({
             }}
           />
           <ProductJsonLd
-            productName={title_en}
+            productName={titleEn}
             images={[thumbnail?.url]}
             description={description?.description_en}
             brand={CMS_NAME}
@@ -89,7 +89,7 @@ const Project = ({
           )}
           <Title
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             component="h3"
             variant="h3"
             gutterBottom
@@ -149,8 +149,8 @@ const Project = ({
 Project.propTypes = {
   id: PropTypes.string.isRequired,
   title_en: PropTypes.string.isRequired,
-  title: PropTypes.object,
-  description: PropTypes.object,
+  title: PropTypes.shape(PropTypes.string),
+  description: PropTypes.shape(PropTypes.string),
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
@@ -168,8 +168,8 @@ Project.propTypes = {
       url: PropTypes.string.isRequired,
     })
   ),
-  content: PropTypes.object,
-  tags: PropTypes.array,
+  content: PropTypes.objectOf(PropTypes.string),
+  tags: PropTypes.arrayOf(PropTypes.object),
   video: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,

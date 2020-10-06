@@ -9,7 +9,7 @@ import Title from "components/fields/title"
 import Experience from "components/content/experience"
 import { DynamicZone } from "components/body"
 
-const WorkExperience = ({ title_en, slug, title, description, body }) => {
+const WorkExperience = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
 
   const contents = body.find((item) => item.__typename === "ComponentContentContent")
@@ -26,8 +26,8 @@ const WorkExperience = ({ title_en, slug, title, description, body }) => {
         <Skeleton />
       ) : (
         <>
-          <SEO description={description} title={title} title_en={title_en} />
-          <Title title={title} title_en={title_en} />
+          <SEO description={description} title={title} title_en={titleEn} />
+          <Title title={title} title_en={titleEn} />
           {contents ? (
             <DynamicZone component={contents} />
           ) : (
@@ -67,10 +67,6 @@ WorkExperience.propTypes = {
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
-}
-
-WorkExperience.defaultProps = {
-  i18nNamespaces: ["common"],
 }
 
 export default WorkExperience

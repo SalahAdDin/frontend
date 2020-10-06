@@ -21,7 +21,7 @@ import { useTranslation } from "react-i18next"
 import * as dayjs from "dayjs"
 import "dayjs/locale/es"
 import "dayjs/locale/tr"
-import { default as useGlobalStyles } from "styles/common"
+import useGlobalStyles from "styles/common"
 import Content from "./content"
 
 const useStyles = makeStyles((theme) => ({
@@ -77,13 +77,13 @@ const Experience = ({
           <Skeleton animation="wave" height={10} width="40%" />
         )}
         <Typography color="textSecondary">
-          {dayjs(from).locale(i18n.language).format("MMMM YYYY")}{" "}
+          {`${dayjs(from).locale(i18n.language).format("MMMM YYYY")} `}
           {ongoing ? (
             ""
           ) : (
             <>
               &mdash;
-              {dayjs(to).locale(i18n.language).format("MMMM YYYY")}
+              {` ${dayjs(to).locale(i18n.language).format("MMMM YYYY")}`}
             </>
           )}
         </Typography>
@@ -115,7 +115,8 @@ const Experience = ({
                   <Typography variant="body2" component="p">
                     <Room className={globalClasses.inlineSmallIcon} />
                     {address.address && `${address.address} / `}
-                    {address.city} {address.postalcode && `[${address.postalcode}]`}
+                    {`${address.city} `}
+                    {address.postalcode && `[${address.postalcode}]`}
                     {address.country && ` - ${address.country}`}
                     {url && (
                       <Link
@@ -145,7 +146,7 @@ const Experience = ({
                 {
                   description[
                     Object.keys(description).find(
-                      (content) => content.split("_")[1] == i18n.language
+                      (content) => content.split("_")[1] === i18n.language
                     )
                   ]
                 }

@@ -2,7 +2,7 @@ import "lazysizes"
 import PropTypes from "prop-types"
 import { Box, makeStyles } from "@material-ui/core"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   blurUp: {
     WebkitFilter: "blur(5px)",
     filter: "blur(5px)",

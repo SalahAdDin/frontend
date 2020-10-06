@@ -72,12 +72,11 @@ Note:
 
 */
 
-const VideoBlock = ({ alt, src }) => {
+const VideoBlock = ({ src }) => {
   return <ReactPlayer url={src} controls playing />
 }
 
 VideoBlock.propTypes = {
-  alt: PropTypes.string,
   src: PropTypes.string,
 }
 

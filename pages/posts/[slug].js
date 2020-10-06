@@ -16,13 +16,13 @@ import Image from "components/fields/image"
 
 const Post = ({
   slug,
-  title_en,
+  title_en: titleEn,
   title,
   thumbnail = {},
   description,
   body,
-  created_at,
-  updated_at,
+  created_at: createdAt,
+  updated_at: updatedAt,
   tags,
   preview,
 }) => {
@@ -44,13 +44,13 @@ const Post = ({
             canonical={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
             description={description}
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             openGraph={{
               // TODO: Add the next tag to every page which use SEO: tag, category, etc.
               type: "blog",
               article: {
-                publishedTime: created_at,
-                modifiedTime: updated_at,
+                publishedTime: createdAt,
+                modifiedTime: updatedAt,
                 // expirationTime: "2022-12-21T22:04:11Z",
                 section: "Posts",
                 authors: [`${CMS_URL}`],
@@ -68,10 +68,10 @@ const Post = ({
           />
           <BlogJsonLd
             url={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
-            title={title_en}
+            title={titleEn}
             images={[thumbnail?.url]}
-            datePublished={created_at}
-            dateModified={updated_at}
+            datePublished={createdAt}
+            dateModified={updatedAt}
             authorName={CMS_AUTHOR}
             description={description?.description_en}
           />
@@ -86,7 +86,7 @@ const Post = ({
           )}
           <Title
             title={title}
-            title_en={title_en}
+            title_en={titleEn}
             component="h3"
             variant="h3"
             gutterBottom
