@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next"
 import { Button, Typography } from "@material-ui/core"
+import { useTranslation } from "../i18n"
 import Layout from "components/layout"
 import SEO from "components/seo"
 import Title from "components/fields/title"

@@ -17,10 +17,10 @@ import {
   TimelineConnector,
   TimelineContent,
 } from "@material-ui/lab"
-import { useTranslation } from "react-i18next"
 import * as dayjs from "dayjs"
 import "dayjs/locale/es"
 import "dayjs/locale/tr"
+import { useTranslation } from "../../i18n"
 import useGlobalStyles from "styles/common"
 import Content from "./content"
 

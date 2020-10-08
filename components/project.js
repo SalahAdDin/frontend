@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import {
   Card,
   CardActions,
@@ -11,6 +10,7 @@ import {
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
 import { useRouter } from "next/router"
+import { useTranslation } from "../i18n"
 import Tag from "./fields/tag"
 import Title from "./fields/title"
 

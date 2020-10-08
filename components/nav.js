@@ -20,7 +20,7 @@ import {
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
 import { useRouter } from "next/router"
-import { useTranslation } from "react-i18next"
+import { useTranslation } from "../i18n"
 import { menuLinks } from "lib/constants"
 
 const useStyles = makeStyles((theme) => ({

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import { Typography, makeStyles } from "@material-ui/core"
+import { useTranslation } from "../i18n"
 import Content from "./content/content"
 // import PersonalInformation from "./content/personalinformation"
 import Skill from "./fields/skill"

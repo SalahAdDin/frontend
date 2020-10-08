@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
-import { NextSeo } from "next-seo"
-import { useTranslation } from "react-i18next"
-import { CMS_NAME } from "lib/constants"
 import { useRouter } from "next/router"
+import { NextSeo } from "next-seo"
+import { CMS_NAME } from "lib/constants"
+import { useTranslation } from "../i18n"
 
 const SEO = ({
   title_en: titleEn,
