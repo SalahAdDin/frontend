@@ -46,7 +46,10 @@ SEO.propTypes = {
   canonical: PropTypes.string,
   title_en: PropTypes.string.isRequired,
   title: PropTypes.objectOf(PropTypes.string),
-  description: PropTypes.objectOf(PropTypes.string),
+  description: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string),
+  ]),
   openGraph: PropTypes.shape({
     type: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.object),

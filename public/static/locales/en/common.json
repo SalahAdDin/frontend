@@ -1,6 +1,12 @@
 {
   "error-with-status": "A {{statusCode}} error occurred on server",
   "error-without-status": "An error occurred on the server",
+  "error": {
+    "404": {
+      "title": "{{statusCode}} - Page not found",
+      "disclaimer": "We can't find the page you are looking for."
+    }
+  },
   "home": "Home",
   "main": "Main",
   "resources": "Resources",
