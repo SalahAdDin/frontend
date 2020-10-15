@@ -3,16 +3,15 @@ import ReactPlayer from "react-player"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { fade, makeStyles } from "@material-ui/core"
-
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
+import VideoPlugin from "lib/remarkvideo"
 import oceanic from "styles/material-oceanic"
 import Image from "../fields/image"
 
 const useStyles = makeStyles((theme) => ({
   codeBlock: {
-    // TODO: Add some margin and beautify it
     "&::-webkit-scrollbar": {
       // display: "none",
       background: fade(theme.palette.light.main, 0.1),
@@ -72,12 +71,26 @@ Note:
 
 */
 
-const VideoBlock = ({ src }) => {
-  return <ReactPlayer url={src} controls playing />
-}
+const VideoBlock = ({ url }) => (
+  <ReactPlayer url={url} controls playing style={{ margin: "30px auto" }} />
+)
 
 VideoBlock.propTypes = {
-  src: PropTypes.string,
+  url: PropTypes.string,
+}
+
+const ParagraphBlock = ({ children }) => {
+  const hasMedia = !!children.find(
+    (child) =>
+      typeof child === "object" &&
+      child.key &&
+      (!!child.key.match(/image/g) || !!child.key.match(/video/g))
+  )
+  return hasMedia ? <div>{children}</div> : <p>{children}</p>
+}
+
+ParagraphBlock.propTypes = {
+  children: PropTypes.arrayOf(PropTypes.object),
 }
 
 const _mapProps = (props) => ({
@@ -86,6 +99,7 @@ const _mapProps = (props) => ({
   plugins: [
     // RemarkMathPlugin,
     // RemarkHighlightPlugin,
+    VideoPlugin,
   ],
   renderers: {
     ...props.renderers,
@@ -94,6 +108,7 @@ const _mapProps = (props) => ({
     code: CodeBlock,
     image: ImageBlock,
     video: VideoBlock,
+    paragraph: ParagraphBlock,
   },
 })
 
