@@ -46,7 +46,6 @@ const Post = ({
             title={title}
             title_en={titleEn}
             openGraph={{
-              // TODO: Add the next tag to every page which use SEO: tag, category, etc.
               type: "blog",
               article: {
                 publishedTime: createdAt,

@@ -15,6 +15,8 @@ const Skill = ({ name, level }) => {
   )
 }
 
+Skill.defaultProps = { name: "Skill", level: 3 }
+
 Skill.propTypes = {
   name: PropTypes.string.isRequired,
   level: PropTypes.number.isRequired,

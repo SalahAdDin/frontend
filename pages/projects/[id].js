@@ -8,7 +8,7 @@ import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 import useStyles from "styles/common"
 import { getAllProjectsWithID, getProjectByID } from "lib/api/projects"
-import { CMS_NAME } from "lib/constants"
+import { CMS_NAME, CMS_URL } from "lib/constants"
 import SEO from "components/seo"
 import { DynamicZone } from "components/body"
 import Layout from "components/layout"
@@ -44,6 +44,11 @@ const Project = ({
             title_en={titleEn}
             openGraph={{
               type: "product",
+              article: {
+                section: "Projects",
+                authors: [`${CMS_URL}`],
+                tags: tags?.map((tag) => tag.label),
+              },
               images: [
                 {
                   url: thumbnail?.url,
