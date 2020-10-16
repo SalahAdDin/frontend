@@ -28,8 +28,8 @@ export const DynamicZone = ({ component }) => {
               }
             </Content>
           ),
-          // TODO: next ones create problem with props.
-          ComponentContentExperience: <></>, // Right-now this one is a TimelineItem
+          // Right-now this one is a TimelineItem
+          // ComponentContentExperience: <></>,
           // ComponentContentPersonalInformation: (
           //   <PersonalInformation {...component} />
           // ),
