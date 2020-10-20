@@ -5,7 +5,6 @@ import { Trans, useTranslation } from "../i18n"
 
 const Layout = ({ preview, children }) => {
   const { t } = useTranslation()
-  // TODO: Preview is now supported by Strapi
   return (
     <>
       <Container
@@ -21,6 +20,7 @@ const Layout = ({ preview, children }) => {
                 {t("exit")}
               </Button>
             }
+            style={{ marginBottom: 20 }}
           >
             <AlertTitle>{t("alert.preview-mode.title")}</AlertTitle>
             <Trans i18nKey="alert.preview-mode.message">
