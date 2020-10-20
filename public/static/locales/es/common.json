@@ -1,4 +1,10 @@
 {
+  "alert": {
+    "preview-mode": {
+      "title": "Advertencia",
+      "message": "Está viendo el sitio en — <strong>modo previsualización</strong>."
+    }
+  },
   "error": {
     "404": {
       "title": "{{statusCode}} - Página no encontrada",
@@ -9,6 +15,7 @@
       "without": "Un error ocurrió en el servidor."
     }
   },
+  "exit": "Salir",
   "home": "Inicio",
   "main": "Principal",
   "resources": "Recursos",
