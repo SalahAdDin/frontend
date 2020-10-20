@@ -10,6 +10,10 @@
       "title": "{{statusCode}} - Page not found",
       "disclaimer": "We can't find the page you are looking for."
     },
+    "500": {
+      "title": "{{statusCode}} - Internal server error",
+      "disclaimer": "We have experienced an internal server error and are working to resolve it."
+    },
     "status": {
       "with": "A {{statusCode}} error occurred on server.",
       "without": "An error occurred on the server."

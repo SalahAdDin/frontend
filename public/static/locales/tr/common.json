@@ -1,14 +1,18 @@
 {
   "alert": {
     "preview-mode": {
-      "title": "",
-      "message": ""
+      "message": "",
+      "title": ""
     }
   },
   "error": {
     "404": {
       "title": "{{statusCode}} - Sayfa bulunamadı",
       "disclaimer": "İstediğiniz sayfası bulamadık."
+    },
+    "500": {
+      "title": "{{statusCode}} - ",
+      "disclaimer": ""
     },
     "status": {
       "with": "",

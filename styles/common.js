@@ -21,7 +21,12 @@ const useStyles = makeStyles((theme) => ({
   errorPage: {
     marginTop: 180,
     marginBottom: 200,
+    height: "35vh",
     textAlign: "center",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
     "& h1": {
       fontSize: "2.5rem",
       fontFamily: `"DM Sans",sans-serif`,

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types"
-import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { Skeleton, Timeline } from "@material-ui/lab"
+import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
 import Layout from "components/layout"
 import SEO from "components/seo"
