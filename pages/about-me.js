@@ -1,16 +1,16 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { SocialProfileJsonLd } from "next-seo"
-import { Skeleton } from "@material-ui/lab"
 import { useTranslation } from "../i18n"
 import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
 import { CMS_URL } from "lib/constants"
-import SEO from "components/seo"
-import SkillsSection from "components/skillssection"
-import Layout from "components/layout"
 import PersonalInformation from "components/content/personalinformation"
 import Title from "components/fields/title"
+import Layout from "components/layout"
+import Loader from "components/loader"
+import SkillsSection from "components/skillssection"
+import SEO from "components/seo"
 
 const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
@@ -36,8 +36,7 @@ const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
   return (
     <Layout>
       {router.isFallback ? (
-        // TODO: implements this in a better way / more beautiful
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO

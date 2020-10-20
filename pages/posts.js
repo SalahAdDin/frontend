@@ -8,6 +8,7 @@ import SEO from "components/seo"
 import Layout from "components/layout"
 import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
+import Loader from "components/loader"
 import Post from "components/post"
 
 const Posts = ({
@@ -27,7 +28,7 @@ const Posts = ({
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO description={description} title={title} title_en={titleEn} />

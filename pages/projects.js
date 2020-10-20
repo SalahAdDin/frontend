@@ -6,8 +6,9 @@ import { getPageBySlugAndCategory } from "lib/api/categories"
 import Title from "components/fields/title"
 import SEO from "components/seo"
 import Category from "components/category"
-import Layout from "components/layout"
 import { DynamicZone } from "components/body"
+import Layout from "components/layout"
+import Loader from "components/loader"
 
 function Projects({
   title_en: titleEn,
@@ -26,7 +27,7 @@ function Projects({
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO description={description} title={title} title_en={titleEn} />

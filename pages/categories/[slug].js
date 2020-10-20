@@ -1,12 +1,12 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { Typography, Grid } from "@material-ui/core"
-import { Skeleton } from "@material-ui/lab"
 import ErrorPage from "../_error"
 import { getCategoryBySlug, getAllCategoriesWithSlug } from "lib/api/categories"
 import SEO from "components/seo"
 import Layout from "components/layout"
 import Project from "components/project"
+import Loader from "components/loader"
 
 const Category = ({ name, slug, description, projects }) => {
   const router = useRouter()
@@ -16,7 +16,7 @@ const Category = ({ name, slug, description, projects }) => {
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO description={description} title_en={name} />

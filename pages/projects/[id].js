@@ -11,9 +11,10 @@ import { CMS_NAME, CMS_URL } from "lib/constants"
 import useStyles from "styles/common"
 import SEO from "components/seo"
 import { DynamicZone } from "components/body"
-import Layout from "components/layout"
 import Title from "components/fields/title"
 import Image from "components/fields/image"
+import Layout from "components/layout"
+import Loader from "components/loader"
 
 const Project = ({
   id,
@@ -35,7 +36,7 @@ const Project = ({
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO

@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { BlogJsonLd } from "next-seo"
-import Skeleton from "@material-ui/lab/Skeleton"
 import { Chip, Paper } from "@material-ui/core"
 import ErrorPage from "../_error"
 import { getAllPagesWithSlug, getPageBySlug } from "lib/api/pages"
@@ -13,6 +12,7 @@ import useStyles from "styles/common"
 import { Body } from "components/body"
 import Title from "components/fields/title"
 import Image from "components/fields/image"
+import Loader from "components/loader"
 
 const Post = ({
   slug,
@@ -37,7 +37,7 @@ const Post = ({
     <Layout preview={preview}>
       {/* TODO: It goes in every place with the structure */}
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO

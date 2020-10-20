@@ -3,11 +3,12 @@ import { useRouter } from "next/router"
 import { Skeleton, Timeline } from "@material-ui/lab"
 import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
-import Layout from "components/layout"
-import SEO from "components/seo"
 import Experience from "components/content/experience"
 import Title from "components/fields/title"
 import { DynamicZone } from "components/body"
+import Layout from "components/layout"
+import Loader from "components/loader"
+import SEO from "components/seo"
 
 const Education = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
@@ -23,8 +24,7 @@ const Education = ({ title_en: titleEn, slug, title, description, body }) => {
   return (
     <Layout>
       {router.isFallback ? (
-        // TODO: implements this in a better way / more beautiful
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO description={description} title={title} title_en={titleEn} />
