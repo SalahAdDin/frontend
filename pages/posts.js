@@ -2,7 +2,6 @@ import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { Grid } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import ErrorPage from "./_error"
 import { getPageAndTagBySlug } from "lib/api/tags"
 import SEO from "components/seo"
 import Layout from "components/layout"
@@ -10,6 +9,7 @@ import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
 import Loader from "components/loader"
 import Post from "components/post"
+import ErrorPage from "./_error"
 
 const Posts = ({
   title_en: titleEn,

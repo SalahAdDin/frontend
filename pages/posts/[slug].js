@@ -3,7 +3,6 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { BlogJsonLd } from "next-seo"
 import { Chip, Paper } from "@material-ui/core"
-import ErrorPage from "../_error"
 import { getAllPagesWithSlug, getPageBySlug } from "lib/api/pages"
 import Layout from "components/layout"
 import SEO from "components/seo"
@@ -13,6 +12,7 @@ import { Body } from "components/body"
 import Title from "components/fields/title"
 import Image from "components/fields/image"
 import Loader from "components/loader"
+import ErrorPage from "../_error"
 
 const Post = ({
   slug,
