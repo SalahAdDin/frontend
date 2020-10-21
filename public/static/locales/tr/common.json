@@ -1,8 +1,8 @@
 {
   "alert": {
     "preview-mode": {
-      "message": "",
-      "title": ""
+      "title": "",
+      "message": ""
     }
   },
   "error": {

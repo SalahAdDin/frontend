@@ -1,8 +1,8 @@
 {
   "alert": {
     "preview-mode": {
-      "message": "Está viendo el sitio en — <strong>modo previsualización</strong>.",
-      "title": "Advertencia"
+      "title": "Advertencia",
+      "message": "Está viendo el sitio en — <strong>modo previsualización</strong>."
     }
   },
   "error": {
