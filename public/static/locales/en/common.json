@@ -1,6 +1,25 @@
 {
-  "error-with-status": "A {{statusCode}} error occurred on server",
-  "error-without-status": "An error occurred on the server",
+  "alert": {
+    "preview-mode": {
+      "title": "Warning",
+      "message": "You are looking the website in — <strong>preview mode</strong>."
+    }
+  },
+  "error": {
+    "404": {
+      "title": "{{statusCode}} - Page not found",
+      "disclaimer": "We can't find the page you are looking for."
+    },
+    "500": {
+      "title": "{{statusCode}} - Internal server error",
+      "disclaimer": "We have experienced an internal server error and are working to resolve it."
+    },
+    "status": {
+      "with": "A {{statusCode}} error occurred on server.",
+      "without": "An error occurred on the server."
+    }
+  },
+  "exit": "Exit",
   "home": "Home",
   "main": "Main",
   "resources": "Resources",

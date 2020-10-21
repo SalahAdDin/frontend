@@ -1,29 +1,33 @@
 import PropTypes from "prop-types"
 import { Button, Container } from "@material-ui/core"
 import { Alert, AlertTitle } from "@material-ui/lab"
+import { Trans, useTranslation } from "../i18n"
 
 const Layout = ({ preview, children }) => {
-  // TODO: Preview is unrequired because of Strapi
+  const { t } = useTranslation()
   return (
     <>
-      {preview ? (
-        <Alert
-          severity="warning"
-          action={
-            <Button color="inherit" size="small" href="/api/exit-preview">
-              Exit
-            </Button>
-          }
-        >
-          <AlertTitle>Warning</AlertTitle>
-          {`You are looking the website in — ${(<strong>preview mode</strong>)}.`}
-        </Alert>
-      ) : null}
       <Container
         component="main"
         maxWidth="md"
         style={{ marginTop: 100, marginBottom: 100 }}
       >
+        {preview ? (
+          <Alert
+            severity="warning"
+            action={
+              <Button color="inherit" size="small" href="/api/exit-preview">
+                {t("exit")}
+              </Button>
+            }
+            style={{ marginBottom: 20 }}
+          >
+            <AlertTitle>{t("alert.preview-mode.title")}</AlertTitle>
+            <Trans i18nKey="alert.preview-mode.message">
+              You are looking the website in — <strong>preview mode</strong>.
+            </Trans>
+          </Alert>
+        ) : null}
         {children}
       </Container>
     </>

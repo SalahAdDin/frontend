@@ -1,6 +1,6 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import { Typography } from "@material-ui/core"
+import { useTranslation } from "../../i18n"
 
 const Title = ({
   title,

@@ -1,19 +1,20 @@
 import PropTypes from "prop-types"
-import ErrorPage from "next/error"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { ProductJsonLd } from "next-seo"
 import ReactPlayer from "react-player"
 import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import useStyles from "styles/common"
+import ErrorPage from "../_error"
 import { getAllProjectsWithID, getProjectByID } from "lib/api/projects"
-import { CMS_NAME } from "lib/constants"
+import { CMS_NAME, CMS_URL } from "lib/constants"
+import useStyles from "styles/common"
 import SEO from "components/seo"
 import { DynamicZone } from "components/body"
-import Layout from "components/layout"
 import Title from "components/fields/title"
 import Image from "components/fields/image"
+import Layout from "components/layout"
+import Loader from "components/loader"
 
 const Project = ({
   id,
@@ -35,7 +36,7 @@ const Project = ({
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO
@@ -44,6 +45,11 @@ const Project = ({
             title_en={titleEn}
             openGraph={{
               type: "product",
+              article: {
+                section: "Projects",
+                authors: [`${CMS_URL}`],
+                tags: tags?.map((tag) => tag.label),
+              },
               images: [
                 {
                   url: thumbnail?.url,
@@ -149,8 +155,8 @@ const Project = ({
 Project.propTypes = {
   id: PropTypes.string.isRequired,
   title_en: PropTypes.string.isRequired,
-  title: PropTypes.shape(PropTypes.string),
-  description: PropTypes.shape(PropTypes.string),
+  title: PropTypes.objectOf(PropTypes.string),
+  description: PropTypes.objectOf(PropTypes.string),
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,

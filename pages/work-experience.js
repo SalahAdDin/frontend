@@ -1,13 +1,14 @@
 import PropTypes from "prop-types"
-import ErrorPage from "next/error"
 import { useRouter } from "next/router"
 import { Skeleton, Timeline } from "@material-ui/lab"
+import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
-import Layout from "components/layout"
-import SEO from "components/seo"
-import Title from "components/fields/title"
-import Experience from "components/content/experience"
 import { DynamicZone } from "components/body"
+import Experience from "components/content/experience"
+import Title from "components/fields/title"
+import Layout from "components/layout"
+import Loader from "components/loader"
+import SEO from "components/seo"
 
 const WorkExperience = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()
@@ -23,7 +24,7 @@ const WorkExperience = ({ title_en: titleEn, slug, title, description, body }) =
   return (
     <Layout>
       {router.isFallback ? (
-        <Skeleton />
+        <Loader />
       ) : (
         <>
           <SEO description={description} title={title} title_en={titleEn} />

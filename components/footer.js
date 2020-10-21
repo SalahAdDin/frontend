@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import {
   Container,
   Grid,
@@ -8,6 +7,7 @@ import {
   makeStyles,
   fade,
 } from "@material-ui/core"
+import { useTranslation } from "../i18n"
 import { footerLinks, socialMediaLinks } from "lib/constants"
 import NextIcon from "assets/svg/nextjs.svg"
 import StrapiIcon from "assets/svg/strapi-logo-light.svg"

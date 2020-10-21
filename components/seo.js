@@ -1,8 +1,8 @@
 import PropTypes from "prop-types"
-import { NextSeo } from "next-seo"
-import { useTranslation } from "react-i18next"
-import { CMS_NAME } from "lib/constants"
 import { useRouter } from "next/router"
+import { NextSeo } from "next-seo"
+import { CMS_NAME } from "lib/constants"
+import { useTranslation } from "../i18n"
 
 const SEO = ({
   title_en: titleEn,
@@ -46,7 +46,10 @@ SEO.propTypes = {
   canonical: PropTypes.string,
   title_en: PropTypes.string.isRequired,
   title: PropTypes.objectOf(PropTypes.string),
-  description: PropTypes.objectOf(PropTypes.string),
+  description: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.objectOf(PropTypes.string),
+  ]),
   openGraph: PropTypes.shape({
     type: PropTypes.string,
     images: PropTypes.arrayOf(PropTypes.object),

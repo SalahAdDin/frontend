@@ -1,6 +1,5 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
-import { useTranslation } from "react-i18next"
 import {
   Grid,
   Card,
@@ -11,6 +10,7 @@ import {
   CardMedia,
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
+import { useTranslation } from "../i18n"
 import Title from "./fields/title"
 import Tag from "./fields/tag"
 

@@ -1,5 +1,4 @@
 import PropTypes from "prop-types"
-import { useTranslation } from "react-i18next"
 import {
   Card,
   CardActions,
@@ -11,6 +10,7 @@ import {
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
 import { useRouter } from "next/router"
+import { useTranslation } from "../i18n"
 import Tag from "./fields/tag"
 import Title from "./fields/title"
 
@@ -72,8 +72,8 @@ const Project = ({ id, title, title_en: titleEn, thumbnail, description, tags })
 Project.propTypes = {
   id: PropTypes.string.isRequired,
   title_en: PropTypes.string.isRequired,
-  title: PropTypes.shape(PropTypes.string),
-  description: PropTypes.shape(PropTypes.string),
+  title: PropTypes.objectOf(PropTypes.string),
+  description: PropTypes.objectOf(PropTypes.string),
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
