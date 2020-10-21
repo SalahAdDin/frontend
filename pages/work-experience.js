@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { Skeleton, Timeline } from "@material-ui/lab"
-import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
 import { DynamicZone } from "components/body"
 import Experience from "components/content/experience"
@@ -9,6 +8,7 @@ import Title from "components/fields/title"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import SEO from "components/seo"
+import ErrorPage from "./_error"
 
 const WorkExperience = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()

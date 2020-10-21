@@ -1,8 +1,6 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { SocialProfileJsonLd } from "next-seo"
-import { useTranslation } from "../i18n"
-import ErrorPage from "./_error"
 import { getPageBySlug } from "lib/api/pages"
 import { CMS_URL } from "lib/constants"
 import PersonalInformation from "components/content/personalinformation"
@@ -11,6 +9,8 @@ import Layout from "components/layout"
 import Loader from "components/loader"
 import SkillsSection from "components/skillssection"
 import SEO from "components/seo"
+import { useTranslation } from "../i18n"
+import ErrorPage from "./_error"
 
 const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
   const router = useRouter()

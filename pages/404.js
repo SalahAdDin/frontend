@@ -1,9 +1,9 @@
 import { Button, Typography } from "@material-ui/core"
-import { useTranslation } from "../i18n"
 import Layout from "components/layout"
 import SEO from "components/seo"
 import Title from "components/fields/title"
 import useStyles from "styles/common"
+import { useTranslation } from "../i18n"
 
 const Folio404 = () => {
   const classes = useStyles()

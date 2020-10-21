@@ -5,7 +5,6 @@ import { ProductJsonLd } from "next-seo"
 import ReactPlayer from "react-player"
 import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
-import ErrorPage from "../_error"
 import { getAllProjectsWithID, getProjectByID } from "lib/api/projects"
 import { CMS_NAME, CMS_URL } from "lib/constants"
 import useStyles from "styles/common"
@@ -15,6 +14,7 @@ import Title from "components/fields/title"
 import Image from "components/fields/image"
 import Layout from "components/layout"
 import Loader from "components/loader"
+import ErrorPage from "../_error"
 
 const Project = ({
   id,

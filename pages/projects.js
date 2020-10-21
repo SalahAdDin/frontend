@@ -1,7 +1,6 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { Skeleton } from "@material-ui/lab"
-import ErrorPage from "./_error"
 import { getPageBySlugAndCategory } from "lib/api/categories"
 import Title from "components/fields/title"
 import SEO from "components/seo"
@@ -9,15 +8,16 @@ import Category from "components/category"
 import { DynamicZone } from "components/body"
 import Layout from "components/layout"
 import Loader from "components/loader"
+import ErrorPage from "./_error"
 
-function Projects({
+const Projects = ({
   title_en: titleEn,
   slug,
   title,
   description,
   body,
   categories,
-}) {
+}) => {
   const router = useRouter()
 
   const contents = body.find((item) => item.__typename === "ComponentContentContent")

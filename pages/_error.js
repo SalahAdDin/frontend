@@ -1,9 +1,9 @@
 import PropTypes from "prop-types"
 import { Button, Typography } from "@material-ui/core"
-import { useTranslation } from "../i18n"
 import Title from "components/fields/title"
 import Layout from "components/layout"
 import useStyles from "styles/common"
+import { useTranslation } from "../i18n"
 
 const Error = ({ statusCode }) => {
   const classes = useStyles()

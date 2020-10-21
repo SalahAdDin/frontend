@@ -1,14 +1,14 @@
 import PropTypes from "prop-types"
 import { useRouter } from "next/router"
 import { Typography, Grid } from "@material-ui/core"
-import { useTranslation } from "../../i18n"
-import ErrorPage from "../_error"
 import { getTagBySlug, getAllTagsWithSlug } from "lib/api/tags"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import Project from "components/project"
 import Post from "components/post"
 import SEO from "components/seo"
+import { useTranslation } from "../../i18n"
+import ErrorPage from "../_error"
 
 const Tag = ({ slug, label, projects, pages }) => {
   const router = useRouter()
