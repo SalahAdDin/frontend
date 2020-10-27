@@ -2,11 +2,12 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { BlogJsonLd } from "next-seo"
+import { DiscussionEmbed } from "disqus-react"
 import { Chip, Paper } from "@material-ui/core"
 import { getAllPagesWithSlug, getPageBySlug } from "lib/api/pages"
 import Layout from "components/layout"
 import SEO from "components/seo"
-import { CMS_AUTHOR, CMS_URL } from "lib/constants"
+import { CMS_AUTHOR, CMS_URL, DISQUS_SHORT_NAME } from "lib/constants"
 import useStyles from "styles/common"
 import { Body } from "components/body"
 import Title from "components/fields/title"
@@ -29,6 +30,8 @@ const Post = ({
   const globalClasses = useStyles()
   const router = useRouter()
 
+  const postURL = process.env.NEXT_PUBLIC_BASE_URL + router.asPath
+
   if (!router.isFallback && !slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -41,7 +44,7 @@ const Post = ({
       ) : (
         <>
           <SEO
-            canonical={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
+            canonical={postURL}
             description={description}
             title={title}
             title_en={titleEn}
@@ -66,7 +69,7 @@ const Post = ({
             }}
           />
           <BlogJsonLd
-            url={process.env.NEXT_PUBLIC_BASE_URL + router.asPath}
+            url={postURL}
             title={titleEn}
             images={[thumbnail?.url]}
             datePublished={createdAt}
@@ -99,6 +102,15 @@ const Post = ({
                 </Link>
               ))}
           </Paper>
+
+          <DiscussionEmbed
+            shortname={DISQUS_SHORT_NAME}
+            config={{
+              url: postURL,
+              identifier: slug,
+              title: titleEn,
+            }}
+          />
         </>
       )}
     </Layout>
