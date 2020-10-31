@@ -23,7 +23,7 @@ const SkillsSection = ({ skills, group }) => {
         }
       />
       <CardContent>
-        <Grid container>
+        <Grid container spacing={4}>
           {skills ? (
             skills.map((skill) => <Skill key={skill.id} {...skill} />)
           ) : (
