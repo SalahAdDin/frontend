@@ -25,7 +25,18 @@ const SkillsSection = ({ skills, group }) => {
       <CardContent>
         <Grid container spacing={4}>
           {skills ? (
-            skills.map((skill) => <Skill key={skill.id} {...skill} />)
+            skills.map((skill) => (
+              <Grid
+                container
+                item
+                xs={12}
+                sm={6}
+                key={skill.id}
+                style={{ display: "flex", justifyContent: "space-between" }}
+              >
+                <Skill {...skill} />
+              </Grid>
+            ))
           ) : (
             <>
               <Skeleton animation="wave" height={10} style={{ marginBottom: 6 }} />
