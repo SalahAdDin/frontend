@@ -19,11 +19,18 @@
       "without": "Un error ocurrió en el servidor."
     }
   },
+  "hero": {
+    "title": "We faced each new challenge with creativity and passion",
+    "subtitle": "Developing Challenges"
+  },
   "exit": "Salir",
   "home": "Inicio",
   "main": "Principal",
   "resources": "Recursos",
   "me": "Yo",
   "pages": "Páginas",
-  "projects": "Proyectos"
+  "projects": "Proyectos",
+  "posts": "Publicaciones",
+  "about-me": "Sobre mí",
+  "see-more": "Ver más"
 }
