@@ -321,26 +321,28 @@ const Home = ({
             </Typography>
             <Grid container spacing={4}>
               <Grid item xs={12} md={5}>
-                <Link href={`/posts/${firstPost?.slug}`}>
-                  <Card className={classes.mainPostNote}>
-                    <CardMedia
-                      component="img"
-                      alt={firstPost?.thumbnail?.alternativeText}
-                      image={firstPost?.thumbnail?.url}
-                      title={firstPost?.thumbnail?.caption}
-                    />
-                    <CardContent>
-                      <Title
-                        title={firstPost?.title}
-                        title_en={firstPost?.title_en}
-                        component="h5"
-                        variant="h5"
-                        align="left"
-                        gutterBottom
+                {firstPost && (
+                  <Link href={`/posts/${firstPost?.slug}`}>
+                    <Card className={classes.mainPostNote}>
+                      <CardMedia
+                        component="img"
+                        alt={firstPost?.thumbnail?.alternativeText}
+                        image={firstPost?.thumbnail?.url}
+                        title={firstPost?.thumbnail?.caption}
                       />
-                    </CardContent>
-                  </Card>
-                </Link>
+                      <CardContent>
+                        <Title
+                          title={firstPost?.title}
+                          title_en={firstPost?.title_en}
+                          component="h5"
+                          variant="h5"
+                          align="left"
+                          gutterBottom
+                        />
+                      </CardContent>
+                    </Card>
+                  </Link>
+                )}
               </Grid>
               <Grid container item spacing={2} xs={12} md={7}>
                 {otherPost &&
