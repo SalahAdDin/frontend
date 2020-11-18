@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import clsx from "clsx"
 import { Typography, makeStyles } from "@material-ui/core"
 import { useTranslation } from "../i18n"
 import Content from "./content/content"
@@ -9,12 +10,16 @@ const useStyles = makeStyles(() => ({
   root: { "& a": { textDecoration: "none" } },
 }))
 
-export const DynamicZone = ({ component }) => {
+export const DynamicZone = ({ component, className }) => {
   const classes = useStyles()
   const { i18n } = useTranslation()
 
   return (
-    <Typography variant="body1" component="section" className={classes.root}>
+    <Typography
+      variant="body1"
+      component="section"
+      className={clsx(classes.root, className)}
+    >
       {
         {
           ComponentContentContent: (
@@ -42,6 +47,7 @@ export const DynamicZone = ({ component }) => {
 
 DynamicZone.propTypes = {
   component: PropTypes.shape({ __typename: PropTypes.string.isRequired }).isRequired,
+  className: PropTypes.string,
 }
 
 export const Body = ({ body }) => {

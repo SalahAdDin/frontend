@@ -17,7 +17,7 @@ import {
   TimelineConnector,
   TimelineContent,
 } from "@material-ui/lab"
-import * as dayjs from "dayjs"
+import dayjs from "dayjs"
 import "dayjs/locale/es"
 import "dayjs/locale/tr"
 import useGlobalStyles from "styles/common"

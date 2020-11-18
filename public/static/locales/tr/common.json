@@ -19,11 +19,18 @@
       "without": ""
     }
   },
+  "hero": {
+    "title": "We faced each new challenge with creativity and passion",
+    "subtitle": "Developing Challenges"
+  },
   "exit": "Çık",
   "home": "Ana sayfa",
   "main": "Ana",
   "resources": "Kaynaklar",
   "me": "Ben",
   "pages": "Sayfalar",
-  "projects": "Projelers"
+  "projects": "Projelers",
+  "posts": "Postlar",
+  "about-me": "Benim hakkinda",
+  "see-more": "Daha fazla gör"
 }

@@ -2,6 +2,7 @@ import { Typography } from "@material-ui/core"
 import { Skeleton } from "@material-ui/lab"
 
 const Loader = () => {
+  // TODO: maybe use a spinner here
   return (
     <>
       <Typography variant="h1" style={{ marginBottom: 24, height: 150 }}>
