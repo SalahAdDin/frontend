@@ -1,15 +1,36 @@
+import { useEffect } from "react"
 import PropTypes from "prop-types"
+import App from "next/app"
 import { DefaultSeo } from "next-seo"
+import { ThemeProvider, CssBaseline } from "@material-ui/core"
+import { appWithTranslation } from "i18n"
+import { getPageTitlesBySlugSet } from "lib/api/pages"
+import { CMS_TILE_COLOR, menuLinks } from "lib/constants"
+import theme from "styles/theme"
+import Nav from "components/nav"
+import Footer from "components/footer"
+import DefaultSEO from "../next-seo.config"
 import Meta from "../components/meta"
-import SEO from "../next-seo.config"
-import { CMS_TILE_COLOR, CMS_THEME_COLOR } from "../lib/constants"
 
-const App = ({ Component, pageProps }) => {
+export function reportWebVitals(metric) {
+  console.log(metric)
+}
+
+const FolioApp = ({ Component, pageProps, navProps }) => {
+  useEffect(() => {
+    // Remove the server-side injected CSS.
+    const jssStyle = document.querySelector("#jss-server-side")
+
+    if (jssStyle) {
+      jssStyle.parentElement.removeChild(jssStyle)
+    }
+  }, [])
+
   return (
     <>
       <Meta />
       <DefaultSeo
-        {...SEO}
+        {...DefaultSEO}
         additionalMetaTags={[
           {
             name: "msapplication-TileColor",
@@ -19,20 +40,44 @@ const App = ({ Component, pageProps }) => {
             name: "msapplication-config",
             content: "/favicon/browserconfig.xml",
           },
-          {
-            name: "theme-color",
-            content: CMS_THEME_COLOR,
-          },
         ]}
       />
-      <Component {...pageProps} />
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <Nav navLinks={navProps} />
+        <Component {...pageProps} />
+        <Footer navLinks={navProps} />
+      </ThemeProvider>
     </>
   )
 }
 
-App.propTypes = {
+FolioApp.propTypes = {
   Component: PropTypes.func,
-  pageProps: PropTypes.object,
+  pageProps: PropTypes.shape({
+    title: PropTypes.objectOf(PropTypes.string),
+    title_en: PropTypes.string,
+  }),
+  navProps: PropTypes.arrayOf(PropTypes.object),
 }
 
-export default App
+FolioApp.getInitialProps = async (appContext) => {
+  const appProps = await App.getInitialProps(appContext)
+
+  const navProps = await getPageTitlesBySlugSet(menuLinks.map(({ label }) => label))
+
+  const { defaultProps } = appContext.Component
+
+  return {
+    ...appProps,
+    navProps,
+    pageProps: {
+      namespacesRequired: [
+        ...(appProps.pageProps.namespacesRequired || []),
+        ...(defaultProps?.i18nNamespaces || []),
+      ],
+    },
+  }
+}
+
+export default appWithTranslation(FolioApp)

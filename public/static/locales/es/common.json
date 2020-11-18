@@ -1,0 +1,36 @@
+{
+  "alert": {
+    "preview-mode": {
+      "title": "Advertencia",
+      "message": "Está viendo el sitio en — <strong>modo previsualización</strong>."
+    }
+  },
+  "error": {
+    "404": {
+      "title": "{{statusCode}} - Página no encontrada",
+      "disclaimer": "No podemos encontrar la página que busca."
+    },
+    "500": {
+      "title": "{{statusCode}} - Error interno en el servidor",
+      "disclaimer": "Hemos experimentado un error interno en el servidor y estamos trabajando para resolverlo."
+    },
+    "status": {
+      "with": "Un error {{statusCode}} ocurrió en el servidor.",
+      "without": "Un error ocurrió en el servidor."
+    }
+  },
+  "hero": {
+    "title": "We faced each new challenge with creativity and passion",
+    "subtitle": "Developing Challenges"
+  },
+  "exit": "Salir",
+  "home": "Inicio",
+  "main": "Principal",
+  "resources": "Recursos",
+  "me": "Yo",
+  "pages": "Páginas",
+  "projects": "Proyectos",
+  "posts": "Publicaciones",
+  "about-me": "Sobre mí",
+  "see-more": "Ver más"
+}

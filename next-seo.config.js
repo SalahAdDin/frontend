@@ -9,6 +9,7 @@ export default {
     site_name: CMS_NAME,
   },
   twitter: {
+    creator: "@creator",
     handle: "@handle",
     site: "@site",
     cardType: "summary_large_image",
