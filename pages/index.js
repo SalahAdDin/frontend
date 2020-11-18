@@ -247,7 +247,7 @@ const Home = ({
   const skills = body.filter((item) => item.__typename === "ComponentFieldsSkill")
 
   const { photo: profilePhoto, aboutme: aboutMe } = body.find(
-    (item) => (item.__typename = "ComponentContentPersonalInformation")
+    (item) => item.__typename === "ComponentContentPersonalInformation"
   )
 
   return (
@@ -285,7 +285,7 @@ const Home = ({
               </Typography>
             </Grid>
             <Grid item xs={12} sm={5}>
-              <img src="static/images/hero-1-img.png" />
+              <img src="static/images/hero-1-img.png" alt="Home - Hero background" />
             </Grid>
           </Grid>
 
