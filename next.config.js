@@ -15,6 +15,7 @@ module.exports = withPlugins([
       localeSubpaths,
     },
     experimental: {
+      productionBrowserSourceMaps: true,
       async rewrites() {
         return [...nextI18NextRewrites(localeSubpaths)]
       },

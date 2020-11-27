@@ -13,7 +13,7 @@ import DefaultSEO from "../next-seo.config"
 import Meta from "../components/meta"
 
 export function reportWebVitals(metric) {
-  console.log(metric)
+  if (process.env.NODE_ENV !== "production") console.log(metric)
 }
 
 const FolioApp = ({ Component, pageProps, navProps }) => {

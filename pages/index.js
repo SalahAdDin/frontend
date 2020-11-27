@@ -211,13 +211,14 @@ PostNote.propTypes = {
   description: PropTypes.objectOf(PropTypes.string),
 }
 
-const SeeMoreLink = ({ slug }) => {
+const SeeMoreLink = ({ slug, label }) => {
   const classes = useStyles()
   const { t } = useTranslation()
   return (
     <Link href={`${slug}`} passHref>
       <Button color="primary" className={classes.seeMoreLink}>
-        {t("see-more")} <ArrowRightAltIcon />
+        {t("see-more")} {t(label)}
+        <ArrowRightAltIcon />
       </Button>
     </Link>
   )
@@ -225,6 +226,7 @@ const SeeMoreLink = ({ slug }) => {
 
 SeeMoreLink.propTypes = {
   slug: PropTypes.string.isRequired,
+  label: PropTypes.string,
 }
 
 const Home = ({
@@ -290,23 +292,25 @@ const Home = ({
           </Grid>
 
           {/* Projects */}
-          <Typography
-            component="h3"
-            variant="h3"
-            align="center"
-            gutterBottom
-            className={classes.sectionTitle}
-          >
-            {t("projects")}
-          </Typography>
-          <Grid container component="section" spacing={2}>
-            {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id}>
-                <ProjectCard {...project} />
-              </Grid>
-            ))}
-          </Grid>
-          <SeeMoreLink slug="/projects" />
+          <Container component="section">
+            <Typography
+              component="h3"
+              variant="h3"
+              align="center"
+              gutterBottom
+              className={classes.sectionTitle}
+            >
+              {t("projects")}
+            </Typography>
+            <Grid container component="section" spacing={2}>
+              {projects.map((project) => (
+                <Grid item xs={12} sm={6} md={4} key={project.id}>
+                  <ProjectCard {...project} />
+                </Grid>
+              ))}
+            </Grid>
+            <SeeMoreLink slug="/projects" label="projects" />
+          </Container>
 
           {/* Blogs */}
           <Container component="section">
@@ -353,7 +357,7 @@ const Home = ({
                   ))}
               </Grid>
             </Grid>
-            <SeeMoreLink slug="/posts" />
+            <SeeMoreLink slug="/posts" label="posts" />
           </Container>
 
           {/* About Me */}
@@ -405,7 +409,7 @@ const Home = ({
                 }
               />
             </Card>
-            <SeeMoreLink slug="/about-me" />
+            <SeeMoreLink slug="/about-me" label="about-me" />
           </Container>
         </>
       )}

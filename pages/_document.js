@@ -14,9 +14,18 @@ export default class FolioDocument extends Document {
           {/* PWA primary color */}
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
-            rel="stylesheet"
+            rel="preload"
             href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Nunito:400,600,700&display=swap"
+            as="style"
+            onLoad="this.onload=null;this.rel='stylesheet'"
           />
+          <noscript>
+            <link
+              href="https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Nunito:400,600,700&display=swap"
+              rel="stylesheet"
+              type="text/css"
+            />
+          </noscript>
         </Head>
         <body>
           <Main />
