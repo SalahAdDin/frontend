@@ -1,4 +1,4 @@
-const { nextI18NextRewrites } = require("next-i18next/rewrites")
+// const { nextI18NextRewrites } = require("next-i18next/rewrites")
 const withPlugins = require("next-compose-plugins")
 const optimizedImages = require("next-optimized-images")
 
@@ -15,10 +15,11 @@ module.exports = withPlugins([
       localeSubpaths,
     },
     experimental: {
+      optimizeFonts: true,
       productionBrowserSourceMaps: true,
-      async rewrites() {
-        return [...nextI18NextRewrites(localeSubpaths)]
-      },
+      // async rewrites() {
+      //   return [...nextI18NextRewrites(localeSubpaths)]
+      // },
     },
     webpack(config) {
       config.module.rules.push({

@@ -18,9 +18,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
+import Skill from "components/fields/skill"
 import Layout from "components/layout"
 import Loader from "components/loader"
-import Skill from "components/fields/skill"
 import SEO from "components/seo"
 import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
 import ErrorPage from "./_error"
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   background: {
-    background: "url(static/images/hero-1-bg.png)",
+    background: "url(static/images/hero-1-bg.png) 100% top no-repeat",
     height: "130%",
     width: "100%",
     zIndex: -100,
@@ -292,9 +292,10 @@ const Home = ({
           </Grid>
 
           {/* Projects */}
-          <Container component="section">
-            <Typography
-              component="h3"
+          {projects.length > 0 && (
+            <Container component="section">
+              <Typography
+                component="h3"
               variant="h3"
               align="center"
               gutterBottom
@@ -302,20 +303,22 @@ const Home = ({
             >
               {t("projects")}
             </Typography>
-            <Grid container component="section" spacing={2}>
+            <Grid container spacing={2}>
               {projects.map((project) => (
                 <Grid item xs={12} sm={6} md={4} key={project.id}>
                   <ProjectCard {...project} />
                 </Grid>
               ))}
-            </Grid>
-            <SeeMoreLink slug="/projects" label="projects" />
-          </Container>
+              </Grid>
+              <SeeMoreLink slug="/projects" label="projects" />
+            </Container>
+          )}
 
           {/* Blogs */}
-          <Container component="section">
-            <Typography
-              component="h3"
+          {posts.length > 0 && (
+            <Container component="section">
+              <Typography
+                component="h3"
               variant="h3"
               align="center"
               gutterBottom
@@ -356,9 +359,10 @@ const Home = ({
                     </Grid>
                   ))}
               </Grid>
-            </Grid>
-            <SeeMoreLink slug="/posts" label="posts" />
-          </Container>
+              </Grid>
+              <SeeMoreLink slug="/posts" label="posts" />
+            </Container>
+          )}
 
           {/* About Me */}
           <Container component="section">
