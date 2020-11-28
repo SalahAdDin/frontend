@@ -1,8 +1,9 @@
 import PropTypes from "prop-types"
+import Link from "next/link"
 import {
   Container,
   Grid,
-  Link,
+  Link as LinkUI,
   Typography,
   makeStyles,
   fade,
@@ -66,7 +67,9 @@ const Copyright = () => {
   return (
     <Typography component="span">
       {`Copyright © `}
-      <Link href="/">José Luis Sandoval Alaguna</Link>
+      <Link href="/" passHref>
+        <LinkUI>José Luis Sandoval Alaguna</LinkUI>
+      </Link>
       {` ${new Date().getFullYear()}. `}
     </Typography>
   )
@@ -77,13 +80,18 @@ const DevTech = () => {
   return (
     <Typography component="span" className={classes.techIcons}>
       {`Developed with `}
-      <Link href="//nextjs.org/" target="_blank" rel="noopener" aria-label="NextJS">
+      <LinkUI
+        href="//nextjs.org/"
+        target="_blank"
+        rel="noopener"
+        aria-label="NextJS"
+      >
         <NextIcon />
-      </Link>
+      </LinkUI>
       &nbsp;&amp;&nbsp;
-      <Link href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
+      <LinkUI href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
-      </Link>
+      </LinkUI>
       .
     </Typography>
   )
@@ -115,10 +123,12 @@ const FooterSection = ({ title, links, navLinks }) => {
       <ul className={classes.subMenu}>
         {links.map(({ href, label }) => (
           <li key={`item_${label}`}>
-            <Link href={href}>
-              {navLinks.find((item) => item.slug === label) !== undefined
-                ? localizedTitle(label)
-                : t(label)}
+            <Link href={href} passHref>
+              <LinkUI>
+                {navLinks.find((item) => item.slug === label) !== undefined
+                  ? localizedTitle(label)
+                  : t(label)}
+              </LinkUI>
             </Link>
           </li>
         ))}
