@@ -12,6 +12,13 @@ import Footer from "components/footer"
 import DefaultSEO from "../next-seo.config"
 import Meta from "../components/meta"
 
+import "fontsource-dm-sans/400.css"
+import "fontsource-dm-sans/500.css"
+import "fontsource-dm-sans/700.css"
+import "fontsource-nunito/400.css"
+import "fontsource-nunito/600.css"
+import "fontsource-nunito/700.css"
+
 export function reportWebVitals(metric) {
   if (process.env.NODE_ENV !== "production") console.log(metric)
 }

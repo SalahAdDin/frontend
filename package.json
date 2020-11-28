@@ -37,6 +37,8 @@
     "@svgr/webpack": "^5.4.0",
     "dayjs": "^1.9.1",
     "disqus-react": "^1.0.10",
+    "fontsource-dm-sans": "^3.0.10",
+    "fontsource-nunito": "^3.0.10",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-optipng": "^8.0.0",
