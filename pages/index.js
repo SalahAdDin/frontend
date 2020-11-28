@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "1.35",
       fontWeight: 700,
     },
-    "& h3": {
+    "& h2": {
       textTransform: "uppercase",
       letterSpacing: 2,
       fontWeight: 700,
@@ -295,10 +295,10 @@ const Home = ({
           {projects.length > 0 && (
             <Container component="section">
               <Typography
-                component="h3"
-              variant="h3"
-              align="center"
-              gutterBottom
+                component="h2"
+                variant="h3"
+                align="center"
+                gutterBottom
               className={classes.sectionTitle}
             >
               {t("projects")}
@@ -318,10 +318,10 @@ const Home = ({
           {posts.length > 0 && (
             <Container component="section">
               <Typography
-                component="h3"
-              variant="h3"
-              align="center"
-              gutterBottom
+                component="h2"
+                variant="h3"
+                align="center"
+                gutterBottom
               className={classes.sectionTitle}
             >
               {t("posts")}
@@ -367,7 +367,7 @@ const Home = ({
           {/* About Me */}
           <Container component="section">
             <Typography
-              component="h3"
+              component="h2"
               variant="h3"
               align="center"
               gutterBottom

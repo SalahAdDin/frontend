@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     // transition: "all 0.5s ease-in-out",
     boxShadow: `0 0 10px 0 ${fade("#000000", 0.06)}`,
     "& .MuiListItem-root": {
-      color: darken(theme.palette.muted.main, 0.1),
+      color: darken(theme.palette.muted.main, 0.25),
       fontWeight: 600,
       transition: "all 0.3s",
     },
@@ -47,17 +47,18 @@ const useStyles = makeStyles((theme) => ({
       position: "static",
     },
   },
+  activeItem: { color: `${theme.palette.primary.main} !important` },
   boxShadow: { boxShadow: `0 0 10px 0 ${fade("#000000", 0.06)}` },
   input: {
     fontSize: 16,
     padding: "6px 1rem",
-    color: darken("#9b9bae", 0.06),
+    color: darken(theme.palette.muted.main, 0.06),
   },
   hide: {
     display: "none !important",
   },
   menuButton: {
-    color: darken("#9b9bae", 0.06),
+    color: darken(theme.palette.muted.main, 0.06),
     "&:hover": {
       backgroundColor: theme.palette.background.default,
       color: theme.palette.primary.main,
@@ -67,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   option: {
     fontSize: 16,
-    color: darken("#9b9bae", 0.06),
+    color: darken(theme.palette.muted.main, 0.06),
   },
   navbar: {
     [theme.breakpoints.down(770)]: {
@@ -150,7 +151,7 @@ const Nav = ({ navLinks }) => {
                   <MenuItem
                     role="tab"
                     disableRipple
-                    style={{ color: router.pathname === "/" && "#5e62ff" }}
+                    className={router.pathname === "/" ? classes.activeItem : ""}
                   >
                     {t("home")}
                   </MenuItem>
@@ -162,7 +163,9 @@ const Nav = ({ navLinks }) => {
                       <MenuItem
                         role="tab"
                         disableRipple
-                        style={{ color: router.pathname === href && "#5e62ff" }}
+                        className={
+                          router.pathname === href ? classes.activeItem : ""
+                        }
                       >
                         {localizedTitle(label)}
                       </MenuItem>
