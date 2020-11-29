@@ -25,16 +25,25 @@ const Post = ({
   const router = useRouter()
   const { i18n } = useTranslation()
   return (
-    <Grid item xs={12} sm={6} md={4} component="article">
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={4}
+      component="article"
+      style={{ marginBottom: "1rem" }}
+    >
       <Card>
         {/* TODO: Pass correct components inside of article ever i used as article component */}
         {thumbnail && (
           <CardMedia
             component="img"
-            alt={thumbnail.alternativeText}
-            // height={thumbnail.height}
-            image={thumbnail.url}
-            title={thumbnail.caption}
+            alt={thumbnail?.alternativeText}
+            title={thumbnail?.caption}
+            image={thumbnail?.formats?.thumbnail?.url}
+            width={thumbnail?.formats?.thumbnail?.width}
+            height={thumbnail?.formats?.thumbnail?.height}
+            style={{ height: "100%" }}
           />
         )}
         <CardContent component="main">
@@ -85,8 +94,13 @@ Post.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    height: PropTypes.number,
-    url: PropTypes.string.isRequired,
+    formats: PropTypes.objectOf(
+      PropTypes.shape({
+        url: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.height,
+      })
+    ),
   }),
   description: PropTypes.objectOf(PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),

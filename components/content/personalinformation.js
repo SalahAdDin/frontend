@@ -60,9 +60,14 @@ const PersonalInformation = ({
             <Avatar
               aria-label="Profile Photo"
               alt="Profile Photo"
-              src={photo.url}
+              srcSet={`${profilePhoto?.formats?.large?.url} 1000w, ${profilePhoto?.formats?.medium?.url} 750w,${profilePhoto?.formats?.small?.url} 500w`}
+              src={profilePhoto?.formats?.small?.url}
               align="center"
               className={classes.large}
+              imgProps={{
+                width: profilePhoto?.formats?.small?.width,
+                height: profilePhoto?.formats?.small?.height,
+              }}
             >
               LA
             </Avatar>
