@@ -56,6 +56,10 @@ const nextConfiguration = {
         source: "/service-worker.js",
         destination: "/_next/static/service-worker.js",
       },
+      {
+        source: "/service-worker.js.map",
+        destination: "/_next/static/service-worker.js.map",
+      },
     ]
   },
   webpack(config) {
