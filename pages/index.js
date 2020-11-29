@@ -279,7 +279,7 @@ const Home = ({
             className={classes.hero}
           >
             <Grid item xs={12} sm={6}>
-              <Typography variant="subtitle1" component="h3">
+              <Typography variant="subtitle1" component="h2">
                 {t("hero.subtitle")}
               </Typography>
               <Typography variant="h3" component="h1" color="primary">

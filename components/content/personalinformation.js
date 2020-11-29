@@ -60,13 +60,13 @@ const PersonalInformation = ({
             <Avatar
               aria-label="Profile Photo"
               alt="Profile Photo"
-              srcSet={`${profilePhoto?.formats?.large?.url} 1000w, ${profilePhoto?.formats?.medium?.url} 750w,${profilePhoto?.formats?.small?.url} 500w`}
-              src={profilePhoto?.formats?.small?.url}
+              srcSet={`${photo?.formats?.large?.url} 1000w, ${photo?.formats?.medium?.url} 750w,${photo?.formats?.small?.url} 500w`}
+              src={photo?.formats?.small?.url}
               align="center"
               className={classes.large}
               imgProps={{
-                width: profilePhoto?.formats?.small?.width,
-                height: profilePhoto?.formats?.small?.height,
+                width: photo?.formats?.small?.width,
+                height: photo?.formats?.small?.height,
               }}
             >
               LA
@@ -143,7 +143,13 @@ const PersonalInformation = ({
 PersonalInformation.propTypes = {
   name: PropTypes.string.isRequired,
   photo: PropTypes.shape({
-    url: PropTypes.string.isRequired,
+    formats: PropTypes.objectOf(
+      PropTypes.shape({
+        url: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.height,
+      })
+    ),
   }),
   position: PropTypes.string,
   mail: PropTypes.string,
