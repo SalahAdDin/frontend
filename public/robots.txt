@@ -1,0 +1,4 @@
+Sitemap: http://cms.uzmani.tech/sitemap.xml
+
+User-agent: *
+Allow: /*

@@ -18,9 +18,9 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
+import Skill from "components/fields/skill"
 import Layout from "components/layout"
 import Loader from "components/loader"
-import Skill from "components/fields/skill"
 import SEO from "components/seo"
 import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
 import ErrorPage from "./_error"
@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   background: {
-    background: "url(static/images/hero-1-bg.png)",
+    background: "url(static/images/hero-1-bg.png) 100% top no-repeat",
     height: "130%",
     width: "100%",
     zIndex: -100,
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
       lineHeight: "1.35",
       fontWeight: 700,
     },
-    "& h3": {
+    "& h2": {
       textTransform: "uppercase",
       letterSpacing: 2,
       fontWeight: 700,
@@ -143,14 +143,17 @@ const ProjectCard = ({ id, title_en: titleEn, title, thumbnail, description }) =
         <CardMedia
           component="img"
           alt={thumbnail?.alternativeText}
-          image={thumbnail?.url}
           title={thumbnail?.caption}
+          image={thumbnail?.formats?.thumbnail?.url}
+          width={thumbnail?.formats?.thumbnail?.width}
+          height={thumbnail?.formats?.thumbnail?.height}
+          style={{ height: "100%" }}
         />
         <CardContent>
           <Title
             title={title}
             title_en={titleEn}
-            component="h5"
+            component="h3"
             variant="h5"
             align="center"
             gutterBottom
@@ -171,7 +174,13 @@ ProjectCard.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    url: PropTypes.string,
+    formats: PropTypes.objectOf(
+      PropTypes.shape({
+        url: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.height,
+      })
+    ),
   }),
   description: PropTypes.objectOf(PropTypes.string),
 }
@@ -185,7 +194,7 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
         <Title
           title={title}
           title_en={titleEn}
-          component="h5"
+          component="h3"
           variant="h5"
           align="left"
           gutterBottom
@@ -211,13 +220,14 @@ PostNote.propTypes = {
   description: PropTypes.objectOf(PropTypes.string),
 }
 
-const SeeMoreLink = ({ slug }) => {
+const SeeMoreLink = ({ slug, label }) => {
   const classes = useStyles()
   const { t } = useTranslation()
   return (
     <Link href={`${slug}`} passHref>
       <Button color="primary" className={classes.seeMoreLink}>
-        {t("see-more")} <ArrowRightAltIcon />
+        {t("see-more")} {t(label)}
+        <ArrowRightAltIcon />
       </Button>
     </Link>
   )
@@ -225,6 +235,7 @@ const SeeMoreLink = ({ slug }) => {
 
 SeeMoreLink.propTypes = {
   slug: PropTypes.string.isRequired,
+  label: PropTypes.string,
 }
 
 const Home = ({
@@ -268,7 +279,7 @@ const Home = ({
             className={classes.hero}
           >
             <Grid item xs={12} sm={6}>
-              <Typography variant="subtitle1" component="h3">
+              <Typography variant="subtitle1" component="h2">
                 {t("hero.subtitle")}
               </Typography>
               <Typography variant="h3" component="h1" color="primary">
@@ -285,81 +296,96 @@ const Home = ({
               </Typography>
             </Grid>
             <Grid item xs={12} sm={5}>
-              <img src="static/images/hero-1-img.png" alt="Home - Hero background" />
+              {/* TODO: may we get this from the backend? */}
+              <img
+                srcSet="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473431/large_homeherodesktop_0940cc6d70.png 1000w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473432/medium_homeherodesktop_0940cc6d70.png 750w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png 500w"
+                src="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png"
+                width="500"
+                height="580"
+                alt="Home - Hero background"
+              />
             </Grid>
           </Grid>
 
           {/* Projects */}
-          <Typography
-            component="h3"
-            variant="h3"
-            align="center"
-            gutterBottom
-            className={classes.sectionTitle}
-          >
-            {t("projects")}
-          </Typography>
-          <Grid container component="section" spacing={2}>
-            {projects.map((project) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id}>
-                <ProjectCard {...project} />
+          {projects.length > 0 && (
+            <Container component="section">
+              <Typography
+                component="h2"
+                variant="h3"
+                align="center"
+                gutterBottom
+                className={classes.sectionTitle}
+              >
+                {t("projects")}
+              </Typography>
+              <Grid container spacing={2}>
+                {projects.map((project) => (
+                  <Grid item xs={12} sm={6} md={4} key={project.id}>
+                    <ProjectCard {...project} />
+                  </Grid>
+                ))}
               </Grid>
-            ))}
-          </Grid>
-          <SeeMoreLink slug="/projects" />
+              <SeeMoreLink slug="/projects" label="projects" />
+            </Container>
+          )}
 
           {/* Blogs */}
-          <Container component="section">
-            <Typography
-              component="h3"
-              variant="h3"
-              align="center"
-              gutterBottom
-              className={classes.sectionTitle}
-            >
-              {t("posts")}
-            </Typography>
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={5}>
-                {firstPost && (
-                  <Link href={`/posts/${firstPost?.slug}`}>
-                    <Card className={classes.mainPostNote}>
-                      <CardMedia
-                        component="img"
-                        alt={firstPost?.thumbnail?.alternativeText}
-                        image={firstPost?.thumbnail?.url}
-                        title={firstPost?.thumbnail?.caption}
-                      />
-                      <CardContent>
-                        <Title
-                          title={firstPost?.title}
-                          title_en={firstPost?.title_en}
-                          component="h5"
-                          variant="h5"
-                          align="left"
-                          gutterBottom
+          {posts.length > 0 && (
+            <Container component="section">
+              <Typography
+                component="h2"
+                variant="h3"
+                align="center"
+                gutterBottom
+                className={classes.sectionTitle}
+              >
+                {t("posts")}
+              </Typography>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md={5}>
+                  {firstPost && (
+                    <Link href={`/posts/${firstPost?.slug}`}>
+                      <Card className={classes.mainPostNote}>
+                        <CardMedia
+                          component="img"
+                          alt={firstPost?.thumbnail?.alternativeText}
+                          title={firstPost?.thumbnail?.caption}
+                          image={firstPost?.thumbnail?.formats?.thumbnail?.url}
+                          width={firstPost?.thumbnail?.formats?.thumbnail?.width}
+                          height={firstPost?.thumbnail?.formats?.thumbnail?.height}
                         />
-                      </CardContent>
-                    </Card>
-                  </Link>
-                )}
+                        <CardContent>
+                          <Title
+                            title={firstPost?.title}
+                            title_en={firstPost?.title_en}
+                            component="h3"
+                            variant="h5"
+                            align="left"
+                            gutterBottom
+                          />
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  )}
+                </Grid>
+                <Grid container item spacing={2} xs={12} md={7}>
+                  {otherPost &&
+                    otherPost.map((post) => (
+                      <Grid key={post?.slug} item xs={12} sm={6}>
+                        <PostNote {...post} />
+                      </Grid>
+                    ))}
+                </Grid>
               </Grid>
-              <Grid container item spacing={2} xs={12} md={7}>
-                {otherPost &&
-                  otherPost.map((post) => (
-                    <Grid key={post?.slug} item xs={12} sm={6}>
-                      <PostNote {...post} />
-                    </Grid>
-                  ))}
-              </Grid>
-            </Grid>
-            <SeeMoreLink slug="/posts" />
-          </Container>
+              <SeeMoreLink slug="/posts" label="posts" />
+            </Container>
+          )}
 
           {/* About Me */}
           <Container component="section">
             <Typography
-              component="h3"
+              component="h2"
               variant="h3"
               align="center"
               gutterBottom
@@ -378,8 +404,13 @@ const Home = ({
                     <Avatar
                       aria-label="Profile Photo"
                       alt="Profile Photo"
-                      src={profilePhoto?.url}
+                      srcSet={`${profilePhoto?.formats?.large?.url} 1000w, ${profilePhoto?.formats?.medium?.url} 750w,${profilePhoto?.formats?.small?.url} 500w`}
+                      src={profilePhoto?.formats?.small?.url}
                       className={classes.large}
+                      imgProps={{
+                        width: profilePhoto?.formats?.small?.width,
+                        height: profilePhoto?.formats?.small?.height,
+                      }}
                     >
                       LA
                     </Avatar>
@@ -405,7 +436,7 @@ const Home = ({
                 }
               />
             </Card>
-            <SeeMoreLink slug="/about-me" />
+            <SeeMoreLink slug="/about-me" label="about-me" />
           </Container>
         </>
       )}

@@ -3,17 +3,24 @@ import PropTypes from "prop-types"
 import App from "next/app"
 import { DefaultSeo } from "next-seo"
 import { ThemeProvider, CssBaseline } from "@material-ui/core"
-import { appWithTranslation } from "i18n"
+import Footer from "components/footer"
+import Meta from "components/meta"
+import Nav from "components/nav"
 import { getPageTitlesBySlugSet } from "lib/api/pages"
 import { CMS_TILE_COLOR, menuLinks } from "lib/constants"
 import theme from "styles/theme"
-import Nav from "components/nav"
-import Footer from "components/footer"
+import { appWithTranslation } from "../i18n"
 import DefaultSEO from "../next-seo.config"
-import Meta from "../components/meta"
+
+import "fontsource-dm-sans/400.css"
+import "fontsource-dm-sans/500.css"
+import "fontsource-dm-sans/700.css"
+import "fontsource-nunito/400.css"
+import "fontsource-nunito/600.css"
+import "fontsource-nunito/700.css"
 
 export function reportWebVitals(metric) {
-  console.log(metric)
+  if (process.env.NODE_ENV !== "production") console.log(metric)
 }
 
 const FolioApp = ({ Component, pageProps, navProps }) => {

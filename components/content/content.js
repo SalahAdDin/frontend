@@ -1,5 +1,5 @@
 import PropTypes from "prop-types"
-import ReactPlayer from "react-player"
+import ReactPlayer from "react-player/lazy"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { fade, makeStyles } from "@material-ui/core"

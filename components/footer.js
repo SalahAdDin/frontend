@@ -1,15 +1,16 @@
 import PropTypes from "prop-types"
+import Link from "next/link"
 import {
   Container,
   Grid,
-  Link,
+  Link as LinkUI,
   Typography,
   makeStyles,
   fade,
 } from "@material-ui/core"
-import { footerLinks, socialMediaLinks } from "lib/constants"
 import NextIcon from "assets/svg/nextjs.svg"
 import StrapiIcon from "assets/svg/strapi-logo-light.svg"
+import { footerLinks, socialMediaLinks } from "lib/constants"
 import URL from "./fields/url"
 import { useTranslation } from "../i18n"
 
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none !important",
       outline: "none",
       transition: "all 0.5s",
-      color: fade(theme.palette.light.main, 0.5),
+      color: fade(theme.palette.light.main, 0.55),
     },
     "& a:hover": {
       color: `${theme.palette.light.main} !important`,
@@ -31,14 +32,14 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.light.main,
   },
   alt: {
-    color: fade(theme.palette.light.main, 0.5),
+    color: fade(theme.palette.light.main, 0.55),
     "& span": { margin: "16px 0" },
   },
   socialMediaIcons: {
-    color: fade(theme.palette.light.main, 0.5),
+    color: fade(theme.palette.light.main, 0.55),
     transition: "all 0.3s",
     "& svg path": {
-      fill: fade(theme.palette.light.main, 0.5),
+      fill: fade(theme.palette.light.main, 0.55),
     },
     "& svg:hover path": { fill: theme.palette.light.main },
     [theme.breakpoints.down(600)]: {
@@ -57,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
   techIcons: {
     "& svg": { height: 24, margin: "0 8px", marginBottom: -6 },
     "& svg:first-child": {
-      "& path": { fill: fade(theme.palette.light.main, 0.5) },
+      "& path": { fill: fade(theme.palette.light.main, 0.55) },
     },
   },
 }))
@@ -66,7 +67,9 @@ const Copyright = () => {
   return (
     <Typography component="span">
       {`Copyright © `}
-      <Link href="/">José Luis Sandoval Alaguna</Link>
+      <Link href="/" passHref>
+        <LinkUI>José Luis Sandoval Alaguna</LinkUI>
+      </Link>
       {` ${new Date().getFullYear()}. `}
     </Typography>
   )
@@ -77,13 +80,18 @@ const DevTech = () => {
   return (
     <Typography component="span" className={classes.techIcons}>
       {`Developed with `}
-      <Link href="//nextjs.org/" target="_blank" rel="noopener" aria-label="NextJS">
+      <LinkUI
+        href="//nextjs.org/"
+        target="_blank"
+        rel="noopener"
+        aria-label="NextJS"
+      >
         <NextIcon />
-      </Link>
+      </LinkUI>
       &nbsp;&amp;&nbsp;
-      <Link href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
+      <LinkUI href="//strapi.io/" target="_blank" rel="noopener" aria-label="Strapi">
         <StrapiIcon />
-      </Link>
+      </LinkUI>
       .
     </Typography>
   )
@@ -109,16 +117,18 @@ const FooterSection = ({ title, links, navLinks }) => {
 
   return (
     <Grid item xs={6} sm={2}>
-      <Typography variant="h6" component="h6" className={classes.title}>
+      <Typography variant="h6" component="h1" className={classes.title}>
         {t(title)}
       </Typography>
       <ul className={classes.subMenu}>
         {links.map(({ href, label }) => (
           <li key={`item_${label}`}>
-            <Link href={href}>
-              {navLinks.find((item) => item.slug === label) !== undefined
-                ? localizedTitle(label)
-                : t(label)}
+            <Link href={href} passHref>
+              <LinkUI>
+                {navLinks.find((item) => item.slug === label) !== undefined
+                  ? localizedTitle(label)
+                  : t(label)}
+              </LinkUI>
             </Link>
           </li>
         ))}
