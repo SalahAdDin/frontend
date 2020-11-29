@@ -44,10 +44,6 @@ const nextConfiguration = {
     optimizeFonts: true,
     productionBrowserSourceMaps: true,
   },
-  i18n: {
-    locales: ["en", "es", "tr"],
-    defaultLocale: "en-US",
-  },
   images: {
     domains: ["cloudinary.com"],
     // loader: "cloudinary",
