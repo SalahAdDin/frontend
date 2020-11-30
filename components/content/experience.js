@@ -97,7 +97,7 @@ const Experience = ({
           <CardHeader
             title={
               institution ? (
-                <Typography variant="h6" component="h6">
+                <Typography variant="h6" component="h2">
                   {institution}
                 </Typography>
               ) : (

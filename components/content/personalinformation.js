@@ -78,13 +78,13 @@ const PersonalInformation = ({
         title={
           name && position && mail ? (
             <>
-              <Typography variant="h5" component="h5">
+              <Typography variant="h5" component="h2">
                 {name}
               </Typography>
-              <Typography variant="h6" component="h6">
+              <Typography variant="h6" component="h3">
                 {position}
               </Typography>
-              <Typography color="textSecondary" variant="subtitle1" component="h6">
+              <Typography color="textSecondary" variant="subtitle1" component="h4">
                 <MailOutline className={globalClasses.inlineSmallIcon} />
                 {mail}
               </Typography>

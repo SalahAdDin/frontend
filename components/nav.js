@@ -152,6 +152,7 @@ const Nav = ({ navLinks }) => {
                     role="tab"
                     disableRipple
                     className={router.pathname === "/" ? classes.activeItem : ""}
+                    onClick={() => setOpen(!open)}
                   >
                     {t("home")}
                   </MenuItem>
@@ -166,6 +167,7 @@ const Nav = ({ navLinks }) => {
                         className={
                           router.pathname === href ? classes.activeItem : ""
                         }
+                        onClick={() => setOpen(!open)}
                       >
                         {localizedTitle(label)}
                       </MenuItem>
