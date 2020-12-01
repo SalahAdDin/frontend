@@ -45,6 +45,7 @@ const nextConfiguration = {
     productionBrowserSourceMaps: true,
   },
   i18n: {
+    localeDetection: false,
     locales: ["en", "es", "tr"],
     defaultLocale: "en",
   },

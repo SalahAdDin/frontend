@@ -29,7 +29,7 @@ const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
 
   const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
   const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
-  const getGroupName = (group) => t(`skill-type:${group.toLowerCase()}`)
+  const getGroupName = (group) => t(`skill-type.${group.toLowerCase()}`)
 
   if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
 
@@ -90,9 +90,10 @@ export async function getStaticProps() {
   }
 }
 
-AboutMe.defaultProps = {
-  i18nNamespaces: ["skill-type"],
-}
+// This has a problem at first loading: https://github.com/isaachinman/next-i18next/issues/869#issuecomment-736807376
+// AboutMe.defaultProps = {
+//   i18nNamespaces: ["skill-type"],
+// }
 
 AboutMe.propTypes = {
   title_en: PropTypes.string.isRequired,
