@@ -2,7 +2,7 @@
   "alert": {
     "preview-mode": {
       "title": "Warning",
-      "message": "You are looking the website in — <strong>preview mode</strong>."
+      "message": "You are looking at the website in — <strong>preview mode</strong>."
     }
   },
   "error": {
