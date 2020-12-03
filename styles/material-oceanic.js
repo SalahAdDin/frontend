@@ -153,7 +153,7 @@ export default {
     color: "#f2ff00",
   },
   comment: {
-    color: "#546e7a",
+    color: "#789dae",
   },
   constant: {
     color: "#c792ea",
@@ -165,7 +165,7 @@ export default {
     color: "#c792ea",
   },
   doctype: {
-    color: "#546e7a",
+    color: "#789dae",
   },
   entity: {
     color: "#f07178",
@@ -201,7 +201,7 @@ export default {
     color: "#89ddff",
   },
   prolog: {
-    color: "#546e7a",
+    color: "#789dae",
   },
   property: {
     color: "#80cbc4",

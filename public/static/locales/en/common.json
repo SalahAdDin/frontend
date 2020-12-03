@@ -2,7 +2,7 @@
   "alert": {
     "preview-mode": {
       "title": "Warning",
-      "message": "You are looking the website in — <strong>preview mode</strong>."
+      "message": "You are looking at the website in — <strong>preview mode</strong>."
     }
   },
   "error": {
@@ -32,5 +32,15 @@
   "projects": "Projects",
   "posts": "Posts",
   "about-me": "About me",
-  "see-more": "See more"
+  "see-more": "See more",
+  "skill-type": {
+    "database": "Database",
+    "framework": "Framework",
+    "language": "Language",
+    "operating_system": "Operating System",
+    "programming_language": "Programming Language",
+    "technical": "Technical",
+    "technology": "Technology",
+    "tools": "Tools"
+  }
 }

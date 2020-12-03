@@ -32,5 +32,15 @@
   "projects": "Proyectos",
   "posts": "Publicaciones",
   "about-me": "Sobre mí",
-  "see-more": "Ver más"
+  "see-more": "Ver más",
+  "skill-type": {
+    "database": "Base de Datos",
+    "framework": "Marco de Trabajo",
+    "language": "Lenguaje",
+    "operating_system": "Sistema Operativo",
+    "programming_language": "Lenguaje de Programación",
+    "technical": "Técnica",
+    "technology": "Tecnología",
+    "tools": "Herramientas"
+  }
 }

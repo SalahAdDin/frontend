@@ -44,6 +44,11 @@ const nextConfiguration = {
     optimizeFonts: true,
     productionBrowserSourceMaps: true,
   },
+  i18n: {
+    localeDetection: false,
+    locales: ["en", "es", "tr"],
+    defaultLocale: "en",
+  },
   images: {
     domains: ["cloudinary.com"],
     // loader: "cloudinary",
@@ -55,6 +60,10 @@ const nextConfiguration = {
       {
         source: "/service-worker.js",
         destination: "/_next/static/service-worker.js",
+      },
+      {
+        source: "/service-worker.js.map",
+        destination: "/_next/static/service-worker.js.map",
       },
     ]
   },

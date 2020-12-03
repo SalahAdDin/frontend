@@ -1,8 +1,8 @@
 {
   "alert": {
     "preview-mode": {
-      "title": "",
-      "message": ""
+      "title": "Uyarı",
+      "message": "Web sitesine - <strong>önizleme modunda</strong> - bakıyorsunuz."
     }
   },
   "error": {
@@ -11,12 +11,12 @@
       "disclaimer": "İstediğiniz sayfası bulamadık."
     },
     "500": {
-      "title": "{{statusCode}} - ",
-      "disclaimer": ""
+      "title": "{{statusCode}} - Dahili sunucu hatası",
+      "disclaimer": "Dahili bir sunucu hatasıyla karşılaştık ve bunu çözmeye çalışıyoruz."
     },
     "status": {
-      "with": "",
-      "without": ""
+      "with": "Sunucuda bir {{statusCode}} hatası oluştu.",
+      "without": "Sunucuda bir hata oluştu."
     }
   },
   "hero": {
@@ -32,5 +32,15 @@
   "projects": "Projeler",
   "posts": "Postlar",
   "about-me": "Hakkımda",
-  "see-more": "Daha fazla gör"
+  "see-more": "Daha fazla gör",
+  "skill-type": {
+    "database": "Database",
+    "framework": "Çerçeve",
+    "language": "Dil",
+    "operating_system": "İşletim Sistemi",
+    "programming_language": "Yazılım Dili",
+    "technical": "Teknik",
+    "technology": "Teknoloji",
+    "tools": "Araçlar"
+  }
 }

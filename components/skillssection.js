@@ -9,7 +9,7 @@ const SkillsSection = ({ skills, group }) => {
       <CardHeader
         title={
           group ? (
-            <Typography variant="h5" component="h5">
+            <Typography variant="h5" component="h3">
               {group.replace("_", " ")}
             </Typography>
           ) : (
