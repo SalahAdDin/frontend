@@ -15,8 +15,8 @@
       "purpose": "any maskable"
     }
   ],
-  "start_url": "https://uzmani.tech/",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "start_url": "/?source=pwa",
+  "theme_color": "#5D61FD",
+  "background_color": "#FFFFFF",
   "display": "standalone"
 }
