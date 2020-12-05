@@ -38,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
     "& p": { color: theme.palette.muted.main, lineHeight: 1.8, marginBottom: 24 },
     "& a": { borderRadius: "50rem", textTransform: "none" },
   },
+  url: {
+    width: "inherit",
+    display: "inline-block",
+    marginLeft: 16,
+    marginRight: 16,
+  },
 }))
 
 export default useStyles
