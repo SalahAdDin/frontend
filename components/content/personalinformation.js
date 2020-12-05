@@ -27,12 +27,8 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(30),
   },
   noPadding: {
-    paddingTop: 0,
-    paddingBottom: 0,
-    "& li": {
-      paddingTop: 0,
-      paddingBottom: 0,
-    },
+    margin: 0,
+    padding: 0,
   },
 }))
 
@@ -108,16 +104,16 @@ const PersonalInformation = ({
                 {address.postalcode && `[${address.postalcode}]`}
                 {address.country && ` - ${address.country}`}
               </Typography>
-              <List aria-label="telephones" className={classes.noPadding}>
+              <ul aria-label="telephones" className={classes.noPadding}>
                 {telephone.map((phone) => (
                   <Telephone key={phone.id} {...phone} />
                 ))}
-              </List>
-              <List aria-label="links" className={classes.noPadding}>
+              </ul>
+              <ul aria-label="links" className={classes.noPadding}>
                 {links.map((link) => (
                   <URL key={`links_${link.id}`} {...link} />
                 ))}
-              </List>
+              </ul>
             </>
           ) : (
             <Skeleton animation="wave" height={10} width="40%" />

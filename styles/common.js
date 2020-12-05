@@ -1,7 +1,6 @@
 import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
-  inlineBlock: { width: "inherit", display: "inline-block" },
   inlineSmallIcon: {
     width: "1.125rem",
     verticalAlign: "middle",
@@ -37,6 +36,13 @@ const useStyles = makeStyles((theme) => ({
     },
     "& p": { color: theme.palette.muted.main, lineHeight: 1.8, marginBottom: 24 },
     "& a": { borderRadius: "50rem", textTransform: "none" },
+  },
+  telephone: {
+    width: "inherit",
+    display: "inline-block",
+    marginLeft: 8,
+    marginRight: 8,
+    "& svg": { verticalAlign: "text-bottom", marginRight: 4 },
   },
   url: {
     width: "inherit",
