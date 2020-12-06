@@ -20,7 +20,7 @@ import "fontsource-nunito/600.css"
 import "fontsource-nunito/700.css"
 
 export function reportWebVitals(metric) {
-  if (process.env.NODE_ENV !== "development") console.log(metric)
+  if (process.env.NODE_ENV === "development") console.log(metric)
 }
 
 const FolioApp = ({ Component, pageProps, navProps }) => {

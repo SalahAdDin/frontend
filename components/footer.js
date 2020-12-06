@@ -158,7 +158,7 @@ const Footer = ({ navLinks }) => {
           >
             {/* TODO: Add logo here */}
             {socialMediaLinks.map((link) => (
-              <URL key={`footer_${link.type}`} {...link} minimize />
+              <URL key={`footer_${link.type}`} {...link} />
             ))}
           </Grid>
           {footerLinks.map((section) => (
