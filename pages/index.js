@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core"
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt"
 import { Skeleton } from "@material-ui/lab"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { DynamicZone } from "components/body"
@@ -22,23 +23,12 @@ import Skill from "components/fields/skill"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import SEO from "components/seo"
+import useGlobalStyles from "styles/common"
 import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
 import ErrorPage from "./_error"
 import { useTranslation } from "../i18n"
 
 const useStyles = makeStyles((theme) => ({
-  aboutMeCard: {
-    [theme.breakpoints.down(660)]: {
-      "& .MuiCardHeader-root": {
-        display: "block",
-      },
-    },
-    [theme.breakpoints.up(660)]: {
-      "& .MuiCardHeader-content": {
-        marginLeft: 65,
-      },
-    },
-  },
   background: {
     background: "url(static/images/hero-1-bg.png) 100% top no-repeat",
     height: "130%",
@@ -248,6 +238,7 @@ const Home = ({
   projects,
 }) => {
   const classes = useStyles()
+  const globalClasses = useGlobalStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
@@ -397,20 +388,25 @@ const Home = ({
               className={classes.sectionContent}
               component={{ ...aboutMe, __typename: "ComponentContentContent" }}
             />
-            <Card elevation={0} component="div" className={classes.aboutMeCard}>
+            <Card elevation={0} component="div">
               <CardHeader
+                align="center"
+                className={globalClasses.avatarHeader}
                 avatar={
                   profilePhoto ? (
                     <Avatar
-                      aria-label="Profile Photo"
-                      alt="Profile Photo"
-                      srcSet={`${profilePhoto?.formats?.large?.url} 1000w, ${profilePhoto?.formats?.medium?.url} 750w,${profilePhoto?.formats?.small?.url} 500w`}
-                      src={profilePhoto?.formats?.small?.url}
-                      className={classes.large}
-                      imgProps={{
-                        width: profilePhoto?.formats?.small?.width,
-                        height: profilePhoto?.formats?.small?.height,
-                      }}
+                      component={() => (
+                        <Image
+                          alt={profilePhoto?.alternativeText}
+                          title={profilePhoto?.caption}
+                          aria-label={profilePhoto?.alternativeText}
+                          className="MuiAvatar-img"
+                          width={240}
+                          height={320}
+                          src={profilePhoto?.url}
+                          align="center"
+                        />
+                      )}
                     >
                       LA
                     </Avatar>
