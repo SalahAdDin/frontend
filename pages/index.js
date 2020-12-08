@@ -80,10 +80,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    "& img": {
-      borderRadius: "4px 4px 0 0",
-      height: "calc(100% - 200px)",
-    },
   },
   postNote: {
     cursor: "pointer",
@@ -339,12 +335,17 @@ const Home = ({
                     <Link href={`/posts/${firstPost?.slug}`}>
                       <Card className={classes.mainPostNote}>
                         <CardMedia
-                          component="img"
-                          alt={firstPost?.thumbnail?.alternativeText}
-                          title={firstPost?.thumbnail?.caption}
-                          image={firstPost?.thumbnail?.formats?.thumbnail?.url}
-                          width={firstPost?.thumbnail?.formats?.thumbnail?.width}
-                          height={firstPost?.thumbnail?.formats?.thumbnail?.height}
+                          component={() => (
+                            <Image
+                              className="MuiAvatar-img"
+                              aria-label={firstPost?.thumbnail?.alternativeText}
+                              src={firstPost?.thumbnail?.url}
+                              alt={firstPost?.thumbnail?.alternativeText}
+                              title={firstPost?.thumbnail?.caption}
+                              width={firstPost?.thumbnail?.width}
+                              height={firstPost?.thumbnail?.height}
+                            />
+                          )}
                         />
                         <CardContent>
                           <Title
