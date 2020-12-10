@@ -127,13 +127,17 @@ const ProjectCard = ({ id, title_en: titleEn, title, thumbnail, description }) =
     <Link href={`/projects/${id}`}>
       <Card style={{ cursor: "pointer" }}>
         <CardMedia
-          component="img"
-          alt={thumbnail?.alternativeText}
-          title={thumbnail?.caption}
-          image={thumbnail?.formats?.thumbnail?.url}
-          width={thumbnail?.formats?.thumbnail?.width}
-          height={thumbnail?.formats?.thumbnail?.height}
-          style={{ height: "100%" }}
+          component={() => (
+            <Image
+              className="MuiAvatar-img"
+              aria-label={thumbnail?.alternativeText}
+              src={thumbnail?.url}
+              alt={thumbnail?.alternativeText}
+              title={thumbnail?.caption}
+              width={thumbnail?.width}
+              height={thumbnail?.height}
+            />
+          )}
         />
         <CardContent>
           <Title
@@ -160,13 +164,9 @@ ProjectCard.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    formats: PropTypes.objectOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.height,
-      })
-    ),
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.height,
   }),
   description: PropTypes.objectOf(PropTypes.string),
 }
