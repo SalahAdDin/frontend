@@ -284,12 +284,14 @@ const Home = ({
             </Grid>
             <Grid item xs={12} sm={5}>
               {/* TODO: may we get this from the backend? */}
-              <img
-                srcSet="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473431/large_homeherodesktop_0940cc6d70.png 1000w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473432/medium_homeherodesktop_0940cc6d70.png 750w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png 500w"
-                src="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png"
-                width="500"
-                height="580"
-                alt="Home - Hero background"
+              <Image
+                className="MuiAvatar-img"
+                src="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473428/homeherodesktop_0940cc6d70.png"
+                width={500}
+                height={580}
+                alt="Home - Hero portrait"
+                aria-label="Home - Hero portrait"
+                title="Home"
               />
             </Grid>
           </Grid>
