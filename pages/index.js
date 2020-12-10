@@ -47,12 +47,6 @@ const useStyles = makeStyles((theme) => ({
     "& > div:first-child > *": {
       marginBottom: "1.5rem",
     },
-    "& img": {
-      maxWidth: "100%",
-      height: "auto",
-      verticalAlign: "middle",
-      display: "block",
-    },
     "& h1": {
       fontSize: 45,
       lineHeight: "1.35",
