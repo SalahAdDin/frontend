@@ -39,6 +39,16 @@ const useStyles = makeStyles((theme) => ({
       height: 600,
     },
   },
+  playerWrapper: {
+    position: "relative",
+    paddingTop: "56.25%" /* Player ratio: 100 / (1280 / 720) */,
+    margin: "30px auto",
+  },
+  reactPlayer: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+  },
 }))
 
 const CodeBlock = ({ language, value }) => {
@@ -97,9 +107,21 @@ Note:
 
 */
 
-const VideoBlock = ({ url }) => (
-  <ReactPlayer url={url} controls playing style={{ margin: "30px auto" }} />
-)
+const VideoBlock = ({ url }) => {
+  const classes = useStyles()
+  return (
+    <div className={classes.playerWrapper}>
+      <ReactPlayer
+        className={classes.reactPlayer}
+        url={url}
+        controls
+        playing
+        width="100%"
+        height="100%"
+      />
+    </div>
+  )
+}
 
 VideoBlock.propTypes = {
   url: PropTypes.string,
