@@ -14,7 +14,6 @@ const localeSubpaths = {
 
 const nextConfiguration = {
   transformManifest: (manifest) => ["/"].concat(manifest),
-  generateInDevMode: true,
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
       ? "service-worker.js"
@@ -50,9 +49,11 @@ const nextConfiguration = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["cloudinary.com"],
+    domains: ["res.cloudinary.com"],
     // loader: "cloudinary",
     // path: "https://cloudinary.com/",
+    deviceSizes: [640, 750, 828, 1080],
+    imageSizes: [16, 32, 48, 64],
   },
   async rewrites() {
     return [

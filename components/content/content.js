@@ -3,12 +3,12 @@ import ReactPlayer from "react-player/lazy"
 import ReactMarkdown from "react-markdown"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { fade, makeStyles } from "@material-ui/core"
+import VideoPlugin from "lib/remarkvideo"
+import Picture from "../fields/image"
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
-import VideoPlugin from "lib/remarkvideo"
 import oceanic from "styles/material-oceanic"
-import Image from "../fields/image"
 
 const useStyles = makeStyles((theme) => ({
   codeBlock: {
@@ -21,6 +21,22 @@ const useStyles = makeStyles((theme) => ({
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: fade(theme.palette.dark.main, 0.5),
+    },
+  },
+  image: {
+    position: "relative",
+    margin: "auto",
+    [theme.breakpoints.down("xs")]: {
+      // width: 400,
+      height: 200,
+    },
+    [theme.breakpoints.between("sm", "sm")]: {
+      // width: 700,
+      height: 500,
+    },
+    [theme.breakpoints.up("md")]: {
+      // width: 800,
+      height: 600,
     },
   },
 }))
@@ -50,9 +66,19 @@ CodeBlock.propTypes = {
   value: PropTypes.node,
 }
 
-const ImageBlock = ({ alt, src }) => (
-  <Image alt={alt} src={src} previewSrc={`${src}?lqip`} />
-)
+const ImageBlock = ({ alt, src }) => {
+  const classes = useStyles()
+  return (
+    <Picture
+      alt={alt}
+      src={src}
+      layout="fill"
+      objectFit="contain"
+      quality={80}
+      className={classes.image}
+    />
+  )
+}
 
 ImageBlock.propTypes = {
   alt: PropTypes.string,
