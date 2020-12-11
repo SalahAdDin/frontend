@@ -39,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     [theme.breakpoints.down("sm")]: { display: "none" },
   },
+  blogSubGrid: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingLeft: "8px !important",
+      paddingRight: "8px !important",
+    },
+  },
   hero: {
     paddingBottom: 140,
     [theme.breakpoints.up("sm")]: {
@@ -179,7 +187,7 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
           align="left"
           gutterBottom
         />
-        <Typography variant="body2" component="p">
+        {/* <Typography variant="body2" component="p">
           {
             description[
               Object.keys(description).find(
@@ -187,7 +195,7 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
               )
             ]
           }
-        </Typography>
+        </Typography> */}
       </Paper>
     </Link>
   )
@@ -357,7 +365,14 @@ const Home = ({
                     </Link>
                   )}
                 </Grid>
-                <Grid container item spacing={2} xs={12} md={7}>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  xs={12}
+                  md={7}
+                  className={classes.blogSubGrid}
+                >
                   {otherPost &&
                     otherPost.map((post) => (
                       <Grid key={post?.slug} item xs={12} sm={6}>
