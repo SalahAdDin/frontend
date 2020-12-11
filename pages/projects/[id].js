@@ -11,7 +11,7 @@ import useStyles from "styles/common"
 import SEO from "components/seo"
 import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
-import Image from "components/fields/image"
+import Picture from "components/fields/image"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import ErrorPage from "../_error"
@@ -85,12 +85,14 @@ const Project = ({
               style={{ margin: "auto" }}
             />
           ) : (
-            <Image
-              alt={thumbnail?.alternativeText}
-              src={thumbnail?.url}
-              previewSrc={`${thumbnail?.url}?lqip`}
-              title={thumbnail?.caption}
+            <Picture
               className={classes.heroImage}
+              aria-label={thumbnail?.alternativeText}
+              alt={thumbnail?.alternativeText}
+              title={thumbnail?.caption}
+              src={thumbnail?.url}
+              width={thumbnail?.width}
+              height={thumbnail?.height}
             />
           )}
           <Title

@@ -1,5 +1,6 @@
 import "lazysizes"
 import PropTypes from "prop-types"
+import Image from "next/image"
 import { Box, makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles(() => ({
@@ -14,27 +15,29 @@ const useStyles = makeStyles(() => ({
   },
 }))
 
-const Image = ({ alt, src, previewSrc, className = "", ...rest }) => {
+const Picture = ({ alt, src, className = "", width, height, ...rest }) => {
   const classes = useStyles()
   return (
-    <Box style={{ display: "flex" }} className={className}>
-      <img
+    <Box style={{ display: "flex", justifyContent: "center" }} className={className}>
+      <Image
         className={`lazyload ${classes.blurUp}`}
         alt={alt}
-        src={previewSrc}
-        data-srcset={src}
-        style={{ margin: "auto", width: "100%" }}
+        src={src}
+        quality={80}
+        width={width}
+        height={height}
         {...rest}
       />
     </Box>
   )
 }
 
-Image.propTypes = {
+Picture.propTypes = {
   alt: PropTypes.string,
   src: PropTypes.string.isRequired,
-  previewSrc: PropTypes.string.isRequired,
   className: PropTypes.string,
+  width: PropTypes.number,
+  height: PropTypes.number,
 }
 
-export default Image
+export default Picture

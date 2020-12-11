@@ -11,7 +11,7 @@ import { CMS_AUTHOR, CMS_URL, DISQUS_SHORT_NAME } from "lib/constants"
 import useStyles from "styles/common"
 import { Body } from "components/body"
 import Title from "components/fields/title"
-import Image from "components/fields/image"
+import Picture from "components/fields/image"
 import Loader from "components/loader"
 import ErrorPage from "../_error"
 
@@ -27,7 +27,7 @@ const Post = ({
   tags,
   preview,
 }) => {
-  const globalClasses = useStyles()
+  const classes = useStyles()
   const router = useRouter()
 
   const postURL = process.env.NEXT_PUBLIC_BASE_URL + router.asPath
@@ -78,12 +78,14 @@ const Post = ({
             description={description?.description_en}
           />
           {thumbnail && (
-            <Image
+            <Picture
+              className={classes.heroImage}
+              aria-label={thumbnail?.alternativeText}
               alt={thumbnail?.alternativeText}
-              src={thumbnail?.url}
-              previewSrc={`${thumbnail?.url}?lqip`}
               title={thumbnail?.caption}
-              className={globalClasses.heroImage}
+              src={thumbnail?.url}
+              width={thumbnail?.width}
+              height={thumbnail?.height}
             />
           )}
           <Title
@@ -94,7 +96,7 @@ const Post = ({
             gutterBottom
           />
           <Body body={body} />
-          <Paper elevation={0} className={globalClasses.tagsContainer}>
+          <Paper elevation={0} className={classes.tagsContainer}>
             {tags.length > 0 &&
               tags?.map((tag) => (
                 <Link href={`/tags/${tag.slug}`} passHref key={`tag_${tag.id}`}>
@@ -126,6 +128,7 @@ Post.propTypes = {
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
     height: PropTypes.number,
+    width: PropTypes.number,
     url: PropTypes.string.isRequired,
   }),
   description: PropTypes.objectOf(PropTypes.string).isRequired,
