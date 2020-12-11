@@ -53,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     },
     "& p": { color: theme.palette.muted.main, lineHeight: 1.8, marginBottom: 24 },
     "& a": { borderRadius: "50rem", textTransform: "none" },
+    "@media screen and (min-height: 1050px)": {
+      height: "50vh",
+    },
   },
   telephone: {
     width: "inherit",
