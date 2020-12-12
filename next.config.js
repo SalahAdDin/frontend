@@ -4,7 +4,6 @@ const withPlugins = require("next-compose-plugins")
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
 // })
-const optimizedImages = require("next-optimized-images")
 
 const localeSubpaths = {
   en: "en",
@@ -83,7 +82,6 @@ const nextConfiguration = {
 
 module.exports = withPlugins([
   // [withBundleAnalyzer],
-  [optimizedImages],
   // [withOffline],
   withOffline(nextConfiguration),
 ])
