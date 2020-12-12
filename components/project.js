@@ -9,6 +9,7 @@ import {
   IconButton,
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
+import Image from "next/image"
 import { useRouter } from "next/router"
 import { useTranslation } from "../i18n"
 import Tag from "./fields/tag"
@@ -29,13 +30,17 @@ const Project = ({ id, title, title_en: titleEn, thumbnail, description, tags })
     >
       <Card>
         <CardMedia
-          component="img"
-          alt={thumbnail?.alternativeText}
-          title={thumbnail?.caption}
-          image={thumbnail?.formats?.thumbnail?.url}
-          width={thumbnail?.formats?.thumbnail?.width}
-          height={thumbnail?.formats?.thumbnail?.height}
-          style={{ height: "100%" }}
+          component={() => (
+            <Image
+              className="MuiAvatar-img"
+              aria-label={thumbnail?.alternativeText}
+              src={thumbnail?.url}
+              alt={thumbnail?.alternativeText}
+              title={thumbnail?.caption}
+              width={thumbnail?.width}
+              height={thumbnail?.height}
+            />
+          )}
         />
         <CardContent>
           <Title
@@ -86,13 +91,9 @@ Project.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    formats: PropTypes.objectOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.height,
-      })
-    ),
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.height,
   }),
   tags: PropTypes.arrayOf(PropTypes.object),
 }

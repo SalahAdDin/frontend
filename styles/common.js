@@ -1,6 +1,23 @@
 import { makeStyles } from "@material-ui/core"
 
 const useStyles = makeStyles((theme) => ({
+  avatarHeader: {
+    "& .MuiCardHeader-avatar": {
+      overflow: "hidden",
+      display: "flex",
+      width: theme.spacing(30),
+      height: theme.spacing(30),
+      borderRadius: "50%",
+    },
+    [theme.breakpoints.down(660)]: {
+      display: "block",
+      "& .MuiCardHeader-avatar": { marginRight: 0, marginBottom: 24 },
+    },
+  },
+  noPadding: {
+    margin: 0,
+    padding: 0,
+  },
   inlineSmallIcon: {
     width: "1.125rem",
     verticalAlign: "middle",
@@ -36,6 +53,9 @@ const useStyles = makeStyles((theme) => ({
     },
     "& p": { color: theme.palette.muted.main, lineHeight: 1.8, marginBottom: 24 },
     "& a": { borderRadius: "50rem", textTransform: "none" },
+    "@media screen and (min-height: 1050px)": {
+      height: "50vh",
+    },
   },
   telephone: {
     width: "inherit",

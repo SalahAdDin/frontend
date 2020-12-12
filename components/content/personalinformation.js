@@ -1,36 +1,12 @@
 import PropTypes from "prop-types"
-import {
-  makeStyles,
-  Avatar,
-  Card,
-  CardContent,
-  CardHeader,
-  Typography,
-  List,
-} from "@material-ui/core"
+import { Avatar, Card, CardContent, CardHeader, Typography } from "@material-ui/core"
 import { MailOutline, Room } from "@material-ui/icons"
 import { Skeleton } from "@material-ui/lab"
-import useGlobalStyles from "styles/common"
+import Image from "next/image"
+import useStyles from "styles/common"
 import { DynamicZone } from "../body"
 import Telephone from "../fields/telephone"
 import URL from "../fields/url"
-
-const useStyles = makeStyles((theme) => ({
-  header: {
-    [theme.breakpoints.down(660)]: {
-      display: "block",
-      "& .MuiCardHeader-avatar": { marginRight: 0, marginBottom: 16 },
-    },
-  },
-  large: {
-    width: theme.spacing(30),
-    height: theme.spacing(30),
-  },
-  noPadding: {
-    margin: 0,
-    padding: 0,
-  },
-}))
 
 const PersonalInformation = ({
   name,
@@ -44,26 +20,27 @@ const PersonalInformation = ({
   aboutme,
 }) => {
   const classes = useStyles()
-  const globalClasses = useGlobalStyles()
 
   return (
     <Card elevation={0} component="section">
       <CardHeader
         align="center"
-        className={classes.header}
+        className={classes.avatarHeader}
         avatar={
           photo ? (
             <Avatar
-              aria-label="Profile Photo"
-              alt="Profile Photo"
-              srcSet={`${photo?.formats?.large?.url} 1000w, ${photo?.formats?.medium?.url} 750w,${photo?.formats?.small?.url} 500w`}
-              src={photo?.formats?.small?.url}
-              align="center"
-              className={classes.large}
-              imgProps={{
-                width: photo?.formats?.small?.width,
-                height: photo?.formats?.small?.height,
-              }}
+              component={() => (
+                <Image
+                  alt={photo?.alternativeText}
+                  title={photo?.caption}
+                  aria-label={photo?.alternativeText}
+                  className="MuiAvatar-img"
+                  width={240}
+                  height={320}
+                  src={photo?.url}
+                  align="center"
+                />
+              )}
             >
               LA
             </Avatar>
@@ -81,7 +58,7 @@ const PersonalInformation = ({
                 {position}
               </Typography>
               <Typography color="textSecondary" variant="subtitle1" component="h4">
-                <MailOutline className={globalClasses.inlineSmallIcon} />
+                <MailOutline className={classes.inlineSmallIcon} />
                 {mail}
               </Typography>
             </>
@@ -98,7 +75,7 @@ const PersonalInformation = ({
           address ? (
             <>
               <Typography variant="body2" component="p">
-                <Room className={globalClasses.inlineSmallIcon} />
+                <Room className={classes.inlineSmallIcon} />
                 {address.address && `${address.address} / `}
                 {`${address.city} `}
                 {address.postalcode && `[${address.postalcode}]`}
@@ -139,13 +116,11 @@ const PersonalInformation = ({
 PersonalInformation.propTypes = {
   name: PropTypes.string.isRequired,
   photo: PropTypes.shape({
-    formats: PropTypes.objectOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.height,
-      })
-    ),
+    alternativeText: PropTypes.string,
+    caption: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+    url: PropTypes.string.isRequired,
   }),
   position: PropTypes.string,
   mail: PropTypes.string,

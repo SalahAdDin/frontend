@@ -4,7 +4,6 @@ const withPlugins = require("next-compose-plugins")
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
 // })
-const optimizedImages = require("next-optimized-images")
 
 const localeSubpaths = {
   en: "en",
@@ -14,7 +13,6 @@ const localeSubpaths = {
 
 const nextConfiguration = {
   transformManifest: (manifest) => ["/"].concat(manifest),
-  generateInDevMode: true,
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
       ? "service-worker.js"
@@ -50,9 +48,11 @@ const nextConfiguration = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["cloudinary.com"],
+    domains: ["res.cloudinary.com"],
     // loader: "cloudinary",
     // path: "https://cloudinary.com/",
+    deviceSizes: [640, 750, 828, 1080],
+    imageSizes: [16, 32, 48, 64],
   },
   async rewrites() {
     return [
@@ -82,7 +82,6 @@ const nextConfiguration = {
 
 module.exports = withPlugins([
   // [withBundleAnalyzer],
-  [optimizedImages],
   // [withOffline],
   withOffline(nextConfiguration),
 ])

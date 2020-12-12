@@ -14,6 +14,7 @@ import {
 } from "@material-ui/core"
 import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt"
 import { Skeleton } from "@material-ui/lab"
+import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { DynamicZone } from "components/body"
@@ -22,23 +23,12 @@ import Skill from "components/fields/skill"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import SEO from "components/seo"
+import useGlobalStyles from "styles/common"
 import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
 import ErrorPage from "./_error"
 import { useTranslation } from "../i18n"
 
 const useStyles = makeStyles((theme) => ({
-  aboutMeCard: {
-    [theme.breakpoints.down(660)]: {
-      "& .MuiCardHeader-root": {
-        display: "block",
-      },
-    },
-    [theme.breakpoints.up(660)]: {
-      "& .MuiCardHeader-content": {
-        marginLeft: 65,
-      },
-    },
-  },
   background: {
     background: "url(static/images/hero-1-bg.png) 100% top no-repeat",
     height: "130%",
@@ -49,6 +39,14 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     [theme.breakpoints.down("sm")]: { display: "none" },
   },
+  blogSubGrid: {
+    [theme.breakpoints.down("xs")]: {
+      marginLeft: "auto",
+      marginRight: "auto",
+      paddingLeft: "8px !important",
+      paddingRight: "8px !important",
+    },
+  },
   hero: {
     paddingBottom: 140,
     [theme.breakpoints.up("sm")]: {
@@ -56,12 +54,6 @@ const useStyles = makeStyles((theme) => ({
     },
     "& > div:first-child > *": {
       marginBottom: "1.5rem",
-    },
-    "& img": {
-      maxWidth: "100%",
-      height: "auto",
-      verticalAlign: "middle",
-      display: "block",
     },
     "& h1": {
       fontSize: 45,
@@ -90,10 +82,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
-    "& img": {
-      borderRadius: "4px 4px 0 0",
-      height: "calc(100% - 200px)",
-    },
   },
   postNote: {
     cursor: "pointer",
@@ -141,13 +129,17 @@ const ProjectCard = ({ id, title_en: titleEn, title, thumbnail, description }) =
     <Link href={`/projects/${id}`}>
       <Card style={{ cursor: "pointer" }}>
         <CardMedia
-          component="img"
-          alt={thumbnail?.alternativeText}
-          title={thumbnail?.caption}
-          image={thumbnail?.formats?.thumbnail?.url}
-          width={thumbnail?.formats?.thumbnail?.width}
-          height={thumbnail?.formats?.thumbnail?.height}
-          style={{ height: "100%" }}
+          component={() => (
+            <Image
+              className="MuiAvatar-img"
+              aria-label={thumbnail?.alternativeText}
+              src={thumbnail?.url}
+              alt={thumbnail?.alternativeText}
+              title={thumbnail?.caption}
+              width={thumbnail?.width}
+              height={thumbnail?.height}
+            />
+          )}
         />
         <CardContent>
           <Title
@@ -174,13 +166,9 @@ ProjectCard.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    formats: PropTypes.objectOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.height,
-      })
-    ),
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.height,
   }),
   description: PropTypes.objectOf(PropTypes.string),
 }
@@ -199,7 +187,7 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
           align="left"
           gutterBottom
         />
-        <Typography variant="body2" component="p">
+        {/* <Typography variant="body2" component="p">
           {
             description[
               Object.keys(description).find(
@@ -207,7 +195,7 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
               )
             ]
           }
-        </Typography>
+        </Typography> */}
       </Paper>
     </Link>
   )
@@ -248,6 +236,7 @@ const Home = ({
   projects,
 }) => {
   const classes = useStyles()
+  const globalClasses = useGlobalStyles()
   const router = useRouter()
   const { t, i18n } = useTranslation()
 
@@ -297,12 +286,14 @@ const Home = ({
             </Grid>
             <Grid item xs={12} sm={5}>
               {/* TODO: may we get this from the backend? */}
-              <img
-                srcSet="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473431/large_homeherodesktop_0940cc6d70.png 1000w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473432/medium_homeherodesktop_0940cc6d70.png 750w,https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png 500w"
-                src="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473433/small_homeherodesktop_0940cc6d70.png"
-                width="500"
-                height="580"
-                alt="Home - Hero background"
+              <Image
+                className="MuiAvatar-img"
+                src="https://res.cloudinary.com/dqhx2k8cf/image/upload/v1606473428/homeherodesktop_0940cc6d70.png"
+                width={500}
+                height={580}
+                alt="Home - Hero portrait"
+                aria-label="Home - Hero portrait"
+                title="Home"
               />
             </Grid>
           </Grid>
@@ -348,12 +339,17 @@ const Home = ({
                     <Link href={`/posts/${firstPost?.slug}`}>
                       <Card className={classes.mainPostNote}>
                         <CardMedia
-                          component="img"
-                          alt={firstPost?.thumbnail?.alternativeText}
-                          title={firstPost?.thumbnail?.caption}
-                          image={firstPost?.thumbnail?.formats?.thumbnail?.url}
-                          width={firstPost?.thumbnail?.formats?.thumbnail?.width}
-                          height={firstPost?.thumbnail?.formats?.thumbnail?.height}
+                          component={() => (
+                            <Image
+                              className="MuiAvatar-img"
+                              aria-label={firstPost?.thumbnail?.alternativeText}
+                              src={firstPost?.thumbnail?.url}
+                              alt={firstPost?.thumbnail?.alternativeText}
+                              title={firstPost?.thumbnail?.caption}
+                              width={firstPost?.thumbnail?.width}
+                              height={firstPost?.thumbnail?.height}
+                            />
+                          )}
                         />
                         <CardContent>
                           <Title
@@ -369,7 +365,14 @@ const Home = ({
                     </Link>
                   )}
                 </Grid>
-                <Grid container item spacing={2} xs={12} md={7}>
+                <Grid
+                  container
+                  item
+                  spacing={2}
+                  xs={12}
+                  md={7}
+                  className={classes.blogSubGrid}
+                >
                   {otherPost &&
                     otherPost.map((post) => (
                       <Grid key={post?.slug} item xs={12} sm={6}>
@@ -397,20 +400,25 @@ const Home = ({
               className={classes.sectionContent}
               component={{ ...aboutMe, __typename: "ComponentContentContent" }}
             />
-            <Card elevation={0} component="div" className={classes.aboutMeCard}>
+            <Card elevation={0} component="div">
               <CardHeader
+                align="center"
+                className={globalClasses.avatarHeader}
                 avatar={
                   profilePhoto ? (
                     <Avatar
-                      aria-label="Profile Photo"
-                      alt="Profile Photo"
-                      srcSet={`${profilePhoto?.formats?.large?.url} 1000w, ${profilePhoto?.formats?.medium?.url} 750w,${profilePhoto?.formats?.small?.url} 500w`}
-                      src={profilePhoto?.formats?.small?.url}
-                      className={classes.large}
-                      imgProps={{
-                        width: profilePhoto?.formats?.small?.width,
-                        height: profilePhoto?.formats?.small?.height,
-                      }}
+                      component={() => (
+                        <Image
+                          alt={profilePhoto?.alternativeText}
+                          title={profilePhoto?.caption}
+                          aria-label={profilePhoto?.alternativeText}
+                          className="MuiAvatar-img"
+                          width={240}
+                          height={320}
+                          src={profilePhoto?.url}
+                          align="center"
+                        />
+                      )}
                     >
                       LA
                     </Avatar>

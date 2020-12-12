@@ -1,4 +1,5 @@
 import PropTypes from "prop-types"
+import Image from "next/image"
 import { useRouter } from "next/router"
 import {
   Grid,
@@ -37,13 +38,17 @@ const Post = ({
         {/* TODO: Pass correct components inside of article ever i used as article component */}
         {thumbnail && (
           <CardMedia
-            component="img"
-            alt={thumbnail?.alternativeText}
-            title={thumbnail?.caption}
-            image={thumbnail?.formats?.thumbnail?.url}
-            width={thumbnail?.formats?.thumbnail?.width}
-            height={thumbnail?.formats?.thumbnail?.height}
-            style={{ height: "100%" }}
+            component={() => (
+              <Image
+                className="MuiAvatar-img"
+                aria-label={thumbnail?.alternativeText}
+                src={thumbnail?.url}
+                alt={thumbnail?.alternativeText}
+                title={thumbnail?.caption}
+                width={thumbnail?.width}
+                height={thumbnail?.height}
+              />
+            )}
           />
         )}
         <CardContent component="main">
@@ -94,13 +99,9 @@ Post.propTypes = {
   thumbnail: PropTypes.shape({
     alternativeText: PropTypes.string,
     caption: PropTypes.string,
-    formats: PropTypes.objectOf(
-      PropTypes.shape({
-        url: PropTypes.string,
-        width: PropTypes.number,
-        height: PropTypes.height,
-      })
-    ),
+    url: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.height,
   }),
   description: PropTypes.objectOf(PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),
