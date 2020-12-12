@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
       borderRadius: "50%",
     },
     [theme.breakpoints.down(660)]: {
-      display: "block",
+      display: "block !important",
       "& .MuiCardHeader-avatar": { marginRight: 0, marginBottom: 24 },
     },
   },
