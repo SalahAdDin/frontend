@@ -1,8 +1,9 @@
-import "lazysizes"
+// import "lazysizes"
 import PropTypes from "prop-types"
 import Image from "next/image"
-import { Box, makeStyles } from "@material-ui/core"
+import { Box } from "@material-ui/core"
 
+/*
 const useStyles = makeStyles(() => ({
   blurUp: {
     WebkitFilter: "blur(5px)",
@@ -14,13 +15,12 @@ const useStyles = makeStyles(() => ({
     },
   },
 }))
+*/
 
 const Picture = ({ alt, src, className = "", width, height, ...rest }) => {
-  const classes = useStyles()
   return (
     <Box style={{ display: "flex", justifyContent: "center" }} className={className}>
       <Image
-        className={`lazyload ${classes.blurUp}`}
         alt={alt}
         src={src}
         quality={80}
