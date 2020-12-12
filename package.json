@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\""
+    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
+    "find:unused": "next-unused"
   },
   "husky": {
     "hooks": {
@@ -23,6 +24,26 @@
     "*.+(json|css|md)": [
       "prettier --write",
       "git add"
+    ]
+  },
+  "next-unused": {
+    "alias": {
+      "lib": "lib/",
+      "assets": "assets/",
+      "styles": "styles/",
+      "components": "components/"
+    },
+    "debug": true,
+    "include": [
+      "assets",
+      "components",
+      "lib",
+      "pages",
+      "styles"
+    ],
+    "exclude": [],
+    "entrypoints": [
+      "pages"
     ]
   },
   "repository": {
@@ -62,6 +83,7 @@
     "eslint-plugin-react-hooks": "^4.1.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
+    "next-unused": "^0.0.3",
     "prettier": "^2.0.5"
   }
 }
