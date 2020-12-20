@@ -68,7 +68,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-markdown": "5.0.3",
-    "react-player": "^2.7.0",
+    "react-player": "^2.7.2",
     "react-syntax-highlighter": "^15.4.3"
   },
   "devDependencies": {
