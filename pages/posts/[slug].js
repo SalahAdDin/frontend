@@ -104,15 +104,16 @@ const Post = ({
                 </Link>
               ))}
           </Paper>
-
-          <DiscussionEmbed
-            shortname={DISQUS_SHORT_NAME}
-            config={{
-              url: postURL,
-              identifier: slug,
-              title: titleEn,
-            }}
-          />
+          {process.env.NODE_ENV === "production" && (
+            <DiscussionEmbed
+              shortname={DISQUS_SHORT_NAME}
+              config={{
+                url: postURL,
+                identifier: slug,
+                title: titleEn,
+              }}
+            />
+          )}
         </>
       )}
     </Layout>
