@@ -129,7 +129,7 @@ const Post = ({
                 First tag: category
                 Others: order does not matter
                 */
-                category_id: DISQUS_CATEGORIES[tags[0].slug],
+                category_id: DISQUS_CATEGORIES[tags[0]?.slug],
               }}
             />
           )}
