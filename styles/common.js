@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     flexWrap: "wrap",
     marginBottom: 48,
-    "& > *": {
+    "& > div, hr, a": {
       margin: theme.spacing(1),
     },
   },
