@@ -15,6 +15,14 @@ import Picture from "components/fields/image"
 import Loader from "components/loader"
 import ErrorPage from "../_error"
 
+const DISQUS_CATEGORIES = {
+  general: "8664428",
+  "front-end": "8755878",
+  "back-end": "8755881",
+  "deep-learning": "8755886",
+  "video-games": "8755887",
+}
+
 const Post = ({
   slug,
   title_en: titleEn,
@@ -67,6 +75,11 @@ const Post = ({
                 },
               ],
             }}
+            twitter={{
+              image: {
+                alt: thumbnail?.caption,
+              },
+            }}
           />
           <BlogJsonLd
             url={postURL}
@@ -111,6 +124,12 @@ const Post = ({
                 url: postURL,
                 identifier: slug,
                 title: titleEn,
+                /*
+                Must be
+                First tag: category
+                Others: order does not matter
+                */
+                category_id: DISQUS_CATEGORIES[tags[0].slug],
               }}
             />
           )}

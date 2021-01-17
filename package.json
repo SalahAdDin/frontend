@@ -1,6 +1,6 @@
 {
   "name": "frontend",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -56,11 +56,11 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@svgr/webpack": "^5.5.0",
-    "dayjs": "^1.9.7",
+    "dayjs": "1.10.3",
     "disqus-react": "^1.0.10",
-    "fontsource-dm-sans": "^3.1.5",
-    "fontsource-nunito": "^3.1.5",
-    "next": "^10.0.3",
+    "fontsource-dm-sans": "4.0.0",
+    "fontsource-nunito": "4.0.0",
+    "next": "10.0.5",
     "next-compose-plugins": "^2.2.0",
     "next-i18next": "7.0.1",
     "next-offline": "^5.0.3",
@@ -73,17 +73,18 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.15.0",
+    "eslint": "7.18.0",
     "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "^7.0.0",
+    "eslint-config-prettier": "7.1.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "^3.2.0",
-    "eslint-plugin-react": "^7.20.3",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "^4.1.2",
-    "husky": "^4.3.5",
+    "husky": "4.3.8",
     "lint-staged": "^10.5.3",
     "next-unused": "^0.0.3",
-    "prettier": "2.2.1"
+    "prettier": "2.2.1",
+    "prop-types": "^15.7.2"
   }
 }

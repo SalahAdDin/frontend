@@ -168,7 +168,7 @@ ProjectCard.propTypes = {
     caption: PropTypes.string,
     url: PropTypes.string,
     width: PropTypes.number,
-    height: PropTypes.height,
+    height: PropTypes.number,
   }),
   description: PropTypes.objectOf(PropTypes.string),
 }
@@ -334,7 +334,7 @@ const Home = ({
                 {t("posts")}
               </Typography>
               <Grid container spacing={4}>
-                <Grid item xs={12} md={5}>
+                <Grid item xs={12} sm={5}>
                   {firstPost && (
                     <Link href={`/posts/${firstPost?.slug}`}>
                       <Card className={classes.mainPostNote}>
@@ -370,7 +370,7 @@ const Home = ({
                   item
                   spacing={2}
                   xs={12}
-                  md={7}
+                  sm={7}
                   className={classes.blogSubGrid}
                 >
                   {otherPost &&
