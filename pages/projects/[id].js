@@ -69,6 +69,11 @@ const Project = ({
                 },
               ],
             }}
+            twitter={{
+              image: {
+                alt: thumbnail?.alternativeText,
+              },
+            }}
           />
           <ProductJsonLd
             productName={titleEn}
@@ -122,7 +127,9 @@ const Project = ({
           </Paper>
           <Divider light />
           {content ? (
-            <DynamicZone component={content} />
+            <DynamicZone
+              component={{ ...content, __typename: "ComponentContentContent" }}
+            />
           ) : (
             <>
               <Skeleton

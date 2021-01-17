@@ -2,7 +2,7 @@
   "alert": {
     "preview-mode": {
       "title": "Uyarı",
-      "message": "Web sitesine - <strong>önizleme modunda</strong> - bakıyorsunuz."
+      "message": "Web sitesine - <strong>ön-izleme modunda</strong> - bakıyorsunuz."
     }
   },
   "error": {

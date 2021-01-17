@@ -59,6 +59,11 @@ const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
                 gender: "male",
               },
             }}
+            twitter={{
+              image: {
+                alt: personalInformation.photo.caption,
+              },
+            }}
           />
           <SocialProfileJsonLd
             type="Person"
