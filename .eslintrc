@@ -5,8 +5,20 @@
     "es6": true
   },
   "parser": "babel-eslint",
-  "plugins": ["import"],
-  "extends": ["plugin:prettier/recommended", "plugin:react/recommended"],
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "react-hooks"
+  ],
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 2018,
     "sourceType": "module"
@@ -20,6 +32,13 @@
   "settings": {
     "react": {
       "version": "latest"
+    },
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "."
+        ]
+      }
     }
   }
 }
