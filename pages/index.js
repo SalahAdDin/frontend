@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import {
   Avatar,
   Button,
@@ -17,16 +16,17 @@ import { Skeleton } from "@material-ui/lab"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import { useTranslation } from "next-i18next"
+import PropTypes from "prop-types"
 import { DynamicZone } from "components/body"
 import Title from "components/fields/title"
 import Skill from "components/fields/skill"
 import Layout from "components/layout"
 import Loader from "components/loader"
 import SEO from "components/seo"
-import useGlobalStyles from "styles/common"
 import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
+import useGlobalStyles from "styles/common"
 import ErrorPage from "./_error"
-import { useTranslation } from "../i18n"
 
 const useStyles = makeStyles((theme) => ({
   background: {

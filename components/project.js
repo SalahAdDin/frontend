@@ -1,17 +1,17 @@
-import PropTypes from "prop-types"
 import {
   Card,
   CardActions,
   CardContent,
   CardMedia,
   Grid,
-  Typography,
   IconButton,
+  Typography,
 } from "@material-ui/core"
 import { NavigateNext } from "@material-ui/icons"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { useTranslation } from "../i18n"
+import { useTranslation } from "next-i18next"
+import PropTypes from "prop-types"
 import Tag from "./fields/tag"
 import Title from "./fields/title"
 

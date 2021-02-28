@@ -1,27 +1,27 @@
 import React from "react"
-import PropTypes from "prop-types"
-import clsx from "clsx"
-import Link from "next/link"
 import {
   AppBar,
   Box,
   Container,
+  darken,
+  fade,
+  Fade,
   FormControl,
+  IconButton,
+  makeStyles,
   MenuItem,
   Select,
   Slide,
   Toolbar,
   useScrollTrigger,
-  makeStyles,
-  darken,
-  fade,
-  IconButton,
-  Fade,
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
+import clsx from "clsx"
+import Link from "next/link"
 import { useRouter } from "next/router"
+import { useTranslation } from "next-i18next"
+import PropTypes from "prop-types"
 import { menuLinks } from "lib/constants"
-import { useTranslation } from "../i18n"
 
 const useStyles = makeStyles((theme) => ({
   root: {

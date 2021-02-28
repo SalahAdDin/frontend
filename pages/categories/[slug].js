@@ -1,11 +1,11 @@
-import PropTypes from "prop-types"
+import { Grid, Typography } from "@material-ui/core"
 import { useRouter } from "next/router"
-import { Typography, Grid } from "@material-ui/core"
-import { getCategoryBySlug, getAllCategoriesWithSlug } from "lib/api/categories"
+import PropTypes from "prop-types"
 import SEO from "components/seo"
 import Layout from "components/layout"
 import Project from "components/project"
 import Loader from "components/loader"
+import { getAllCategoriesWithSlug, getCategoryBySlug } from "lib/api/categories"
 import ErrorPage from "../_error"
 
 const Category = ({ name, slug, description, projects }) => {

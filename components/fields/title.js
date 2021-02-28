@@ -1,6 +1,6 @@
-import PropTypes from "prop-types"
 import { Typography } from "@material-ui/core"
-import { useTranslation } from "../../i18n"
+import { useTranslation } from "next-i18next"
+import PropTypes from "prop-types"
 
 const Title = ({
   title,

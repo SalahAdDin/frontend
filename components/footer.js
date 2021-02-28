@@ -2,17 +2,17 @@ import PropTypes from "prop-types"
 import Link from "next/link"
 import {
   Container,
+  fade,
   Grid,
   Link as LinkUI,
-  Typography,
   makeStyles,
-  fade,
+  Typography,
 } from "@material-ui/core"
+import { useTranslation } from "next-i18next"
 import NextIcon from "assets/svg/nextjs.svg"
 import StrapiIcon from "assets/svg/strapi-logo-light.svg"
 import { footerLinks, socialMediaLinks } from "lib/constants"
 import URL from "./fields/url"
-import { useTranslation } from "../i18n"
 
 const useStyles = makeStyles((theme) => ({
   root: {

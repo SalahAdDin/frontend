@@ -1,6 +1,6 @@
 import React from "react"
-import Document, { Html, Head, Main, NextScript } from "next/document"
 import { ServerStyleSheets } from "@material-ui/core"
+import Document, { Head, Html, Main, NextScript } from "next/document"
 import i18nPropsFromCtx from "lib/i18n"
 import theme from "styles/theme"
 

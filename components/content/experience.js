@@ -1,27 +1,27 @@
-import PropTypes from "prop-types"
 import {
   Card,
   CardContent,
   CardHeader,
   Link,
-  Typography,
   makeStyles,
+  Typography,
 } from "@material-ui/core"
 import { Language, Room } from "@material-ui/icons"
 import {
   Skeleton,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
   TimelineItem,
   TimelineOppositeContent,
   TimelineSeparator,
-  TimelineDot,
-  TimelineConnector,
-  TimelineContent,
 } from "@material-ui/lab"
 import dayjs from "dayjs"
 import "dayjs/locale/es"
 import "dayjs/locale/tr"
+import { useTranslation } from "next-i18next"
+import PropTypes from "prop-types"
 import useGlobalStyles from "styles/common"
-import { useTranslation } from "../../i18n"
 import Content from "./content"
 
 const useStyles = makeStyles((theme) => ({
