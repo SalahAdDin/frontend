@@ -1,19 +1,19 @@
-import { Chip, Paper } from "@material-ui/core"
-import { DiscussionEmbed } from "disqus-react"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { BlogJsonLd } from "next-seo"
-import PropTypes from "prop-types"
-import { Body } from "components/body"
-import Title from "components/fields/title"
-import Picture from "components/fields/image"
-import Layout from "components/layout"
-import Loader from "components/loader"
-import SEO from "components/seo"
-import { getAllPagesWithSlug, getPageBySlug } from "lib/api/pages"
-import { CMS_AUTHOR, CMS_URL, DISQUS_SHORT_NAME } from "lib/constants"
-import useStyles from "styles/common"
-import ErrorPage from "../_error"
+import { Chip, Paper } from "@material-ui/core";
+import { DiscussionEmbed } from "disqus-react";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { BlogJsonLd } from "next-seo";
+import PropTypes from "prop-types";
+import { Body } from "components/body";
+import Title from "components/fields/title";
+import Picture from "components/fields/image";
+import Layout from "components/layout";
+import Loader from "components/loader";
+import SEO from "components/seo";
+import { getAllPagesWithSlug, getPageBySlug } from "lib/api/pages";
+import { CMS_AUTHOR, CMS_URL, DISQUS_SHORT_NAME } from "lib/constants";
+import useStyles from "styles/common";
+import ErrorPage from "../_error";
 
 const DISQUS_CATEGORIES = {
   general: "8664428",
@@ -21,7 +21,7 @@ const DISQUS_CATEGORIES = {
   "back-end": "8755881",
   "deep-learning": "8755886",
   "video-games": "8755887",
-}
+};
 
 const Post = ({
   slug,
@@ -35,13 +35,13 @@ const Post = ({
   tags,
   preview,
 }) => {
-  const classes = useStyles()
-  const router = useRouter()
+  const classes = useStyles();
+  const router = useRouter();
 
-  const postURL = process.env.NEXT_PUBLIC_BASE_URL + router.asPath
+  const postURL = process.env.NEXT_PUBLIC_BASE_URL + router.asPath;
 
   if (!router.isFallback && !slug) {
-    return <ErrorPage statusCode={404} />
+    return <ErrorPage statusCode={404} />;
   }
 
   return (
@@ -129,15 +129,15 @@ const Post = ({
                 First tag: category
                 Others: order does not matter
                 */
-                category_id: DISQUS_CATEGORIES[tags[0]?.slug],
+                categoryId: DISQUS_CATEGORIES[tags[0]?.slug],
               }}
             />
           )}
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 Post.propTypes = {
   created_at: PropTypes.string,
@@ -156,20 +156,20 @@ Post.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
   preview: PropTypes.bool,
-}
+};
 
 export const getStaticProps = async ({ params, preview = null }) => {
-  const data = await getPageBySlug(params.slug, preview)
+  const data = await getPageBySlug(params.slug, preview);
 
-  return { props: { preview, ...data?.pages[0] } }
-}
+  return { props: { preview, ...data?.pages[0] } };
+};
 
 export async function getStaticPaths() {
-  const posts = await getAllPagesWithSlug()
+  const posts = await getAllPagesWithSlug();
   return {
     paths: posts?.map((post) => `/posts/${post.slug}`) || [],
     fallback: true,
-  }
+  };
 }
 
-export default Post
+export default Post;

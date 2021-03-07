@@ -1,10 +1,10 @@
-import PropTypes from "prop-types"
-import { Button, Container } from "@material-ui/core"
-import { Alert, AlertTitle } from "@material-ui/lab"
-import { Trans, useTranslation } from "../i18n"
+import PropTypes from "prop-types";
+import { Button, Container } from "@material-ui/core";
+import { Alert, AlertTitle } from "@material-ui/lab";
+import { Trans, useTranslation } from "next-i18next";
 
 const Layout = ({ preview, children }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   return (
     <>
       <Container
@@ -31,12 +31,12 @@ const Layout = ({ preview, children }) => {
         {children}
       </Container>
     </>
-  )
-}
+  );
+};
 
 Layout.propTypes = {
   children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
   preview: PropTypes.bool,
-}
+};
 
-export default Layout
+export default Layout;
