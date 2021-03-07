@@ -1,15 +1,15 @@
-// const { nextI18NextRewrites } = require("next-i18next/rewrites")
-const withOffline = require("next-offline")
-const withPlugins = require("next-compose-plugins")
+const withOffline = require("next-offline");
+const withPlugins = require("next-compose-plugins");
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
 // })
+const { i18n } = require("./next-i18next.config");
 
 const localeSubpaths = {
   en: "en",
   es: "es",
   tr: "tr",
-}
+};
 
 const nextConfiguration = {
   transformManifest: (manifest) => ["/"].concat(manifest),
@@ -42,11 +42,7 @@ const nextConfiguration = {
     optimizeFonts: true,
     productionBrowserSourceMaps: true,
   },
-  i18n: {
-    localeDetection: false,
-    locales: ["en", "es", "tr"],
-    defaultLocale: "en",
-  },
+  i18n,
   images: {
     domains: ["res.cloudinary.com"],
     // loader: "cloudinary",
@@ -65,7 +61,7 @@ const nextConfiguration = {
         source: "/service-worker.js.map",
         destination: "/_next/static/service-worker.js.map",
       },
-    ]
+    ];
   },
   webpack(config) {
     config.module.rules.push({
@@ -74,14 +70,14 @@ const nextConfiguration = {
         test: /\.(js|ts)x?$/,
       },
       use: ["@svgr/webpack"],
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
 module.exports = withPlugins([
   // [withBundleAnalyzer],
   // [withOffline],
   withOffline(nextConfiguration),
-])
+]);
