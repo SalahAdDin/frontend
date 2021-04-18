@@ -1,13 +1,13 @@
-import { Button, Typography } from "@material-ui/core"
-import { useTranslation } from "next-i18next"
-import PropTypes from "prop-types"
-import Title from "components/fields/title"
-import Layout from "components/layout"
-import useStyles from "styles/common"
+import { Button, Typography } from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import Title from "components/fields/title";
+import Layout from "components/layout";
+import useStyles from "styles/common";
 
 const Error = ({ statusCode }) => {
-  const classes = useStyles()
-  const { t } = useTranslation()
+  const classes = useStyles();
+  const { t } = useTranslation();
 
   return (
     <Layout>
@@ -26,19 +26,19 @@ const Error = ({ statusCode }) => {
         </Button>
       </div>
     </Layout>
-  )
-}
+  );
+};
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
 
   return {
     statusCode,
-  }
-}
+  };
+};
 
 Error.propTypes = {
   statusCode: PropTypes.number,
-}
+};
 
-export default Error
+export default Error;
