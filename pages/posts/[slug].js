@@ -1,5 +1,6 @@
 import { Chip, Paper } from "@material-ui/core";
 import { DiscussionEmbed } from "disqus-react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BlogJsonLd } from "next-seo";
@@ -158,10 +159,22 @@ Post.propTypes = {
   preview: PropTypes.bool,
 };
 
-export const getStaticProps = async ({ params, preview = null }) => {
+export const getStaticProps = async ({ params, preview = null, locale }) => {
   const data = await getPageBySlug(params.slug, preview);
 
-  return { props: { preview, ...data?.pages[0] } };
+  if (data.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      preview,
+      ...data?.pages[0],
+    },
+  };
 };
 
 export async function getStaticPaths() {
@@ -173,3 +186,16 @@ export async function getStaticPaths() {
 }
 
 export default Post;
+
+/* If our API gets a locale parameter:
+* const paths = locales.reduce(
+    (current, next) => [
+      ...current,
+      ...posts?.map((post) => ({
+        params: { slug: `/posts/${post.slug}` },
+        locale: next,
+      })),
+    ],
+    []
+  );
+  * */

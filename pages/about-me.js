@@ -92,17 +92,12 @@ export const getStaticProps = async ({ locale }) => {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "skill-type"])),
       ...data?.pages[0],
-      ...(await serverSideTranslations(locale, ["skill-type"])),
     },
     revalidate: 1,
   };
 };
-
-// This has a problem at first loading: https://github.com/isaachinman/next-i18next/issues/869#issuecomment-736807376
-// AboutMe.defaultProps = {
-//   i18nNamespaces: ["skill-type"],
-// }
 
 AboutMe.propTypes = {
   title_en: PropTypes.string.isRequired,
