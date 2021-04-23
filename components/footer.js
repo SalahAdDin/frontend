@@ -1,5 +1,5 @@
-import PropTypes from "prop-types"
-import Link from "next/link"
+import PropTypes from "prop-types";
+import Link from "next/link";
 import {
   Container,
   fade,
@@ -7,12 +7,12 @@ import {
   Link as LinkUI,
   makeStyles,
   Typography,
-} from "@material-ui/core"
-import { useTranslation } from "next-i18next"
-import NextIcon from "assets/svg/nextjs.svg"
-import StrapiIcon from "assets/svg/strapi-logo-light.svg"
-import { footerLinks, socialMediaLinks } from "lib/constants"
-import URL from "./fields/url"
+} from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+import NextIcon from "assets/svg/nextjs.svg";
+import StrapiIcon from "assets/svg/strapi-logo-light.svg";
+import { footerLinks, socialMediaLinks } from "lib/constants";
+import URL from "./fields/url";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
       "& path": { fill: fade(theme.palette.light.main, 0.55) },
     },
   },
-}))
+}));
 
 const Copyright = () => {
   return (
@@ -72,11 +72,11 @@ const Copyright = () => {
       </Link>
       {` ${new Date().getFullYear()}. `}
     </Typography>
-  )
-}
+  );
+};
 
 const DevTech = () => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Typography component="span" className={classes.techIcons}>
       {`Developed with `}
@@ -94,17 +94,17 @@ const DevTech = () => {
       </LinkUI>
       .
     </Typography>
-  )
-}
+  );
+};
 
 const FooterSection = ({ title, links, navLinks }) => {
-  const classes = useStyles()
-  const { t, i18n } = useTranslation()
+  const classes = useStyles();
+  const { t, i18n } = useTranslation();
 
   const localizedTitle = (label) => {
     const { title: localTitle, title_en: titleEn } = navLinks.find(
       (item) => item.slug === label
-    )
+    );
 
     return (
       localTitle[
@@ -112,8 +112,8 @@ const FooterSection = ({ title, links, navLinks }) => {
           (content) => content.split("_")[1] === i18n.language
         )
       ] || titleEn
-    )
-  }
+    );
+  };
 
   return (
     <Grid item xs={6} sm={2}>
@@ -134,17 +134,17 @@ const FooterSection = ({ title, links, navLinks }) => {
         ))}
       </ul>
     </Grid>
-  )
-}
+  );
+};
 
 FooterSection.propTypes = {
   title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
   navLinks: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
 const Footer = ({ navLinks }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Container component="footer" className={classes.root} maxWidth={false}>
       <Container maxWidth="md">
@@ -180,8 +180,8 @@ const Footer = ({ navLinks }) => {
         </Grid>
       </Container>
     </Container>
-  )
-}
+  );
+};
 
 Footer.propTypes = {
   navLinks: PropTypes.arrayOf(
@@ -191,6 +191,6 @@ Footer.propTypes = {
       title: PropTypes.objectOf(PropTypes.string),
     })
   ),
-}
+};
 
-export default Footer
+export default Footer;

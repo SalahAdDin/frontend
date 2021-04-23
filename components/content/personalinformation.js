@@ -1,12 +1,18 @@
-import PropTypes from "prop-types"
-import { Avatar, Card, CardContent, CardHeader, Typography } from "@material-ui/core"
-import { MailOutline, Room } from "@material-ui/icons"
-import { Skeleton } from "@material-ui/lab"
-import Image from "next/image"
-import useStyles from "styles/common"
-import { DynamicZone } from "../body"
-import Telephone from "../fields/telephone"
-import URL from "../fields/url"
+import PropTypes from "prop-types";
+import {
+  Avatar,
+  Card,
+  CardContent,
+  CardHeader,
+  Typography,
+} from "@material-ui/core";
+import { MailOutline, Room } from "@material-ui/icons";
+import { Skeleton } from "@material-ui/lab";
+import Image from "next/image";
+import useStyles from "styles/common";
+import { DynamicZone } from "../body";
+import Telephone from "../fields/telephone";
+import URL from "../fields/url";
 
 const PersonalInformation = ({
   name,
@@ -19,7 +25,7 @@ const PersonalInformation = ({
   telephone,
   aboutme,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <Card elevation={0} component="section">
@@ -110,8 +116,8 @@ const PersonalInformation = ({
         )}
       </CardContent>
     </Card>
-  )
-}
+  );
+};
 
 PersonalInformation.propTypes = {
   name: PropTypes.string.isRequired,
@@ -146,6 +152,6 @@ PersonalInformation.propTypes = {
     })
   ),
   aboutme: PropTypes.objectOf(PropTypes.string),
-}
+};
 
-export default PersonalInformation
+export default PersonalInformation;

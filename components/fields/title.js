@@ -1,6 +1,6 @@
-import { Typography } from "@material-ui/core"
-import { useTranslation } from "next-i18next"
-import PropTypes from "prop-types"
+import { Typography } from "@material-ui/core";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
 
 const Title = ({
   title,
@@ -10,12 +10,12 @@ const Title = ({
   gutterBottom = false,
   align = "center",
 }) => {
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
 
   const localizedTitle =
     title[
       Object.keys(title).find((content) => content.split("_")[1] === i18n.language)
-    ] || titleEn
+    ] || titleEn;
 
   return (
     <Typography
@@ -27,8 +27,8 @@ const Title = ({
     >
       {localizedTitle}
     </Typography>
-  )
-}
+  );
+};
 
 Title.propTypes = {
   title_en: PropTypes.string.isRequired,
@@ -37,6 +37,6 @@ Title.propTypes = {
   variant: PropTypes.oneOf(["h1", "h2", "h3", "h4", "h5", "h6"]),
   gutterBottom: PropTypes.bool,
   align: PropTypes.oneOf(["inherit", "left", "center", "right", "justify"]),
-}
+};
 
-export default Title
+export default Title;

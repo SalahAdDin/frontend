@@ -6,18 +6,18 @@ import {
   Grid,
   IconButton,
   Typography,
-} from "@material-ui/core"
-import { NavigateNext } from "@material-ui/icons"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import { useTranslation } from "next-i18next"
-import PropTypes from "prop-types"
-import Tag from "./fields/tag"
-import Title from "./fields/title"
+} from "@material-ui/core";
+import { NavigateNext } from "@material-ui/icons";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import Tag from "./fields/tag";
+import Title from "./fields/title";
 
 const Project = ({ id, title, title_en: titleEn, thumbnail, description, tags }) => {
-  const router = useRouter()
-  const { i18n } = useTranslation()
+  const router = useRouter();
+  const { i18n } = useTranslation();
 
   return (
     <Grid
@@ -80,8 +80,8 @@ const Project = ({ id, title, title_en: titleEn, thumbnail, description, tags })
         </CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
 Project.propTypes = {
   id: PropTypes.string.isRequired,
@@ -96,6 +96,6 @@ Project.propTypes = {
     height: PropTypes.height,
   }),
   tags: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export default Project
+export default Project;

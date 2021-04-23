@@ -6,14 +6,14 @@ import {
   Grid,
   IconButton,
   Typography,
-} from "@material-ui/core"
-import { NavigateNext } from "@material-ui/icons"
-import Image from "next/image"
-import { useRouter } from "next/router"
-import { useTranslation } from "next-i18next"
-import PropTypes from "prop-types"
-import Title from "./fields/title"
-import Tag from "./fields/tag"
+} from "@material-ui/core";
+import { NavigateNext } from "@material-ui/icons";
+import Image from "next/image";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import Title from "./fields/title";
+import Tag from "./fields/tag";
 
 const Post = ({
   slug,
@@ -23,8 +23,8 @@ const Post = ({
   description,
   tags,
 }) => {
-  const router = useRouter()
-  const { i18n } = useTranslation()
+  const router = useRouter();
+  const { i18n } = useTranslation();
   return (
     <Grid
       item
@@ -89,8 +89,8 @@ const Post = ({
         </CardActions>
       </Card>
     </Grid>
-  )
-}
+  );
+};
 
 Post.propTypes = {
   slug: PropTypes.string.isRequired,
@@ -105,6 +105,6 @@ Post.propTypes = {
   }),
   description: PropTypes.objectOf(PropTypes.string).isRequired,
   tags: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export default Post
+export default Post;
