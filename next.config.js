@@ -7,6 +7,7 @@ const { i18n } = require("./next-i18next.config");
 
 const nextConfiguration = {
   transformManifest: (manifest) => ["/"].concat(manifest),
+  productionBrowserSourceMaps: true,
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
       ? "service-worker.js"
