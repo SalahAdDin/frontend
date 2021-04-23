@@ -1,10 +1,10 @@
-import PropTypes from "prop-types"
-import { Typography } from "@material-ui/core"
-import { PhoneAndroid, Phonelink, Phone } from "@material-ui/icons"
-import useStyles from "styles/common"
+import PropTypes from "prop-types";
+import { Typography } from "@material-ui/core";
+import { PhoneAndroid, Phonelink, Phone } from "@material-ui/icons";
+import useStyles from "styles/common";
 
 const Telephone = ({ type, number }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <li className={classes.telephone}>
@@ -19,12 +19,12 @@ const Telephone = ({ type, number }) => {
         {number}
       </Typography>
     </li>
-  )
-}
+  );
+};
 
 Telephone.propTypes = {
   type: PropTypes.string.isRequired,
   number: PropTypes.number.isRequired,
-}
+};
 
-export default Telephone
+export default Telephone;

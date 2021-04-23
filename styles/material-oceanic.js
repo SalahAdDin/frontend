@@ -263,4 +263,4 @@ export default {
   "code.language-css .token.selector > .token.pseudo-element": {
     color: "#c792ea",
   },
-}
+};

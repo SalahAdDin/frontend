@@ -1,8 +1,8 @@
-import PropTypes from "prop-types"
-import { useRouter } from "next/router"
-import { NextSeo } from "next-seo"
-import { CMS_NAME } from "lib/constants"
-import { useTranslation } from "../i18n"
+import PropTypes from "prop-types";
+import { useRouter } from "next/router";
+import { NextSeo } from "next-seo";
+import { useTranslation } from "next-i18next";
+import { CMS_NAME } from "lib/constants";
 
 const SEO = ({
   title_en: titleEn,
@@ -11,20 +11,20 @@ const SEO = ({
   description = {},
   canonical,
 }) => {
-  const router = useRouter()
-  const { i18n } = useTranslation()
+  const router = useRouter();
+  const { i18n } = useTranslation();
 
   const pageTitle = `${CMS_NAME} | ${
     title[
       Object.keys(title).find((content) => content.split("_")[1] === i18n.language)
     ] || titleEn
-  }`
+  }`;
   const localDescription =
     description[
       Object.keys(description).find(
         (content) => content.split("_")[1] === i18n.language
       )
-    ]
+    ];
 
   return (
     <NextSeo
@@ -39,8 +39,8 @@ const SEO = ({
         ...openGraph,
       }}
     />
-  )
-}
+  );
+};
 
 SEO.propTypes = {
   canonical: PropTypes.string,
@@ -55,6 +55,6 @@ SEO.propTypes = {
     images: PropTypes.arrayOf(PropTypes.object),
     videos: PropTypes.arrayOf(PropTypes.object),
   }),
-}
+};
 
-export default SEO
+export default SEO;

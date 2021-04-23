@@ -1,27 +1,27 @@
-import React from "react"
-import PropTypes from "prop-types"
-import clsx from "clsx"
-import Link from "next/link"
+import React from "react";
 import {
   AppBar,
   Box,
   Container,
+  darken,
+  fade,
+  Fade,
   FormControl,
+  IconButton,
+  makeStyles,
   MenuItem,
   Select,
   Slide,
   Toolbar,
   useScrollTrigger,
-  makeStyles,
-  darken,
-  fade,
-  IconButton,
-  Fade,
-} from "@material-ui/core"
-import MenuIcon from "@material-ui/icons/Menu"
-import { useRouter } from "next/router"
-import { menuLinks } from "lib/constants"
-import { useTranslation } from "../i18n"
+} from "@material-ui/core";
+import MenuIcon from "@material-ui/icons/Menu";
+import clsx from "clsx";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import { menuLinks } from "lib/constants";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,43 +87,43 @@ const useStyles = makeStyles((theme) => ({
       justifyContent: "flex-end",
     },
   },
-}))
+}));
 
 const HideOnScroll = ({ children }) => {
-  const trigger = useScrollTrigger()
+  const trigger = useScrollTrigger();
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children}
     </Slide>
-  )
-}
+  );
+};
 
 HideOnScroll.propTypes = {
   children: PropTypes.element.isRequired,
-}
+};
 
 const Nav = ({ navLinks }) => {
-  const classes = useStyles()
-  const { t, i18n } = useTranslation()
-  const router = useRouter()
-  const [open, setOpen] = React.useState(false)
+  const classes = useStyles();
+  const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const [open, setOpen] = React.useState(false);
 
   const localizedTitle = (label) => {
     const { title = {}, title_en: titleEn } = navLinks.find(
       (item) => item.slug === label
-    )
+    );
 
     return (
       title[
         Object.keys(title).find((content) => content.split("_")[1] === i18n.language)
       ] || titleEn
-    )
-  }
+    );
+  };
 
   const handleLanguageChange = (event) => {
-    i18n.changeLanguage(event.target.value)
-  }
+    router.push(router.pathname, router.asPath, { locale: event.target.value });
+  };
 
   return (
     <HideOnScroll>
@@ -221,11 +221,11 @@ const Nav = ({ navLinks }) => {
         </Container>
       </AppBar>
     </HideOnScroll>
-  )
-}
+  );
+};
 
 Nav.propTypes = {
   navLinks: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export default Nav
+export default Nav;

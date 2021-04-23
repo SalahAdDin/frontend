@@ -1,4 +1,3 @@
-import PropTypes from "prop-types"
 import {
   Avatar,
   Button,
@@ -11,22 +10,24 @@ import {
   makeStyles,
   Paper,
   Typography,
-} from "@material-ui/core"
-import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt"
-import { Skeleton } from "@material-ui/lab"
-import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { DynamicZone } from "components/body"
-import Title from "components/fields/title"
-import Skill from "components/fields/skill"
-import Layout from "components/layout"
-import Loader from "components/loader"
-import SEO from "components/seo"
-import useGlobalStyles from "styles/common"
-import { getPageBySlugAndAdditionalInformation } from "lib/api/pages"
-import ErrorPage from "./_error"
-import { useTranslation } from "../i18n"
+} from "@material-ui/core";
+import ArrowRightAltIcon from "@material-ui/icons/ArrowRightAlt";
+import { Skeleton } from "@material-ui/lab";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import { DynamicZone } from "components/body";
+import Title from "components/fields/title";
+import Skill from "components/fields/skill";
+import Layout from "components/layout";
+import Loader from "components/loader";
+import SEO from "components/seo";
+import { getPageBySlugAndAdditionalInformation } from "lib/api/pages";
+import useGlobalStyles from "styles/common";
+import ErrorPage from "./_error";
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -115,15 +116,15 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
   },
-}))
+}));
 
 const ProjectCard = ({ id, title_en: titleEn, title, thumbnail, description }) => {
-  const { i18n } = useTranslation()
+  const { i18n } = useTranslation();
 
   const localizedDescription =
     description[
       Object.keys(description).find((item) => item.split("_")[1] === i18n.language)
-    ]
+    ];
 
   return (
     <Link href={`/projects/${id}`}>
@@ -156,8 +157,8 @@ const ProjectCard = ({ id, title_en: titleEn, title, thumbnail, description }) =
         </CardContent>
       </Card>
     </Link>
-  )
-}
+  );
+};
 
 ProjectCard.propTypes = {
   id: PropTypes.string,
@@ -171,11 +172,11 @@ ProjectCard.propTypes = {
     height: PropTypes.number,
   }),
   description: PropTypes.objectOf(PropTypes.string),
-}
+};
 
 const PostNote = ({ slug, title_en: titleEn, title, description }) => {
-  const classes = useStyles()
-  const { i18n } = useTranslation()
+  const classes = useStyles();
+  const { i18n } = useTranslation();
   return (
     <Link href={`/posts/${slug}`}>
       <Paper elevation={3} className={classes.postNote}>
@@ -198,19 +199,19 @@ const PostNote = ({ slug, title_en: titleEn, title, description }) => {
         </Typography> */}
       </Paper>
     </Link>
-  )
-}
+  );
+};
 
 PostNote.propTypes = {
   slug: PropTypes.string,
   title_en: PropTypes.string.isRequired,
   title: PropTypes.objectOf(PropTypes.string),
   description: PropTypes.objectOf(PropTypes.string),
-}
+};
 
 const SeeMoreLink = ({ slug, label }) => {
-  const classes = useStyles()
-  const { t } = useTranslation()
+  const classes = useStyles();
+  const { t } = useTranslation();
   return (
     <Link href={`${slug}`} passHref>
       <Button color="primary" className={classes.seeMoreLink}>
@@ -218,13 +219,13 @@ const SeeMoreLink = ({ slug, label }) => {
         <ArrowRightAltIcon />
       </Button>
     </Link>
-  )
-}
+  );
+};
 
 SeeMoreLink.propTypes = {
   slug: PropTypes.string.isRequired,
   label: PropTypes.string,
-}
+};
 
 const Home = ({
   title_en: titleEn,
@@ -235,20 +236,20 @@ const Home = ({
   posts,
   projects,
 }) => {
-  const classes = useStyles()
-  const globalClasses = useGlobalStyles()
-  const router = useRouter()
-  const { t, i18n } = useTranslation()
+  const classes = useStyles();
+  const globalClasses = useGlobalStyles();
+  const router = useRouter();
+  const { t, i18n } = useTranslation();
 
-  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
+  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />;
 
-  const [firstPost, ...otherPost] = posts
+  const [firstPost, ...otherPost] = posts;
 
-  const skills = body.filter((item) => item.__typename === "ComponentFieldsSkill")
+  const skills = body.filter((item) => item.__typename === "ComponentFieldsSkill");
 
   const { photo: profilePhoto, aboutme: aboutMe } = body.find(
     (item) => item.__typename === "ComponentContentPersonalInformation"
-  )
+  );
 
   return (
     <Layout>
@@ -449,16 +450,21 @@ const Home = ({
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export async function getStaticProps() {
-  const data = await getPageBySlugAndAdditionalInformation("home", "blog", false)
+export async function getStaticProps({ locale }) {
+  const data = await getPageBySlugAndAdditionalInformation("home", "blog", false);
 
   return {
-    props: { ...data?.pages[0], projects: data?.projects, posts: data?.posts },
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      ...data?.pages[0],
+      projects: data?.projects,
+      posts: data?.posts,
+    },
     revalidate: 1,
-  }
+  };
 }
 
 Home.propTypes = {
@@ -469,6 +475,6 @@ Home.propTypes = {
   slug: PropTypes.string.isRequired,
   projects: PropTypes.arrayOf(PropTypes.object),
   posts: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export default Home
+export default Home;

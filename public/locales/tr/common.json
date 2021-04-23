@@ -32,15 +32,5 @@
   "projects": "Projeler",
   "posts": "Postlar",
   "about-me": "Hakkımda",
-  "see-more": "Daha fazla gör",
-  "skill-type": {
-    "database": "Database",
-    "framework": "Çerçeve",
-    "language": "Dil",
-    "operating_system": "İşletim Sistemi",
-    "programming_language": "Yazılım Dili",
-    "technical": "Teknik",
-    "technology": "Teknoloji",
-    "tools": "Araçlar"
-  }
+  "see-more": "Daha fazla gör"
 }

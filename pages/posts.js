@@ -1,15 +1,16 @@
-import PropTypes from "prop-types"
-import { useRouter } from "next/router"
-import { Grid } from "@material-ui/core"
-import { Skeleton } from "@material-ui/lab"
-import { getPageAndTagBySlug } from "lib/api/tags"
-import SEO from "components/seo"
-import Layout from "components/layout"
-import { DynamicZone } from "components/body"
-import Title from "components/fields/title"
-import Loader from "components/loader"
-import Post from "components/post"
-import ErrorPage from "./_error"
+import { Grid } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import SEO from "components/seo";
+import Layout from "components/layout";
+import { DynamicZone } from "components/body";
+import Title from "components/fields/title";
+import Loader from "components/loader";
+import Post from "components/post";
+import { getPageAndTagBySlug } from "lib/api/tags";
+import ErrorPage from "./_error";
 
 const Posts = ({
   title_en: titleEn,
@@ -19,11 +20,13 @@ const Posts = ({
   body,
   pagesByTag,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const contents = body.find((item) => item.__typename === "ComponentContentContent")
+  const contents = body.find(
+    (item) => item.__typename === "ComponentContentContent"
+  );
 
-  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
+  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />;
 
   return (
     <Layout>
@@ -49,8 +52,8 @@ const Posts = ({
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 Posts.propTypes = {
   title_en: PropTypes.string.isRequired,
@@ -59,14 +62,18 @@ Posts.propTypes = {
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
   slug: PropTypes.string.isRequired,
   pagesByTag: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export const getStaticProps = async () => {
-  const data = await getPageAndTagBySlug("posts", "blog")
+export const getStaticProps = async ({ locale }) => {
+  const data = await getPageAndTagBySlug("posts", "blog");
   return {
-    props: { ...data?.pages[0], pagesByTag: data?.posts },
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      ...data?.pages[0],
+      pagesByTag: data?.posts,
+    },
     revalidate: 1,
-  }
-}
+  };
+};
 
-export default Posts
+export default Posts;

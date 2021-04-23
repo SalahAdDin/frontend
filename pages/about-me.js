@@ -1,37 +1,38 @@
-import PropTypes from "prop-types"
-import { useRouter } from "next/router"
-import { SocialProfileJsonLd } from "next-seo"
-import { getPageBySlug } from "lib/api/pages"
-import { CMS_URL } from "lib/constants"
-import PersonalInformation from "components/content/personalinformation"
-import Title from "components/fields/title"
-import Layout from "components/layout"
-import Loader from "components/loader"
-import SkillsSection from "components/skillssection"
-import SEO from "components/seo"
-import { useTranslation } from "../i18n"
-import ErrorPage from "./_error"
+import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { SocialProfileJsonLd } from "next-seo";
+import PropTypes from "prop-types";
+import PersonalInformation from "components/content/personalinformation";
+import Title from "components/fields/title";
+import Layout from "components/layout";
+import Loader from "components/loader";
+import SEO from "components/seo";
+import SkillsSection from "components/skillssection";
+import { getPageBySlug } from "lib/api/pages";
+import { CMS_URL } from "lib/constants";
+import ErrorPage from "./_error";
 
 const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
-  const router = useRouter()
-  const { t } = useTranslation()
+  const router = useRouter();
+  const { t } = useTranslation("skill-type");
 
   const personalInformation = body.find(
     (item) => item.__typename === "ComponentContentPersonalInformation"
-  )
+  );
 
   const skills = body
     .filter((item) => item.__typename === "ComponentFieldsSkill")
     .reduce((r, a) => {
-      r[a.type] = [...(r[a.type] || []), a]
-      return r
-    }, {})
+      r[a.type] = [...(r[a.type] || []), a];
+      return r;
+    }, {});
 
-  const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ")
-  const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ")
-  const getGroupName = (group) => t(`skill-type.${group.toLowerCase()}`)
+  const lastName = personalInformation.name.split(" ").slice(2, 4).join(" ");
+  const firstName = personalInformation.name.split(" ").slice(0, 2).join(" ");
+  const getGroupName = (group) => t(`${group.toLowerCase()}`);
 
-  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
+  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />;
 
   return (
     <Layout>
@@ -83,22 +84,20 @@ const AboutMe = ({ title_en: titleEn, slug, title, description, body }) => {
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export async function getStaticProps() {
-  const data = await getPageBySlug("about-me", false)
+export const getStaticProps = async ({ locale }) => {
+  const data = await getPageBySlug("about-me", false);
 
   return {
-    props: { ...data?.pages[0] },
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "skill-type"])),
+      ...data?.pages[0],
+    },
     revalidate: 1,
-  }
-}
-
-// This has a problem at first loading: https://github.com/isaachinman/next-i18next/issues/869#issuecomment-736807376
-// AboutMe.defaultProps = {
-//   i18nNamespaces: ["skill-type"],
-// }
+  };
+};
 
 AboutMe.propTypes = {
   title_en: PropTypes.string.isRequired,
@@ -108,6 +107,6 @@ AboutMe.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.object),
   slug: PropTypes.string.isRequired,
   i18nNamespaces: PropTypes.arrayOf(PropTypes.string),
-}
+};
 
-export default AboutMe
+export default AboutMe;

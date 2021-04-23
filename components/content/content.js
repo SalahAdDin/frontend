@@ -1,14 +1,19 @@
-import PropTypes from "prop-types"
-import ReactPlayer from "react-player/lazy"
-import ReactMarkdown from "react-markdown"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { fade, makeStyles } from "@material-ui/core"
-import VideoPlugin from "lib/remarkvideo"
-import Picture from "../fields/image"
+import PropTypes from "prop-types";
+import ReactPlayer from "react-player/lazy";
+import Markdown from "react-markdown";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { fade, makeStyles } from "@material-ui/core";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
+import unwrapImages from "remark-unwrap-images";
+import gh from "hast-util-sanitize/lib/github";
+import merge from "deepmerge";
+import VideoPlugin from "lib/remarkvideo";
+import Picture from "../fields/image";
 // import RemarkMathPlugin from "remark-math"
 // import { BlockMath, InlineMath } from "react-katex"
 
-import oceanic from "styles/material-oceanic"
+import oceanic from "styles/material-oceanic";
 
 const useStyles = makeStyles((theme) => ({
   codeBlock: {
@@ -49,35 +54,38 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
   },
-}))
+}));
 
-const CodeBlock = ({ language, value }) => {
-  const classes = useStyles()
+const CodeBlock = ({ node, className, ...props }) => {
+  const classes = useStyles();
+  const match = /language-(\w+)/.exec(className || "");
 
-  return (
+  return match ? (
     <SyntaxHighlighter
       showLineNumbers
       startingLineNumber={1}
-      language={language}
+      language={match[1]}
       style={oceanic}
       lineNumberContainerProps={{
         style: { color: "#ddd", paddingRight: "1.625em", float: "left" },
       }}
       wrapLines
       className={classes.codeBlock}
-    >
-      {value}
-    </SyntaxHighlighter>
-  )
-}
+      {...props}
+    />
+  ) : (
+    // TODO: does it require a special class? Find inspiration in other pages.
+    <code className={`${className} ${classes.codeBlock}`} {...props} />
+  );
+};
 
 CodeBlock.propTypes = {
-  language: PropTypes.string,
-  value: PropTypes.node,
-}
+  className: PropTypes.string,
+  node: PropTypes.object,
+};
 
 const ImageBlock = ({ alt, src }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Picture
       alt={alt}
@@ -87,28 +95,28 @@ const ImageBlock = ({ alt, src }) => {
       quality={80}
       className={classes.image}
     />
-  )
-}
+  );
+};
 
 ImageBlock.propTypes = {
   alt: PropTypes.string,
   src: PropTypes.string,
-}
+};
 
-/* 
-Note: 
+/*
+Note:
   Videos are embedded in the same way than images:
     ![](filename.mp4 filename.mp3)
   Unfortunately, It seems Markdown itself does not detect differences between images or videos, so, it must be done by file extension.
 
   Or in this way: https://about.gitlab.com/handbook/markdown-guide/#videos
-  
+
   Issue related to https://github.com/rexxars/react-markdown/issues/343
 
 */
 
 const VideoBlock = ({ url }) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div className={classes.playerWrapper}>
       <ReactPlayer
@@ -120,46 +128,35 @@ const VideoBlock = ({ url }) => {
         height="100%"
       />
     </div>
-  )
-}
+  );
+};
 
 VideoBlock.propTypes = {
   url: PropTypes.string,
-}
-
-const ParagraphBlock = ({ children }) => {
-  const hasMedia = !!children.find(
-    (child) =>
-      typeof child === "object" &&
-      child.key &&
-      (!!child.key.match(/image/g) || !!child.key.match(/video/g))
-  )
-  return hasMedia ? <div>{children}</div> : <p>{children}</p>
-}
-
-ParagraphBlock.propTypes = {
-  children: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
 const _mapProps = (props) => ({
   ...props,
-  escapeHtml: false,
-  plugins: [
+  remarkPlugins: [
     // RemarkMathPlugin,
     // RemarkHighlightPlugin,
+    unwrapImages,
     VideoPlugin,
   ],
-  renderers: {
-    ...props.renderers,
+  rehypePlugins: [
+    rehypeRaw,
+    [rehypeSanitize, merge(gh, { attributes: { code: ["className"] } })],
+  ],
+  components: {
+    ...props.components,
     // math: ({ value }) => <BlockMath>{value}</BlockMath>,
     // inlineMath: ({ value }) => <InlineMath>{value}</InlineMath>,
     code: CodeBlock,
-    image: ImageBlock,
+    img: ImageBlock,
     video: VideoBlock,
-    paragraph: ParagraphBlock,
   },
-})
+});
 
-const Content = (props) => <ReactMarkdown {..._mapProps(props)} />
+const Content = (props) => <Markdown {..._mapProps(props)} />;
 
-export default Content
+export default Content;

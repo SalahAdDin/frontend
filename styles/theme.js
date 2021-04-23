@@ -1,4 +1,4 @@
-import { createMuiTheme, responsiveFontSizes } from "@material-ui/core"
+import { createMuiTheme, responsiveFontSizes } from "@material-ui/core";
 
 const baseTheme = createMuiTheme({
   palette: {
@@ -19,8 +19,8 @@ const baseTheme = createMuiTheme({
     fontFamily: ["Nunito", "sans-serif"],
     fontSize: 16,
   },
-})
+});
 
-const theme = responsiveFontSizes(baseTheme)
+const theme = responsiveFontSizes(baseTheme);
 
-export default theme
+export default theme;

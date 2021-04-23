@@ -1,7 +1,7 @@
-import React from "react"
-import PropTypes from "prop-types"
-import Link from "next/link"
-import { Link as LinkUI } from "@material-ui/core"
+import React from "react";
+import PropTypes from "prop-types";
+import Link from "next/link";
+import { Link as LinkUI } from "@material-ui/core";
 
 const Tag = ({ label, slug, comma }) => {
   return (
@@ -11,15 +11,15 @@ const Tag = ({ label, slug, comma }) => {
         {comma ? "," : ""}
       </LinkUI>
     </Link>
-  )
-}
+  );
+};
 
-Tag.defaultProps = { comma: false }
+Tag.defaultProps = { comma: false };
 
 Tag.propTypes = {
   label: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   comma: PropTypes.bool,
-}
+};
 
-export default Tag
+export default Tag;

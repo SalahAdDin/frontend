@@ -1,14 +1,15 @@
-import PropTypes from "prop-types"
-import { useRouter } from "next/router"
-import { Skeleton } from "@material-ui/lab"
-import { getPageBySlugAndCategory } from "lib/api/categories"
-import Title from "components/fields/title"
-import SEO from "components/seo"
-import Category from "components/category"
-import { DynamicZone } from "components/body"
-import Layout from "components/layout"
-import Loader from "components/loader"
-import ErrorPage from "./_error"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import PropTypes from "prop-types";
+import { useRouter } from "next/router";
+import { Skeleton } from "@material-ui/lab";
+import { getPageBySlugAndCategory } from "lib/api/categories";
+import Title from "components/fields/title";
+import SEO from "components/seo";
+import Category from "components/category";
+import { DynamicZone } from "components/body";
+import Layout from "components/layout";
+import Loader from "components/loader";
+import ErrorPage from "./_error";
 
 const Projects = ({
   title_en: titleEn,
@@ -18,11 +19,13 @@ const Projects = ({
   body,
   categories,
 }) => {
-  const router = useRouter()
+  const router = useRouter();
 
-  const contents = body.find((item) => item.__typename === "ComponentContentContent")
+  const contents = body.find(
+    (item) => item.__typename === "ComponentContentContent"
+  );
 
-  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />
+  if (!router.isFallback && !slug) return <ErrorPage statusCode={404} />;
 
   return (
     <Layout>
@@ -50,8 +53,8 @@ const Projects = ({
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 Projects.propTypes = {
   title_en: PropTypes.string.isRequired,
@@ -60,15 +63,19 @@ Projects.propTypes = {
   body: PropTypes.arrayOf(PropTypes.object).isRequired,
   slug: PropTypes.string.isRequired,
   categories: PropTypes.arrayOf(PropTypes.object),
-}
+};
 
-export const getStaticProps = async () => {
-  const data = await getPageBySlugAndCategory("projects")
+export const getStaticProps = async ({ locale }) => {
+  const data = await getPageBySlugAndCategory("projects");
 
   return {
-    props: { ...data?.pages[0], categories: data?.categories },
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      ...data?.pages[0],
+      categories: data?.categories,
+    },
     revalidate: 1,
-  }
-}
+  };
+};
 
-export default Projects
+export default Projects;

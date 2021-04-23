@@ -1,4 +1,4 @@
-import { CMS_URL, CMS_NAME } from "./lib/constants"
+import { CMS_URL, CMS_NAME } from "./lib/constants";
 
 export default {
   canonical: CMS_URL,
@@ -14,4 +14,4 @@ export default {
     site: "@site",
     cardType: "summary_large_image",
   },
-}
+};
