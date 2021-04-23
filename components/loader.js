@@ -1,5 +1,5 @@
-import { Typography } from "@material-ui/core"
-import { Skeleton } from "@material-ui/lab"
+import { Typography } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
 
 const Loader = () => {
   // TODO: maybe use a spinner here
@@ -28,7 +28,7 @@ const Loader = () => {
         <Skeleton variant="text" height="100%" />
       </Typography>
     </>
-  )
-}
+  );
+};
 
-export default Loader
+export default Loader;

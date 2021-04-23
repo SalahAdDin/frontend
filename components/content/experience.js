@@ -1,28 +1,28 @@
-import PropTypes from "prop-types"
 import {
   Card,
   CardContent,
   CardHeader,
   Link,
-  Typography,
   makeStyles,
-} from "@material-ui/core"
-import { Language, Room } from "@material-ui/icons"
+  Typography,
+} from "@material-ui/core";
+import { Language, Room } from "@material-ui/icons";
 import {
   Skeleton,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
   TimelineItem,
   TimelineOppositeContent,
   TimelineSeparator,
-  TimelineDot,
-  TimelineConnector,
-  TimelineContent,
-} from "@material-ui/lab"
-import dayjs from "dayjs"
-import "dayjs/locale/es"
-import "dayjs/locale/tr"
-import useGlobalStyles from "styles/common"
-import { useTranslation } from "../../i18n"
-import Content from "./content"
+} from "@material-ui/lab";
+import dayjs from "dayjs";
+import "dayjs/locale/es";
+import "dayjs/locale/tr";
+import { useTranslation } from "next-i18next";
+import PropTypes from "prop-types";
+import useGlobalStyles from "styles/common";
+import Content from "./content";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-}))
+}));
 
 const Experience = ({
   from,
@@ -62,9 +62,9 @@ const Experience = ({
   url,
   last,
 }) => {
-  const classes = useStyles()
-  const globalClasses = useGlobalStyles()
-  const { i18n } = useTranslation()
+  const classes = useStyles();
+  const globalClasses = useGlobalStyles();
+  const { i18n } = useTranslation();
 
   return (
     <TimelineItem className={classes.root}>
@@ -77,13 +77,13 @@ const Experience = ({
           <Skeleton animation="wave" height={10} width="40%" />
         )}
         <Typography color="textSecondary">
-          {`${dayjs(from).locale(i18n.language).format("MMMM YYYY")} `}
+          {`${dayjs(from).locale(`${i18n.language}`).format("MMMM YYYY")} `}
           {ongoing ? (
             ""
           ) : (
             <>
               &mdash;
-              {` ${dayjs(to).locale(i18n.language).format("MMMM YYYY")}`}
+              {` ${dayjs(to).locale(`${i18n.language}`).format("MMMM YYYY")}`}
             </>
           )}
         </Typography>
@@ -161,8 +161,8 @@ const Experience = ({
         </Card>
       </TimelineContent>
     </TimelineItem>
-  )
-}
+  );
+};
 
 Experience.propTypes = {
   address: PropTypes.shape({
@@ -179,6 +179,6 @@ Experience.propTypes = {
   title: PropTypes.string.isRequired,
   to: PropTypes.string,
   url: PropTypes.string,
-}
+};
 
-export default Experience
+export default Experience;

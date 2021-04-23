@@ -1,18 +1,13 @@
-// const { nextI18NextRewrites } = require("next-i18next/rewrites")
-const withOffline = require("next-offline")
-const withPlugins = require("next-compose-plugins")
+const withOffline = require("next-offline");
+const withPlugins = require("next-compose-plugins");
+const { i18n } = require("./next-i18next.config");
 // const withBundleAnalyzer = require("@next/bundle-analyzer")({
 //   enabled: process.env.ANALYZE === "true",
 // })
 
-const localeSubpaths = {
-  en: "en",
-  es: "es",
-  tr: "tr",
-}
-
 const nextConfiguration = {
   transformManifest: (manifest) => ["/"].concat(manifest),
+  productionBrowserSourceMaps: true,
   workboxOpts: {
     swDest: process.env.NEXT_EXPORT
       ? "service-worker.js"
@@ -35,18 +30,10 @@ const nextConfiguration = {
       },
     ],
   },
-  publicRuntimeConfig: {
-    localeSubpaths,
-  },
   experimental: {
     optimizeFonts: true,
-    productionBrowserSourceMaps: true,
   },
-  i18n: {
-    localeDetection: false,
-    locales: ["en", "es", "tr"],
-    defaultLocale: "en",
-  },
+  i18n,
   images: {
     domains: ["res.cloudinary.com"],
     // loader: "cloudinary",
@@ -56,7 +43,6 @@ const nextConfiguration = {
   },
   async rewrites() {
     return [
-      // ...nextI18NextRewrites(localeSubpaths),
       {
         source: "/service-worker.js",
         destination: "/_next/static/service-worker.js",
@@ -65,8 +51,13 @@ const nextConfiguration = {
         source: "/service-worker.js.map",
         destination: "/_next/static/service-worker.js.map",
       },
-    ]
+    ];
   },
+  /*
+  TODO: At remaking on typescript, review which package is broking this.
+  future: {
+    webpack5: true,
+  },*/
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -74,14 +65,14 @@ const nextConfiguration = {
         test: /\.(js|ts)x?$/,
       },
       use: ["@svgr/webpack"],
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
 module.exports = withPlugins([
   // [withBundleAnalyzer],
   // [withOffline],
   withOffline(nextConfiguration),
-])
+]);

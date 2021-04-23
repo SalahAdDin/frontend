@@ -1,20 +1,21 @@
-import PropTypes from "prop-types"
-import Link from "next/link"
-import { useRouter } from "next/router"
-import { ProductJsonLd } from "next-seo"
-import ReactPlayer from "react-player/lazy"
-import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core"
-import { Skeleton } from "@material-ui/lab"
-import { getAllProjectsWithID, getProjectByID } from "lib/api/projects"
-import { CMS_NAME, CMS_URL } from "lib/constants"
-import useStyles from "styles/common"
-import SEO from "components/seo"
-import { DynamicZone } from "components/body"
-import Title from "components/fields/title"
-import Picture from "components/fields/image"
-import Layout from "components/layout"
-import Loader from "components/loader"
-import ErrorPage from "../_error"
+import { Chip, Divider, Link as LinkUI, Paper } from "@material-ui/core";
+import { Skeleton } from "@material-ui/lab";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { ProductJsonLd } from "next-seo";
+import ReactPlayer from "react-player/lazy";
+import PropTypes from "prop-types";
+import SEO from "components/seo";
+import { DynamicZone } from "components/body";
+import Picture from "components/fields/image";
+import Title from "components/fields/title";
+import Layout from "components/layout";
+import Loader from "components/loader";
+import { getAllProjectsWithID, getProjectByID } from "lib/api/projects";
+import { CMS_NAME, CMS_URL } from "lib/constants";
+import useStyles from "styles/common";
+import ErrorPage from "../_error";
 
 const Project = ({
   id,
@@ -28,10 +29,10 @@ const Project = ({
   content,
   tags,
 }) => {
-  const classes = useStyles()
-  const router = useRouter()
+  const classes = useStyles();
+  const router = useRouter();
 
-  if (!router.isFallback && !id) return <ErrorPage statusCode={404} />
+  if (!router.isFallback && !id) return <ErrorPage statusCode={404} />;
 
   return (
     <Layout>
@@ -62,6 +63,8 @@ const Project = ({
                 {
                   name: video?.name,
                   contentUrl: video?.url,
+                  secureUrl: video?.url,
+                  type: `video/${video?.url.split(".")[1]}`,
                   description: video?.caption,
                   uploadDate: video?.updated_at,
                   tags: tags?.map((tag) => tag.label),
@@ -158,8 +161,8 @@ const Project = ({
         </>
       )}
     </Layout>
-  )
-}
+  );
+};
 
 Project.propTypes = {
   id: PropTypes.string.isRequired,
@@ -193,21 +196,46 @@ Project.propTypes = {
     updated_at: PropTypes.string,
     url: PropTypes.string.isRequired,
   }),
-}
+};
 
-export async function getStaticProps({ params }) {
-  const data = await getProjectByID(params.id)
+export async function getStaticProps({ params, locale }) {
+  const data = await getProjectByID(params.id);
 
-  return { props: { ...data?.project }, revalidate: 1 }
+  if (data.length === 0) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+      ...data?.project,
+    },
+    revalidate: 1,
+  };
 }
 
 export async function getStaticPaths() {
-  const projects = await getAllProjectsWithID()
+  const projects = await getAllProjectsWithID();
 
   return {
     paths: projects?.map((project) => `/projects/${project.id}`) || [],
     fallback: true,
-  }
+  };
 }
 
-export default Project
+export default Project;
+
+/* If our API gets a locale parameter:
+* const paths = locales.reduce(
+    (current, next) => [
+      ...current,
+      ...projects?.map((project) => ({
+        params: { id: `/projects/${project.id}` },
+        locale: next,
+      })),
+    ],
+    []
+  );
+  * */

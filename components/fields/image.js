@@ -1,7 +1,7 @@
 // import "lazysizes"
-import PropTypes from "prop-types"
-import Image from "next/image"
-import { Box } from "@material-ui/core"
+import PropTypes from "prop-types";
+import Image from "next/image";
+import { Box } from "@material-ui/core";
 
 /*
 const useStyles = makeStyles(() => ({
@@ -29,8 +29,8 @@ const Picture = ({ alt, src, className = "", width, height, ...rest }) => {
         {...rest}
       />
     </Box>
-  )
-}
+  );
+};
 
 Picture.propTypes = {
   alt: PropTypes.string,
@@ -38,6 +38,6 @@ Picture.propTypes = {
   className: PropTypes.string,
   width: PropTypes.number,
   height: PropTypes.number,
-}
+};
 
-export default Picture
+export default Picture;

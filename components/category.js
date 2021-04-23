@@ -1,6 +1,6 @@
-import PropTypes from "prop-types"
-import { Grid, Typography } from "@material-ui/core"
-import Project from "./project"
+import PropTypes from "prop-types";
+import { Grid, Typography } from "@material-ui/core";
+import Project from "./project";
 
 const Category = ({ name, projects }) => {
   return (
@@ -14,12 +14,12 @@ const Category = ({ name, projects }) => {
         ))}
       </Grid>
     </>
-  )
-}
+  );
+};
 
 Category.propTypes = {
   name: PropTypes.string.isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({ id: PropTypes.string.isRequired })),
-}
+};
 
-export default Category
+export default Category;

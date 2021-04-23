@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   avatarHeader: {
@@ -70,6 +70,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 16,
     marginRight: 16,
   },
-}))
+}));
 
-export default useStyles
+export default useStyles;

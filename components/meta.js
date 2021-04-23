@@ -1,5 +1,5 @@
-import Head from "next/head"
-import { CMS_THEME_COLOR } from "lib/constants"
+import Head from "next/head";
+import { CMS_THEME_COLOR } from "lib/constants";
 
 const Meta = () => {
   return (
@@ -30,7 +30,7 @@ const Meta = () => {
       <link rel="shortcut icon" href="/favicon/favicon.ico" />
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
     </Head>
-  )
-}
+  );
+};
 
-export default Meta
+export default Meta;
