@@ -63,6 +63,8 @@ const Project = ({
                 {
                   name: video?.name,
                   contentUrl: video?.url,
+                  secureUrl: video?.url,
+                  type: `video/${video?.url.split(".")[1]}`,
                   description: video?.caption,
                   uploadDate: video?.updated_at,
                   tags: tags?.map((tag) => tag.label),
