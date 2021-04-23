@@ -32,7 +32,6 @@ const nextConfiguration = {
   },
   experimental: {
     optimizeFonts: true,
-    productionBrowserSourceMaps: true,
   },
   i18n,
   images: {
