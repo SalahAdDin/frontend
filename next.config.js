@@ -53,6 +53,11 @@ const nextConfiguration = {
       },
     ];
   },
+  /*
+  TODO: At remaking on typescript, review which package is broking this.
+  future: {
+    webpack5: true,
+  },*/
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
