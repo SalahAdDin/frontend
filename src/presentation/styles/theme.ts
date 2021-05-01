@@ -16,7 +16,7 @@ const baseTheme = createMuiTheme({
     footerBackGround: { default: "#343a40" },
   },
   typography: {
-    fontFamily: ["Nunito", "sans-serif"],
+    fontFamily: ["Nunito", "sans-serif"].join(","),
     fontSize: 16,
   },
 });
