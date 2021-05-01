@@ -9,7 +9,6 @@
 /coverage
 
 # next.js
-.env*.local
 /.next/
 /out/
 
@@ -18,12 +17,21 @@
 
 # misc
 .DS_Store
-# .env*
+*.pem
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# folders
+# local env files
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# jetbrains
 .idea/

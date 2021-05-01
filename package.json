@@ -1,16 +1,22 @@
 {
   "name": "frontend",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "private": true,
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/SalahAdDin/frontend.git"
+  },
+  "homepage": "https://github.com/SalahAdDin/frontend/#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "lint": "eslint .",
-    "lint:fix": "eslint --fix .",
-    "format": "prettier --write \"**/*.+(js|jsx|json|css|md)\"",
     "find:unused": "next-unused",
-    "prepare": "husky install && rm -rf .git/hooks && ln -s ../.husky .git/hooks"
+    "format": "prettier --write \"**/*.+(ts|tsx|json|css|scss|md)\"",
+    "lint": "eslint './**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix './**/*.{ts,tsx}'",
+    "prepare": "husky install",
+    "start": "next start",
+    "type-check": "tsc"
   },
   "lint-staged": {
     "*.+(js|jsx)": [
@@ -24,67 +30,51 @@
   },
   "next-unused": {
     "alias": {
-      "lib": "lib/",
-      "assets": "assets/",
-      "styles": "styles/",
-      "components": "components/"
+      "application": "src/application/",
+      "domain": "src/domain/",
+      "infrastructure": "src/infrastructure/",
+      "pages": "src/pages/",
+      "presentation": "src/presentation/"
     },
     "debug": true,
     "include": [
-      "assets",
-      "components",
-      "lib",
+      "application",
+      "domain",
+      "infrasctructure",
       "pages",
-      "styles"
+      "presentation"
     ],
     "exclude": [],
     "entrypoints": [
-      "pages"
+      "src/pages"
     ]
   },
-  "repository": {
-    "type": "github",
-    "url": "https://github.com/SalahAdDin/frontend.git"
-  },
-  "homepage": "https://github.com/SalahAdDin/frontend/#readme",
   "dependencies": {
-    "@material-ui/core": "^4.11.2",
-    "@material-ui/icons": "^4.11.2",
-    "@material-ui/lab": "^4.0.0-alpha.57",
-    "@svgr/webpack": "^5.5.0",
-    "dayjs": "1.10.4",
-    "deepmerge": "^4.2.2",
-    "disqus-react": "^1.0.10",
-    "fontsource-dm-sans": "4.0.0",
-    "fontsource-nunito": "4.0.0",
-    "next": "10.1.3",
-    "next-compose-plugins": "^2.2.0",
-    "next-i18next": "8.2.0",
-    "next-offline": "5.0.5",
-    "next-seo": "4.24.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "react-markdown": "6.0.1",
-    "react-player": "^2.7.2",
-    "react-syntax-highlighter": "^15.4.3",
-    "rehype-raw": "^5.1.0",
-    "rehype-sanitize": "^4.0.0",
-    "remark-unwrap-images": "^2.0.0"
+    "@material-ui/core": "^4.11.4",
+    "dayjs": "^1.10.4",
+    "next": "10.2.0",
+    "next-unused": "^0.0.6",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
   },
   "devDependencies": {
-    "babel-eslint": "^10.1.0",
-    "eslint": "7.24.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "8.2.0",
-    "eslint-plugin-import": "^2.22.0",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-react": "7.23.2",
-    "eslint-plugin-react-hooks": "^4.1.2",
-    "husky": "6.0.0",
-    "lint-staged": "^10.5.3",
-    "next-unused": "0.0.6",
-    "prettier": "2.2.1",
-    "prop-types": "^15.7.2"
+    "@types/node": "15.0.1",
+    "@types/react": "17.0.4",
+    "@types/react-dom": "^17.0.3",
+    "@typescript-eslint/eslint-plugin": "^4.22.0",
+    "@typescript-eslint/parser": "^4.22.0",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-prefer-object-spread": "^1.2.1",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.2.1",
+    "typescript": "^4.2.4"
   }
 }
