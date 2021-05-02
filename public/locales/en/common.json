@@ -1,0 +1,36 @@
+{
+  "alert": {
+    "preview-mode": {
+      "title": "Warning",
+      "message": "You are looking at the website in — <strong>preview mode</strong>."
+    }
+  },
+  "error": {
+    "404": {
+      "title": "{{statusCode}} - Page not found",
+      "disclaimer": "We can't find the page you are looking for."
+    },
+    "500": {
+      "title": "{{statusCode}} - Internal server error",
+      "disclaimer": "We have experienced an internal server error and are working to resolve it."
+    },
+    "status": {
+      "with": "A {{statusCode}} error occurred on server.",
+      "without": "An error occurred on the server."
+    }
+  },
+  "hero": {
+    "title": "We faced each new challenge with creativity and passion.",
+    "subtitle": "Creative Development"
+  },
+  "exit": "Exit",
+  "home": "Home",
+  "main": "Main",
+  "resources": "Resources",
+  "me": "Me",
+  "pages": "Pages",
+  "projects": "Projects",
+  "posts": "Posts",
+  "about-me": "About me",
+  "see-more": "See more"
+}
