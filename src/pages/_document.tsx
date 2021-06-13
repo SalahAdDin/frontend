@@ -1,9 +1,9 @@
-import Document, { Head, Html, Main, NextScript } from "next/document";
+import createEmotionServer from "@emotion/server/create-instance";
 import { ServerStyleSheets } from "@material-ui/core";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 import { cache } from "pages/_app";
 import theme from "presentation/styles/theme";
 import React from "react";
-import createEmotionServer from "@emotion/server/create-instance";
 
 const { extractCritical } = createEmotionServer(cache);
 
