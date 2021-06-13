@@ -4,7 +4,7 @@ import clsx from "clsx";
 import merge from "deepmerge";
 import gh from "hast-util-sanitize/lib/github.json";
 import Image from "next/image";
-import * as remarkVideo from "presentation/lib/remarkvideo";
+import remarkVideo from "presentation/lib/remarkvideo";
 import useGlobalStyles from "presentation/styles/common";
 import oceanic from "presentation/styles/material-oceanic";
 import React from "react";
@@ -16,7 +16,6 @@ import rehypeSanitize from "rehype-sanitize";
 import unwrapImages from "remark-unwrap-images";
 import { Theme } from "@material-ui/core/styles";
 
-import type { Plugin } from "unified";
 const useStyles = makeStyles(({ breakpoints, palette }: Theme) => ({
   codeBlock: {
     "&::-webkit-scrollbar": {
@@ -123,7 +122,7 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
     // RemarkMathPlugin,
     // RemarkHighlightPlugin,
     unwrapImages,
-    remarkVideo as Plugin<[]>,
+    remarkVideo,
   ],
   rehypePlugins: [
     rehypeRaw,

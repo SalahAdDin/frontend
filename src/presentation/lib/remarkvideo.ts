@@ -1,17 +1,14 @@
 import { Node } from "unist";
 import visit from "unist-util-visit";
+import type { Image } from "mdast";
 
 const allowedFiletypes: string[] = ["avi", "mp4", "mov", "mkv"];
 
-interface ImageNode extends Node {
-  url: string;
-}
-
-function video() {
+function remarkVideo() {
   function transformer(tree: Node) {
-    visit(tree, "image", (node: ImageNode) => {
+    visit(tree, "image", (node: Image) => {
       const { url } = node;
-      const fileType: string | undefined = url.split(".").pop();
+      const fileType = url.split(".").pop();
 
       if (fileType && allowedFiletypes.includes(fileType)) {
         node.data = node.data || {};
@@ -25,4 +22,4 @@ function video() {
   return transformer;
 }
 
-module.exports = video;
+export default remarkVideo;
