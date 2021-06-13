@@ -3,18 +3,6 @@ export interface IBaseMenuLink {
   label: string;
 }
 
-export interface ISocialLink {
-  id: number;
-  type:
-    | "Home"
-    | "Github"
-    | "BitBucket"
-    | "GitLab"
-    | "StackOverflow"
-    | "LinkedIn";
-  url: string;
-}
-
 export interface IMenuLink extends IBaseMenuLink {
   key: string;
 }
@@ -29,11 +17,23 @@ export interface IFooterLink {
   links: IBaseMenuLink[];
 }
 
-export interface IAddress {
-  address?: string;
-  city: string;
-  country: string;
-  postalCode?: number;
+export interface IFile {
+  id: string;
+  name: string;
+  alternativeText?: string;
+  caption?: string;
+  width?: number;
+  height?: number;
+  formats?: { [key: string]: any };
+  hash: string;
+  ext?: string;
+  mime: string;
+  size: number;
+  url: string;
+  previewUrl?: string;
+  provider: string;
+  provider_metadata?: { [key: string]: any };
+  related?: any[];
 }
 
 export interface IVideo {
@@ -51,33 +51,4 @@ export interface IImage {
   url: string;
   width: number;
   height: number;
-}
-
-export interface ISkill {
-  type:
-    | "Database"
-    | "Framework"
-    | "Language"
-    | "Operating_System"
-    | "Programming_Language"
-    | "Technical"
-    | "Technology"
-    | "Tools";
-  id: number;
-  name: string;
-  level: number;
-}
-
-export interface ITag {
-  id: number;
-  label: string;
-  slug: string;
-}
-
-export interface ITelephone {
-  id: number;
-  type: "Mobile" | "Home" | "Work";
-  number: number;
-}
-
 }
