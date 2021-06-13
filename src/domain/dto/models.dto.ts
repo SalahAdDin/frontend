@@ -1,7 +1,14 @@
 import { IFile } from "./common.dto";
 import { IExperience, IPersonalInformation, IRichText } from "./content.dto";
-import { ISkill } from "./fields.dto";
-import { ITag } from "./tag.dto";
+import { ISkill, ISocialLink } from "./fields.dto";
+
+export interface ICategory {
+  id: string;
+  name: string;
+  slug: string;
+  projects?: IProject[];
+  description?: string;
+}
 
 export interface IPage {
   id: string;
@@ -16,4 +23,24 @@ export interface IPage {
   )[]; // IComponent[]
   tags?: ITag[];
   description?: string;
+}
+
+export interface IProject {
+  id: string;
+  title?: string;
+  thumbnail: IFile;
+  video?: IFile;
+  links?: ISocialLink[];
+  category?: ICategory;
+  tags?: ITag[];
+  description?: string;
+  content?: string;
+}
+
+export interface ITag {
+  id: string;
+  label: string;
+  slug: string;
+  projects?: IProject[];
+  pages?: IPage[];
 }
