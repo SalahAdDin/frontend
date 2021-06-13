@@ -1,10 +1,11 @@
 import { alpha, Box } from "@material-ui/core";
+import { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 import merge from "deepmerge";
 import gh from "hast-util-sanitize/lib/github.json";
 import Image from "next/image";
-import remarkVideo from "presentation/lib/remarkvideo";
+import remarkVideo from "presentation/lib/remarkVideo";
 import useGlobalStyles from "presentation/styles/common";
 import oceanic from "presentation/styles/material-oceanic";
 import React from "react";
@@ -14,7 +15,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import unwrapImages from "remark-unwrap-images";
-import { Theme } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(({ breakpoints, palette }: Theme) => ({
   codeBlock: {

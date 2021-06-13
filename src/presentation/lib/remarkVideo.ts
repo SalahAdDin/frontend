@@ -13,8 +13,6 @@ function remarkVideo() {
       if (fileType && allowedFiletypes.includes(fileType)) {
         node.data = node.data || {};
         node.data.hName = "video";
-        // TODO: If images already returns a src, next line is not required.
-        // node.data.hProperties = { src: node.url };
       }
     });
   }
