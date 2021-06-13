@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { MailOutline, Room } from "@material-ui/icons";
-import { IPersonalInformation } from "domain/dto/personalInformation.dto";
+import { IPersonalInformation } from "domain/dto/content.dto";
 import Image from "next/image";
 import useStyles from "presentation/styles/common";
 import React from "react";
