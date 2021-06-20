@@ -26,6 +26,9 @@
       "application/*": [
         "application/*"
       ],
+      "assets/*": [
+        "assets/*"
+      ],
       "domain/*": [
         "domain/*"
       ],

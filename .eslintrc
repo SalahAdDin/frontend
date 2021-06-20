@@ -95,11 +95,37 @@
         "usePrettierrc": true
       }
     ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".d.ts",
+          ".tsx"
+        ]
+      }
+    ],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/prop-types": "off"
   },
   "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ],
+        "extensions": [
+          ".js",
+          ".ts",
+          ".d.ts",
+          ".tsx"
+        ]
+      }
+    },
     "react": {
       "version": "latest"
     }
