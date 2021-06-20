@@ -113,8 +113,10 @@ const Nav: React.FC<NavProps> = ({ navLinks }) => {
   const router: NextRouter = useRouter();
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleLanguageChange = (event: { target: { value: any } }) => {
-    router.push(router.pathname, router.asPath, { locale: event.target.value });
+  const handleLanguageChange = async (event: { target: { value: any } }) => {
+    await router.push(router.pathname, router.asPath, {
+      locale: event.target.value,
+    });
   };
 
   return (

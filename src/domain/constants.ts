@@ -52,7 +52,11 @@ export const footerLinks: IFooterLink[] = [
 ];
 
 export const socialMediaLinks: ISocialLink[] = [
-  { type: "Github", url: "www.github.com/SalahAdDin" },
-  { type: "LinkedIn", url: "www.linkedin.com/in/jluissalaguna/" },
-  { type: "StackOverflow", url: "stackoverflow.com/users/3826549/salahaddin" },
+  { id: "sm_gh", type: "Github", url: "www.github.com/SalahAdDin" },
+  { id: "sm_li", type: "LinkedIn", url: "www.linkedin.com/in/jluissalaguna/" },
+  {
+    id: "sm_sof",
+    type: "StackOverflow",
+    url: "stackoverflow.com/users/3826549/salahaddin",
+  },
 ];

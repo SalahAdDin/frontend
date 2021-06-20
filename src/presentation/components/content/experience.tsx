@@ -39,7 +39,7 @@ const Experience: React.FC<
   institution,
   title,
   url,
-  last,
+  last = false,
 }) => {
   const classes = useStyles();
   const { i18n } = useTranslation();
@@ -75,35 +75,50 @@ const Experience: React.FC<
               </Typography>
             }
             subtitle={
-              <>
-                <Typography variant="body2" component="p">
-                  <Room className={classes.inlineSmallIcon} />
-                  {address.address && `${address.address} / `}
-                  {`${address.city} `}
-                  {address.postalCode && `[${address.postalCode}]`}
-                  {address.country && ` - ${address.country}`}
-                  {url && (
-                    <Link
-                      href={`//${url}`}
-                      target="_blank"
-                      rel="noopener"
-                      style={{
-                        // margin: "0 1rem",
-                        color: "inherit",
-                        textDecoration: "none",
-                      }}
-                    >
-                      <Language className={classes.inlineSmallIcon} />
-                      {url}
-                    </Link>
-                  )}
-                </Typography>
-              </>
+              address ? (
+                <>
+                  <Typography variant="body2" component="p">
+                    <Room className={classes.inlineSmallIcon} />
+                    {address.address && `${address.address} / `}
+                    {`${address.city} `}
+                    {address.postalCode && `[${address.postalCode}]`}
+                    {address.country && ` - ${address.country}`}
+                    {url && (
+                      <Link
+                        href={`//${url}`}
+                        target="_blank"
+                        rel="noopener"
+                        style={{
+                          // margin: "0 1rem",
+                          color: "inherit",
+                          textDecoration: "none",
+                        }}
+                      >
+                        <Language className={classes.inlineSmallIcon} />
+                        {url}
+                      </Link>
+                    )}
+                  </Typography>
+                </>
+              ) : (
+                <Skeleton animation="wave" height={10} width="40%" />
+              )
             }
           />
         </Card>
         <CardContent>
-          <Content>{description}</Content>
+          {description ? (
+            <Content>{description}</Content>
+          ) : (
+            <>
+              <Skeleton
+                animation="wave"
+                height={10}
+                style={{ marginBottom: 6 }}
+              />
+              <Skeleton animation="wave" height={10} width="80%" />
+            </>
+          )}
         </CardContent>
       </TimelineContent>
     </TimelineItem>

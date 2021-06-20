@@ -154,7 +154,7 @@ const Footer: React.FC<NavProps> = ({ navLinks }) => {
           >
             {/* TODO: Add logo here */}
             {socialMediaLinks.map((link) => (
-              <URL key={`footer_${link.type}`} {...link} />
+              <URL key={link.id} {...link} />
             ))}
           </Grid>
           {footerLinks.map((section) => (

@@ -74,29 +74,44 @@ const PersonalInformation: React.FC<IPersonalInformation> = ({
           </>
         }
         subheader={
-          <>
-            <Typography variant="body2" component="p">
-              <Room className={classes.inlineSmallIcon} />
-              {address.address && `${address.address} / `}
-              {`${address.city} `}
-              {address.postalCode && `[${address.postalCode}]`}
-              {address.country && ` - ${address.country}`}
-            </Typography>
-            <ul aria-label="telephones" className={classes.noPadding}>
-              {telephone.map((phone) => (
-                <Telephone key={phone.id} {...phone} />
-              ))}
-            </ul>
-            <ul aria-label="links" className={classes.noPadding}>
-              {links.map((link) => (
-                <URL key={`links_${link.id}`} {...link} />
-              ))}
-            </ul>
-          </>
+          address ? (
+            <>
+              <Typography variant="body2" component="p">
+                <Room className={classes.inlineSmallIcon} />
+                {address.address && `${address.address} / `}
+                {`${address.city} `}
+                {address.postalCode && `[${address.postalCode}]`}
+                {address.country && ` - ${address.country}`}
+              </Typography>
+              <ul aria-label="telephones" className={classes.noPadding}>
+                {telephone?.map((phone) => (
+                  <Telephone key={phone.id} {...phone} />
+                ))}
+              </ul>
+              <ul aria-label="links" className={classes.noPadding}>
+                {links?.map((link) => (
+                  <URL key={`links_${link.id}`} {...link} />
+                ))}
+              </ul>
+            </>
+          ) : (
+            <Skeleton animation="wave" height={10} width="40%" />
+          )
         }
       />
       <CardContent>
-        <Content>{aboutMe}</Content>
+        {aboutMe ? (
+          <Content>{aboutMe}</Content>
+        ) : (
+          <>
+            <Skeleton
+              animation="wave"
+              height={10}
+              style={{ marginBottom: 6 }}
+            />
+            <Skeleton animation="wave" height={10} width="80%" />
+          </>
+        )}
       </CardContent>
     </Card>
   );

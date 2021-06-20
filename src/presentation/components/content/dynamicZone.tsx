@@ -22,7 +22,7 @@ const DynamicZone: React.FC<IDynamicZone> = ({ component, className }) => {
       case "ComponentContentRichText":
         return <Content>{component.text}</Content>;
       case "ComponentContentExperience":
-        return <Experience {...component} />;
+        return <Experience {...component} last={false} />;
       case "ComponentContentPersonalInformation":
         return <PersonalInformation {...component} />;
       case "ComponentFieldsSkill":
