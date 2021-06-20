@@ -26,8 +26,6 @@
     "prettier"
   ],
   "extends": [
-    "next",
-    "next/core-web-vitals",
     "eslint:recommended",
     "plugin:testing-library/react",
     "plugin:react/recommended",
@@ -38,7 +36,8 @@
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:@next/next/recommended"
   ],
   "rules": {
     // https://github.com/typescript-eslint/typescript-eslint/tree/master/packages/eslint-plugin/docs/rules
