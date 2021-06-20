@@ -1,6 +1,6 @@
 import { Typography } from "@material-ui/core";
 import { Phone, PhoneAndroid, Phonelink } from "@material-ui/icons";
-import { ITelephone } from "domain/dto/common.dto";
+import { ITelephone } from "domain/dto/fields.dto";
 import useStyles from "presentation/styles/common";
 import React from "react";
 

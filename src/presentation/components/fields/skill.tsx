@@ -1,5 +1,5 @@
 import { Rating, Typography } from "@material-ui/core";
-import { ISkill } from "domain/dto/common.dto";
+import { ISkill } from "domain/dto/fields.dto";
 import React from "react";
 
 type ISkillComponent = Omit<ISkill, "type" | "id">;

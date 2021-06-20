@@ -3,7 +3,7 @@ import { GitHub, Home, LinkedIn } from "@material-ui/icons";
 import BitBucket from "assets/svg/bitbucket.svg";
 import GitLab from "assets/svg/gitlab.svg";
 import StackOverflow from "assets/svg/stack-overflow.svg";
-import { ISocialLink } from "domain/dto/common.dto";
+import { ISocialLink } from "domain/dto/fields.dto";
 import useStyles from "presentation/styles/common";
 import React from "react";
 

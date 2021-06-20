@@ -13,8 +13,9 @@ import {
   Toolbar,
   useScrollTrigger,
 } from "@material-ui/core";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
+import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
 import { menuLinks } from "domain/constants";
 import { INavLink } from "domain/dto/common.dto";

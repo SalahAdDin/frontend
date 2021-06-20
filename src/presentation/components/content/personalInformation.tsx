@@ -15,7 +15,6 @@ import React from "react";
 import Telephone from "../fields/telephone";
 import URL from "../fields/url";
 import Content from "./content";
-import DynamicZone from "./dynamicZone";
 
 const PersonalInformation: React.FC<IPersonalInformation> = ({
   name,

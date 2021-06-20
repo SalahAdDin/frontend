@@ -1,9 +1,5 @@
-import {
-  IBaseMenuLink,
-  IFooterLink,
-  IMenuLink,
-  ISocialLink,
-} from "domain/dto/common.dto";
+import { IBaseMenuLink, IFooterLink, IMenuLink } from "domain/dto/common.dto";
+import { ISocialLink } from "domain/dto/fields.dto";
 
 export const EXAMPLE_PATH: string = "cms-strapi";
 export const CMS_NAME: string = "Uzmani Tech";

@@ -6,6 +6,7 @@ import {
   CardContent,
   CardHeader,
   Link,
+  Skeleton,
   Typography,
 } from "@material-ui/core";
 import { Language, Room } from "@material-ui/icons";
@@ -18,7 +19,7 @@ import {
   TimelineSeparator,
 } from "@material-ui/lab";
 import dayjs from "dayjs";
-import { IExperience } from "domain/dto/experience.dto";
+import type { IExperience } from "domain/dto/content.dto";
 import { useTranslation } from "next-i18next";
 import useStyles from "presentation/styles/common";
 import React from "react";

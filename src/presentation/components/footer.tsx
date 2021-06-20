@@ -5,7 +5,8 @@ import {
   Link as LinkUI,
   Typography,
 } from "@material-ui/core";
-import { makeStyles, Theme } from "@material-ui/core/styles";
+import { Theme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/styles";
 import NextIcon from "assets/svg/nextjs.svg";
 import StrapiIcon from "assets/svg/strapi-logo-light.svg";
 import { footerLinks, socialMediaLinks } from "domain/constants";
