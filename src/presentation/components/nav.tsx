@@ -13,16 +13,18 @@ import {
   Toolbar,
   useScrollTrigger,
 } from "@material-ui/core";
-import { Theme } from "@material-ui/core/styles";
+import type { Theme } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import { makeStyles } from "@material-ui/styles";
 import clsx from "clsx";
-import { menuLinks } from "domain/constants";
-import { INavLink } from "domain/dto/common.dto";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import { NextRouter, useRouter } from "next/router";
+import type { NextRouter } from "next/router";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
+
+import { menuLinks } from "domain/constants";
+import type { INavLink } from "domain/dto/common.dto";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

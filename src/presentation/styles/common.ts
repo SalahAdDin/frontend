@@ -1,4 +1,4 @@
-import { Theme } from "@material-ui/core/styles";
+import type { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyles = makeStyles(({ spacing, palette, breakpoints }: Theme) => ({

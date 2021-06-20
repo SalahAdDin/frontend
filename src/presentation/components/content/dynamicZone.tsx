@@ -1,13 +1,15 @@
 import { Typography } from "@material-ui/core";
 import clsx from "clsx";
-import { IComponent } from "domain/dto/content.dto";
-import useStyles from "presentation/styles/common";
 import React from "react";
 
 import Skill from "../fields/skill";
+
 import Content from "./content";
 import Experience from "./experience";
 import PersonalInformation from "./personalInformation";
+
+import type { IComponent } from "domain/dto/content.dto";
+import useStyles from "presentation/styles/common";
 
 interface IDynamicZone {
   component: IComponent;

@@ -5,16 +5,17 @@ import {
   Link as LinkUI,
   Typography,
 } from "@material-ui/core";
-import { Theme } from "@material-ui/core/styles";
+import type { Theme } from "@material-ui/core/styles";
 import { makeStyles } from "@material-ui/styles";
+import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import React from "react";
+
 import NextIcon from "assets/svg/nextjs.svg";
 import StrapiIcon from "assets/svg/strapi-logo-light.svg";
 import { footerLinks, socialMediaLinks } from "domain/constants";
-import { IFooterLink, INavLink } from "domain/dto/common.dto";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
+import type { IFooterLink, INavLink } from "domain/dto/common.dto";
 import URL from "presentation/components/fields/url";
-import React from "react";
 
 const useStyles = makeStyles((theme: Theme) => ({
   root: {

@@ -1,6 +1,7 @@
-import { CMS_THEME_COLOR } from "domain/constants";
 import { Head } from "next/document";
 import React from "react";
+
+import { CMS_THEME_COLOR } from "domain/constants";
 
 const Meta: React.FC = () => {
   return (

@@ -1,11 +1,12 @@
 import { Link } from "@material-ui/core";
 import { GitHub, Home, LinkedIn } from "@material-ui/icons";
+import React from "react";
+
 import BitBucket from "assets/svg/bitbucket.svg";
 import GitLab from "assets/svg/gitlab.svg";
 import StackOverflow from "assets/svg/stack-overflow.svg";
-import { ISocialLink } from "domain/dto/fields.dto";
+import type { ISocialLink } from "domain/dto/fields.dto";
 import useStyles from "presentation/styles/common";
-import React from "react";
 
 const URL: React.FC<ISocialLink> = ({ type, url }) => {
   const classes = useStyles();

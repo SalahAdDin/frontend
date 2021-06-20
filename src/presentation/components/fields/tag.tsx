@@ -1,7 +1,8 @@
 import { Link as LinkUI } from "@material-ui/core";
-import { ITag } from "domain/dto/models.dto";
 import Link from "next/link";
 import React from "react";
+
+import type { ITag } from "domain/dto/models.dto";
 
 type TTagComponent = Omit<ITag, "id">;
 

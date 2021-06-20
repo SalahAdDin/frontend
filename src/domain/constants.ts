@@ -1,15 +1,19 @@
-import { IBaseMenuLink, IFooterLink, IMenuLink } from "domain/dto/common.dto";
-import { ISocialLink } from "domain/dto/fields.dto";
+import type {
+  IBaseMenuLink,
+  IFooterLink,
+  IMenuLink,
+} from "domain/dto/common.dto";
+import type { ISocialLink } from "domain/dto/fields.dto";
 
-export const EXAMPLE_PATH: string = "cms-strapi";
-export const CMS_NAME: string = "Uzmani Tech";
-export const CMS_AUTHOR: string = "José Luis Sandoval Alaguna";
-export const CMS_URL: string = "uzmani.tech";
-export const CMS_TILE_COLOR: string = "#5D61FD";
-export const CMS_THEME_COLOR: string = "#FFFFFF";
-export const DISQUS_SHORT_NAME: string = "uzmani-tech";
+export const EXAMPLE_PATH = "cms-strapi";
+export const CMS_NAME = "Uzmani Tech";
+export const CMS_AUTHOR = "José Luis Sandoval Alaguna";
+export const CMS_URL = "uzmani.tech";
+export const CMS_TILE_COLOR = "#5D61FD";
+export const CMS_THEME_COLOR = "#FFFFFF";
+export const DISQUS_SHORT_NAME = "uzmani-tech";
 // TODO: Change next
-export const HOME_OG_IMAGE_URL: string =
+export const HOME_OG_IMAGE_URL =
   "https://og-image.now.sh/Next.js%20Blog%20Example%20with%20**Strapi**.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Fv1590740734%2Fnextjs%2Fexamples%2Fstrapi-logo.svg";
 
 export const menuLinks: IMenuLink[] = [

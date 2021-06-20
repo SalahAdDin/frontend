@@ -19,12 +19,13 @@ import {
   TimelineSeparator,
 } from "@material-ui/lab";
 import dayjs from "dayjs";
-import type { IExperience } from "domain/dto/content.dto";
 import { useTranslation } from "next-i18next";
-import useStyles from "presentation/styles/common";
 import React from "react";
 
 import Content from "./content";
+
+import type { IExperience } from "domain/dto/content.dto";
+import useStyles from "presentation/styles/common";
 
 const Experience: React.FC<
   IExperience & {

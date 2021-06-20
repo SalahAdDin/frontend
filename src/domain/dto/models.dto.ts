@@ -1,6 +1,10 @@
-import { IFile } from "./common.dto";
-import { IExperience, IPersonalInformation, IRichText } from "./content.dto";
-import { ISkill, ISocialLink } from "./fields.dto";
+import type { IFile } from "./common.dto";
+import type {
+  IExperience,
+  IPersonalInformation,
+  IRichText,
+} from "./content.dto";
+import type { ISkill, ISocialLink } from "./fields.dto";
 
 export interface ICategory {
   id: string;

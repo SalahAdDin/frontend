@@ -1,4 +1,4 @@
-export default {
+const oceanic = {
   'code[class*="language-"]': {
     direction: "ltr",
     textAlign: "left",
@@ -264,3 +264,5 @@ export default {
     color: "#c792ea",
   },
 };
+
+export default oceanic;

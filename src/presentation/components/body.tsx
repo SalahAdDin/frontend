@@ -1,7 +1,8 @@
-import { IComponent } from "domain/dto/content.dto";
 import React from "react";
 
 import DynamicZone from "./content/dynamicZone";
+
+import type { IComponent } from "domain/dto/content.dto";
 
 const Body: React.FC<{ body: IComponent[] }> = ({ body }) => (
   <>

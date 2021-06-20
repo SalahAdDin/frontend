@@ -1,5 +1,5 @@
-import { IFile } from "./common.dto";
-import { IAddress, ISkill, ISocialLink, ITelephone } from "./fields.dto";
+import type { IFile } from "./common.dto";
+import type { IAddress, ISkill, ISocialLink, ITelephone } from "./fields.dto";
 
 export interface IExperience {
   id: string;

@@ -1,6 +1,6 @@
-import { Node } from "unist";
-import visit from "unist-util-visit";
 import type { Image } from "mdast";
+import type { Node } from "unist";
+import visit from "unist-util-visit";
 
 const allowedFiletypes: string[] = ["avi", "mp4", "mov", "mkv"];
 

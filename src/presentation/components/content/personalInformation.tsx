@@ -7,14 +7,16 @@ import {
   Typography,
 } from "@material-ui/core";
 import { MailOutline, Room } from "@material-ui/icons";
-import { IPersonalInformation } from "domain/dto/content.dto";
 import Image from "next/image";
-import useStyles from "presentation/styles/common";
 import React from "react";
 
 import Telephone from "../fields/telephone";
 import URL from "../fields/url";
+
 import Content from "./content";
+
+import type { IPersonalInformation } from "domain/dto/content.dto";
+import useStyles from "presentation/styles/common";
 
 const PersonalInformation: React.FC<IPersonalInformation> = ({
   name,
