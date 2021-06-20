@@ -95,6 +95,7 @@ const ImageBlock: React.FC<IImageBlock> = ({ alt, src, title }) => {
         layout="fill"
         objectFit="contain"
         title={title}
+        placeholder="blur"
       />
     </Box>
   );

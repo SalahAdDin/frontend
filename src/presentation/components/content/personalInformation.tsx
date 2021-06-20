@@ -46,6 +46,7 @@ const PersonalInformation: React.FC<IPersonalInformation> = ({
                   width={240}
                   height={320}
                   src={photo?.url}
+                  placeholder="blur"
                 />
               )}
             >
