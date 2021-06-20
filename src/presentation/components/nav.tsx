@@ -106,7 +106,7 @@ const HideOnScroll: React.FC<HideOnScrollProps> = ({ children }) => {
 };
 
 interface NavProps {
-  navLinks: [INavLink];
+  navLinks: INavLink[];
 }
 
 const Nav: React.FC<NavProps> = ({ navLinks }) => {
@@ -115,7 +115,7 @@ const Nav: React.FC<NavProps> = ({ navLinks }) => {
   const router: NextRouter = useRouter();
   const [open, setOpen] = useState<boolean>(false);
 
-  const handleLanguageChange = async (event: { target: { value: any } }) => {
+  const handleLanguageChange = async (event: { target: { value: string } }) => {
     await router.push(router.pathname, router.asPath, {
       locale: event.target.value,
     });

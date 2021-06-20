@@ -106,7 +106,7 @@ const DevTech: React.FC = () => {
 };
 
 interface NavProps {
-  navLinks: [INavLink];
+  navLinks: INavLink[];
 }
 
 const FooterSection: React.FC<IFooterLink & NavProps> = ({
