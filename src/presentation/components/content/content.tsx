@@ -14,6 +14,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
 import unwrapImages from "remark-unwrap-images";
 
+import { getBlurUrlFromCloudinary } from "presentation/lib/helpers";
 import remarkVideo from "presentation/lib/remarkVideo";
 import useGlobalStyles from "presentation/styles/common";
 import oceanic from "presentation/styles/material-oceanic";
@@ -75,7 +76,7 @@ const CodeBlock: React.FC<{ className?: string }> = ({ className }) => {
       className={classes.codeBlock}
     />
   ) : (
-    <code className={`${className} ${classes.codeBlock}`} />
+    <code className={clsx(className, classes.codeBlock)} />
   );
 };
 
@@ -98,6 +99,7 @@ const ImageBlock: React.FC<IImageBlock> = ({ alt, src, title }) => {
         objectFit="contain"
         title={title}
         placeholder="blur"
+        blurDataURL={getBlurUrlFromCloudinary(src)}
       />
     </Box>
   );

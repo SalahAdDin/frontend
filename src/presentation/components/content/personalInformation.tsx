@@ -16,6 +16,7 @@ import URL from "../fields/url";
 import Content from "./content";
 
 import type { IPersonalInformation } from "domain/dto/content.dto";
+import { getBlurUrlFromCloudinary } from "presentation/lib/helpers";
 import useStyles from "presentation/styles/common";
 
 const PersonalInformation: React.FC<IPersonalInformation> = ({
@@ -30,6 +31,7 @@ const PersonalInformation: React.FC<IPersonalInformation> = ({
   aboutMe,
 }) => {
   const classes = useStyles();
+
   return (
     <Card elevation={0} component="section">
       <CardHeader
@@ -48,6 +50,7 @@ const PersonalInformation: React.FC<IPersonalInformation> = ({
                   height={320}
                   src={photo?.url}
                   placeholder="blur"
+                  blurDataURL={getBlurUrlFromCloudinary(photo?.url)}
                 />
               )}
             >
