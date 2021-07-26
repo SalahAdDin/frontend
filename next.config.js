@@ -1,0 +1,71 @@
+const withOffline = require("next-offline");
+const withPlugins = require("next-compose-plugins");
+const { i18n } = require("./next-i18next.config");
+
+const nextConfiguration = {
+  i18n,
+  images: {
+    domains: ["res.cloudinary.com"],
+    // loader: "cloudinary",
+    // path: "https://cloudinary.com/",
+    deviceSizes: [640, 750, 828, 1080],
+    imageSizes: [16, 32, 48, 64],
+  },
+  productionBrowserSourceMaps: true,
+  transformManifest: (manifest) => ["/"].concat(manifest),
+  workboxOpts: {
+    swDest: process.env.NEXT_EXPORT
+      ? "service-worker.js"
+      : "static/service-worker.js",
+    runtimeCaching: [
+      {
+        urlPattern: /^https?.*/,
+        handler: "NetworkFirst",
+        options: {
+          cacheName: "https-calls",
+          networkTimeoutSeconds: 15,
+          expiration: {
+            maxEntries: 150,
+            maxAgeSeconds: 30 * 24 * 60 * 60, // 1 month
+          },
+          cacheableResponse: {
+            statuses: [0, 200],
+          },
+        },
+      },
+    ],
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/service-worker.js",
+        destination: "/_next/static/service-worker.js",
+      },
+      {
+        source: "/service-worker.js.map",
+        destination: "/_next/static/service-worker.js.map",
+      },
+    ];
+  },
+  reactStrictMode: true,
+  webpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: {
+            typescript: true,
+            babel: false,
+            ext: "tsx",
+          },
+        },
+      ],
+      issuer: /\.(ts|tsx|js|jsx|md|mdx)$/,
+    });
+
+    return config;
+  },
+};
+
+module.exports = withPlugins([withOffline(nextConfiguration)]);
