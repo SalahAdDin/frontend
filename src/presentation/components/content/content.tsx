@@ -12,6 +12,7 @@ import ReactPlayer from "react-player/lazy";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
+import remarkSlug from "remark-slug";
 import unwrapImages from "remark-unwrap-images";
 
 import { getBlurUrlFromCloudinary } from "presentation/lib/helpers";
@@ -126,6 +127,7 @@ const _mapProps = (props: ReactMarkdownOptions): ReactMarkdownOptions => ({
   remarkPlugins: [
     // RemarkMathPlugin,
     // RemarkHighlightPlugin,
+    remarkSlug,
     unwrapImages,
     remarkVideo,
   ],
