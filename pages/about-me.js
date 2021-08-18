@@ -95,7 +95,7 @@ export const getStaticProps = async ({ locale }) => {
       ...(await serverSideTranslations(locale, ["common", "skill-type"])),
       ...data?.pages[0],
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

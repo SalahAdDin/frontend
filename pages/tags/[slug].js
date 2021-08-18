@@ -71,7 +71,7 @@ export const getStaticProps = async ({ params, locale }) => {
       ...(await serverSideTranslations(locale, ["common"])),
       ...data?.tags[0],
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

@@ -74,7 +74,7 @@ export const getStaticProps = async ({ locale }) => {
       ...data?.pages[0],
       categories: data?.categories,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 
