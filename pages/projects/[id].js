@@ -212,7 +212,7 @@ export async function getStaticProps({ params, locale }) {
       ...(await serverSideTranslations(locale, ["common"])),
       ...data?.project,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 

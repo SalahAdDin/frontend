@@ -463,7 +463,7 @@ export async function getStaticProps({ locale }) {
       projects: data?.projects,
       posts: data?.posts,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 
