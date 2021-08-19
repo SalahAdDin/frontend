@@ -1,3 +1,9 @@
+import type { EmotionCache } from "@emotion/cache";
+import createCache from "@emotion/cache";
+
+export const createEmotionCache = (): EmotionCache =>
+  createCache({ key: "css" });
+
 export const getBlurUrlFromCloudinary = (url: string): string => {
   const urlParts = url.split("upload/");
   const blurIntensity = 300;

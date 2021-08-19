@@ -1,4 +1,4 @@
-import createCache from "@emotion/cache";
+import type { EmotionCache } from "@emotion/react";
 import { CacheProvider } from "@emotion/react";
 import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -12,23 +12,30 @@ import type { IMenuLink, INavLink } from "domain/dto/common.dto";
 import Footer from "presentation/components/footer";
 import Meta from "presentation/components/meta";
 import Nav from "presentation/components/nav";
+import { createEmotionCache } from "presentation/lib/helpers";
 import theme from "presentation/styles/theme";
 
-const cache = createCache({ key: "css", prepend: true });
-cache.compat = true;
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
 export function reportWebVitals(metric: NextWebVitalsMetric): void {
   if (process.env.NODE_ENV === "development") console.log(metric);
 }
 
 interface Props extends AppProps {
-  // title: string;
+  // title: string; TODO: how does this work?
   navLinks: INavLink[];
+  emotionCache?: EmotionCache;
 }
 
-const FolioApp = ({ Component, pageProps, navLinks }: Props) => {
+const FolioApp = ({
+  Component,
+  pageProps,
+  navLinks,
+  emotionCache = clientSideEmotionCache,
+}: Props) => {
   return (
-    <CacheProvider value={cache}>
+    <CacheProvider value={emotionCache}>
       <Meta />
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}

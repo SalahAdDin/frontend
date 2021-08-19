@@ -1,19 +1,13 @@
-import createCache from "@emotion/cache";
-import { CacheProvider } from "@emotion/react";
+import type { EmotionServer } from "@emotion/server/create-instance";
 import createEmotionServer from "@emotion/server/create-instance";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import React from "react";
 
+import { createEmotionCache } from "presentation/lib/helpers";
 import theme from "presentation/styles/theme";
 
-function getCache() {
-  const cache = createCache({ key: "css", prepend: true });
-  cache.compat = true;
-  return cache;
-}
-
 export default class FolioDocument extends Document {
-  render() {
+  render(): JSX.Element {
     return (
       <Html>
         <Head>
@@ -35,23 +29,30 @@ export default class FolioDocument extends Document {
 }
 
 FolioDocument.getInitialProps = async (ctx) => {
-  const originalRenderPage = ctx.renderPage;
+  const { renderPage: originalRenderPage } = ctx;
 
-  const cache = getCache();
-  const { extractCriticalToChunks } = createEmotionServer(cache);
+  // You can consider sharing the same emotion cache between all the SSR requests to speed up performance.
+  // However, be aware that it can have global side effects.
+  const cache = createEmotionCache();
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const { extractCriticalToChunks }: EmotionServer = createEmotionServer(cache);
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // Take precedence over the CacheProvider in our custom _app.js
-      enhanceComponent: (Component) => (props) =>
-        (
-          <CacheProvider value={cache}>
-            <Component {...props} />
-          </CacheProvider>
-        ),
+      // eslint-disable-next-line react/display-name
+      enhanceApp: (App: any) => (props) =>
+        <App emotionCache={cache} {...props} />,
+      /*
+      (App: any) =>
+          function basicApp(props) {
+            return <App emotionCache={cache} {...props} />;
+          },
+      */
     });
 
   const initialProps = await Document.getInitialProps(ctx);
+  // This is important. It prevents emotion to render invalid HTML.
+  // See https://github.com/mui-org/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style

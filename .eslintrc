@@ -25,14 +25,10 @@
   "extends": [
     "eslint:recommended",
     "plugin:testing-library/react",
-    "plugin:import/errors",
-    "plugin:import/warnings",
     "plugin:import/typescript",
     "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended",
     "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:prettier/recommended",
-    "next",
     "next/core-web-vitals",
     "prettier"
   ],
